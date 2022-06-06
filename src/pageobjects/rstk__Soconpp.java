@@ -50,7 +50,7 @@ public class rstk__Soconpp {
 
 	@PageWait.BackgroundActivity(timeoutSeconds = 60)
 	@TextType()
-	@FindBy(xpath = "//label[normalize-space(.)='Commitment Quantity']/ancestor::th/following-sibling::td[1]//input")
+	@FindBy(xpath = "//input[contains(@id,'soconpp_commitqty__c')]")
 	public WebElement commitmentQuantity;
 
 	@TextType()
