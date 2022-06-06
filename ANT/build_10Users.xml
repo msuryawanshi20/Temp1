@@ -1,0 +1,275 @@
+<project default="runtests">
+	<property environment="env"/>
+	<property name="provar.home" value="C:/Program Files/Provar/"/>
+	<property name="testproject.home" value=".."/>
+	<property name="testproject.results1" value="../ANT/Results1"/>
+	<property name="testproject.results2" value="../ANT/Results2"/>
+	<property name="testproject.results3" value="../ANT/Results3"/>
+	<property name="testproject.results4" value="../ANT/Results4"/>
+	<property name="testproject.results5" value="../ANT/Results5"/>
+	<property name="testproject.results6" value="../ANT/Results6"/>
+	<property name="testproject.results7" value="../ANT/Results7"/>
+	<property name="testproject.results8" value="../ANT/Results8"/>
+	<property name="testproject.results9" value="../ANT/Results9"/>
+	<property name="testproject.results10" value="../ANT/Results10"/>
+
+	<property name="secrets.password" value="${env.ProvarSecretsPassword}"/>
+	<property name="testenvironment.secretspassword" value="${env.ProvarSecretsPassword_EnvName}"/>
+	
+	
+	<taskdef name="Provar-Compile" classname="com.provar.testrunner.ant.CompileTask" classpath="${provar.home}/ant/ant-provar.jar"/>
+	<taskdef name="Run-Test-Case" classname="com.provar.testrunner.ant.RunnerTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar"/>
+	<taskdef name="Test-Cycle-Report" classname="com.provar.testrunner.ant.TestCycleReportTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar"/>
+	
+	<target name="runtests">
+	
+		<Provar-Compile provarHome="${provar.home}" projectPath="${testproject.home}"/>
+		
+	<parallel>
+		
+		
+	       <Run-Test-Case provarHome="${provar.home}" 
+						projectPath="${testproject.home}" 
+						resultsPath="${testproject.results1}" 
+						resultsPathDisposition="Replace" 
+						testEnvironment="" 
+						webBrowser="Chrome" 
+						webBrowserConfiguration="Full Screen"
+						webBrowserProviderName="Desktop"
+						webBrowserDeviceName="Full Screen" 
+						excludeCallableTestCases="false" 
+						salesforceMetadataCache="Reuse" 
+						projectCachePath="../../.provarCaches"
+						testOutputlevel="BASIC" 
+						pluginOutputlevel="WARNING"
+						stopTestRunOnError="false"
+						secretsPassword="${secrets.password}"
+						testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+						invokeTestRunMonitor="true"
+						>
+				
+					<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User1-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+				</Run-Test-Case> 
+		
+		       <Run-Test-Case provarHome="${provar.home}" 
+								projectPath="${testproject.home}" 
+								resultsPath="${testproject.results2}" 
+								resultsPathDisposition="Replace" 
+								testEnvironment="" 
+								webBrowser="Chrome" 
+								webBrowserConfiguration="Full Screen"
+								webBrowserProviderName="Desktop"
+								webBrowserDeviceName="Full Screen" 
+								excludeCallableTestCases="false" 
+								salesforceMetadataCache="Reuse" 
+								projectCachePath="../../.provarCaches"
+								testOutputlevel="BASIC" 
+								pluginOutputlevel="WARNING"
+								stopTestRunOnError="false"
+								secretsPassword="${secrets.password}"
+								testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+								invokeTestRunMonitor="true"
+								>
+						
+							<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User2-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+						</Run-Test-Case>	
+		
+
+        <Run-Test-Case provarHome="${provar.home}" 
+					projectPath="${testproject.home}" 
+					resultsPath="${testproject.results3}" 
+					resultsPathDisposition="Replace" 
+					testEnvironment="" 
+					webBrowser="Chrome" 
+					webBrowserConfiguration="Full Screen"
+					webBrowserProviderName="Desktop"
+					webBrowserDeviceName="Full Screen" 
+					excludeCallableTestCases="false" 
+					salesforceMetadataCache="Reuse" 
+					projectCachePath="../../.provarCaches"
+					testOutputlevel="BASIC" 
+					pluginOutputlevel="WARNING"
+					stopTestRunOnError="false"
+					secretsPassword="${secrets.password}"
+					testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+					invokeTestRunMonitor="true"
+					>
+			
+				<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User3-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+			</Run-Test-Case> 
+	
+	       <Run-Test-Case provarHome="${provar.home}" 
+							projectPath="${testproject.home}" 
+							resultsPath="${testproject.results4}" 
+							resultsPathDisposition="Replace" 
+							testEnvironment="" 
+							webBrowser="Chrome" 
+							webBrowserConfiguration="Full Screen"
+							webBrowserProviderName="Desktop"
+							webBrowserDeviceName="Full Screen" 
+							excludeCallableTestCases="false" 
+							salesforceMetadataCache="Reuse" 
+							projectCachePath="../../.provarCaches"
+							testOutputlevel="BASIC" 
+							pluginOutputlevel="WARNING"
+							stopTestRunOnError="false"
+							secretsPassword="${secrets.password}"
+							testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+							invokeTestRunMonitor="true"
+							>
+					
+						<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User4-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+					</Run-Test-Case>
+		
+		<Run-Test-Case provarHome="${provar.home}" 
+									projectPath="${testproject.home}" 
+									resultsPath="${testproject.results5}" 
+									resultsPathDisposition="Replace" 
+									testEnvironment="" 
+									webBrowser="Chrome" 
+									webBrowserConfiguration="Full Screen"
+									webBrowserProviderName="Desktop"
+									webBrowserDeviceName="Full Screen" 
+									excludeCallableTestCases="false" 
+									salesforceMetadataCache="Reuse" 
+									projectCachePath="../../.provarCaches"
+									testOutputlevel="BASIC" 
+									pluginOutputlevel="WARNING"
+									stopTestRunOnError="false"
+									secretsPassword="${secrets.password}"
+									testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+									invokeTestRunMonitor="true"
+									>
+							
+								<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User5-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+							</Run-Test-Case>
+		
+		<Run-Test-Case provarHome="${provar.home}" 
+								projectPath="${testproject.home}" 
+								resultsPath="${testproject.results6}" 
+								resultsPathDisposition="Replace" 
+								testEnvironment="" 
+								webBrowser="Chrome" 
+								webBrowserConfiguration="Full Screen"
+								webBrowserProviderName="Desktop"
+								webBrowserDeviceName="Full Screen" 
+								excludeCallableTestCases="false" 
+								salesforceMetadataCache="Reuse" 
+								projectCachePath="../../.provarCaches"
+								testOutputlevel="BASIC" 
+								pluginOutputlevel="WARNING"
+								stopTestRunOnError="false"
+								secretsPassword="${secrets.password}"
+								testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+								invokeTestRunMonitor="true"
+								>
+						
+							<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User6-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+						</Run-Test-Case> 
+				
+				       <Run-Test-Case provarHome="${provar.home}" 
+										projectPath="${testproject.home}" 
+										resultsPath="${testproject.results7}" 
+										resultsPathDisposition="Replace" 
+										testEnvironment="" 
+										webBrowser="Chrome" 
+										webBrowserConfiguration="Full Screen"
+										webBrowserProviderName="Desktop"
+										webBrowserDeviceName="Full Screen" 
+										excludeCallableTestCases="false" 
+										salesforceMetadataCache="Reuse" 
+										projectCachePath="../../.provarCaches"
+										testOutputlevel="BASIC" 
+										pluginOutputlevel="WARNING"
+										stopTestRunOnError="false"
+										secretsPassword="${secrets.password}"
+										testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+										invokeTestRunMonitor="true"
+										>
+								
+									<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User7-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+								</Run-Test-Case>	
+				
+
+		        <Run-Test-Case provarHome="${provar.home}" 
+							projectPath="${testproject.home}" 
+							resultsPath="${testproject.results8}" 
+							resultsPathDisposition="Replace" 
+							testEnvironment="" 
+							webBrowser="Chrome" 
+							webBrowserConfiguration="Full Screen"
+							webBrowserProviderName="Desktop"
+							webBrowserDeviceName="Full Screen" 
+							excludeCallableTestCases="false" 
+							salesforceMetadataCache="Reuse" 
+							projectCachePath="../../.provarCaches"
+							testOutputlevel="BASIC" 
+							pluginOutputlevel="WARNING"
+							stopTestRunOnError="false"
+							secretsPassword="${secrets.password}"
+							testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+							invokeTestRunMonitor="true"
+							>
+					
+						<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User8-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+					</Run-Test-Case> 
+			
+			       <Run-Test-Case provarHome="${provar.home}" 
+									projectPath="${testproject.home}" 
+									resultsPath="${testproject.results9}" 
+									resultsPathDisposition="Replace" 
+									testEnvironment="" 
+									webBrowser="Chrome" 
+									webBrowserConfiguration="Full Screen"
+									webBrowserProviderName="Desktop"
+									webBrowserDeviceName="Full Screen" 
+									excludeCallableTestCases="false" 
+									salesforceMetadataCache="Reuse" 
+									projectCachePath="../../.provarCaches"
+									testOutputlevel="BASIC" 
+									pluginOutputlevel="WARNING"
+									stopTestRunOnError="false"
+									secretsPassword="${secrets.password}"
+									testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+									invokeTestRunMonitor="true"
+									>
+							
+								<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User9-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+							</Run-Test-Case>
+				
+				<Run-Test-Case provarHome="${provar.home}" 
+											projectPath="${testproject.home}" 
+											resultsPath="${testproject.results10}" 
+											resultsPathDisposition="Replace" 
+											testEnvironment="" 
+											webBrowser="Chrome" 
+											webBrowserConfiguration="Full Screen"
+											webBrowserProviderName="Desktop"
+											webBrowserDeviceName="Full Screen" 
+											excludeCallableTestCases="false" 
+											salesforceMetadataCache="Reuse" 
+											projectCachePath="../../.provarCaches"
+											testOutputlevel="BASIC" 
+											pluginOutputlevel="WARNING"
+											stopTestRunOnError="false"
+											secretsPassword="${secrets.password}"
+											testEnvironmentSecretsPassword="${testenvironment.secretspassword}"
+											invokeTestRunMonitor="true"
+											>
+									
+										<fileset id="testcases" dir="../plans/Parallel/10 Users"><include name="User10-RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+
+									</Run-Test-Case>
+
+	</parallel>
+	</target>
+</project>

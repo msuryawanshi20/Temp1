@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="10">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="ReadExcel">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">ReadExcel</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="POData" variableScope="Test">
+          <cacheToken>C:/Users/dellDevonforce/Provar/RootstockFinancials/PurchaseOrder/templates/AutomationData.xlsx;1617166738337</cacheToken>
+          <cachedParameters>
+            <apiParam name="Vendor"/>
+            <apiParam name="Project"/>
+            <apiParam name="OrganizationalDepartment"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="POUIExcelPath"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">MultiplePOLine</worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="3"/>
+      </clauses>
+    </apiCall>
+    <caseCall testCaseId="8f010250-9f93-4d50-8117-a6f51aefe852" testCasePath="tests/Purchase Order/Callable/POmultipleline.testcase" testItemId="14">
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="IPVendor">
+          <value class="variable">
+            <path element="POData"/>
+            <path element="Vendor"/>
+          </value>
+        </argument>
+        <argument id="list">
+          <value class="variable">
+            <path element="POData"/>
+          </value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="PONumber">
+          <name class="value" valueClass="string">PONumber</name>
+        </outputArgument>
+        <outputArgument id="POHDRID">
+          <name class="value" valueClass="string">POHDRID</name>
+        </outputArgument>
+        <outputArgument id="OrderNumber">
+          <name class="value" valueClass="string">OrderNumber</name>
+        </outputArgument>
+        <outputArgument id="CreatedDate">
+          <name class="value" valueClass="string">CreatedDate</name>
+        </outputArgument>
+        <outputArgument id="POTotal">
+          <name class="value" valueClass="string">POTotal</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <caseCall testCaseId="e595cd7f-483e-48a8-b028-4dfcd2cb52c3" testCasePath="tests/Purchase Order/Callable/PurchaseOrderIssue.testcase" testItemId="5">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="PONumber">
+          <value class="variable">
+            <path element="PONumber"/>
+          </value>
+        </argument>
+        <argument id="POLINEITEM">
+          <value class="value" valueClass="string">NPAuto_Subcontract (NPAuto_Subcontract)</value>
+        </argument>
+        <argument id="POIssuedata">
+          <value class="variable">
+            <path element="POIssuedata"/>
+          </value>
+        </argument>
+        <argument id="POHDRID">
+          <value class="variable">
+            <path element="POHDRID"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="bc86e6b2-9609-43e2-b616-d3e6d10407d7" testCasePath="tests/Purchase Order/Callable/PurchaseOrderReceipt.testcase" testItemId="6">
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="OrdNo">
+          <value class="variable">
+            <path element="OrderNumber"/>
+          </value>
+        </argument>
+        <argument id="IPList">
+          <value class="variable">
+            <path element="POData"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="973fb7a0-adb3-465a-a1ae-be47ca67f619" testCasePath="tests/Purchase Order/Callable/PurchaseOrderAuthorization.testcase" testItemId="7">
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="OrderNumber">
+          <value class="variable">
+            <path element="OrderNumber"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="a589987f-571d-4565-bf06-57f879b6097c" testCasePath="tests/Purchase Order/Callable/POAPMATCH.testcase" testItemId="12">
+      <tags/>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="OrderNumber">
+          <value class="variable">
+            <path element="OrderNumber"/>
+          </value>
+        </argument>
+        <argument id="Vendor">
+          <value class="variable">
+            <path element="POData"/>
+            <path element="Vendor"/>
+          </value>
+        </argument>
+        <argument id="INVAmt">
+          <value class="add">
+            <lhs class="variable">
+              <path element="POTotal"/>
+            </lhs>
+            <rhs class="value" valueClass="decimal">20</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="InvoiceNum">
+          <name class="value" valueClass="string">InvoiceNum</name>
+        </outputArgument>
+        <outputArgument id="BatchNo">
+          <name class="value" valueClass="string">BatchNo</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <caseCall testCaseId="98f49f3a-7453-430c-90fb-e55914fe6081" testCasePath="tests/Purchase Order/Callable/PODMDVerification.testcase" testItemId="8">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="POHDRID">
+          <value class="variable">
+            <path element="POHDRID"/>
+          </value>
+        </argument>
+        <argument id="Item"/>
+        <argument id="ExpQty"/>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="77316cb1-877c-44bd-ae52-84ab20b0758f" testCasePath="tests/Purchase Order/Callable/PODimValVerification.testcase" testItemId="9">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="POHDR">
+          <value class="variable">
+            <path element="POHDRID"/>
+          </value>
+        </argument>
+        <argument id="ExpectedPOlineDimVal">
+          <value class="variable">
+            <path element="SourceData"/>
+            <path element="PolineDimval"/>
+          </value>
+        </argument>
+        <argument id="ExpectedPODMDDimval">
+          <value class="variable">
+            <path element="SourceData"/>
+            <path element="Podmddimval"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="284adeee-afaa-4faf-8bc4-5ed43dda5dc0" testCasePath="tests/Purchase Order/Callable/CostTransactionVerification.testcase" testItemId="11">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="Item">
+          <value class="variable">
+            <path element="ExcelData"/>
+            <path element="Item"/>
+          </value>
+        </argument>
+        <argument id="CreatedDate">
+          <value class="variable">
+            <path element="CreatedDate"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <caseCall testCaseId="3a3fd54e-7208-45d3-a39e-fee0eff06e88" testCasePath="tests/Purchase Order/Callable/PayableBatchHeaderVerification.testcase" testItemId="13">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="reuseConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="INVNO">
+          <value class="variable">
+            <path element="InvoiceNum"/>
+          </value>
+        </argument>
+        <argument id="BatchNo">
+          <value class="variable">
+            <path element="BatchNo"/>
+          </value>
+        </argument>
+        <argument id="ORDNO"/>
+        <argument id="POTotal">
+          <value class="variable">
+            <path element="POTotal"/>
+          </value>
+        </argument>
+      </arguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="15" title="For Each: {POData}=&gt;poiteration">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="POData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">poiteration</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="16">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

@@ -1,0 +1,722 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="2" registryId="53d6cbf3-5a1c-498c-af1f-07cce55391ff" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="8270d5ab-ca62-49db-a47d-bd07366d8ba7" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="166" title="Check Serial status of item">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">Select Name,id,rstk__icitem_srlcontrol__c,rstk__icitem_lotcontrol__c from rstk__icitem__c where name like '</value>
+              <variable>
+                <path element="ip_derivedComponent"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">op_icitem</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="169" title="Set Disassy Good Loc ID">
+      <arguments>
+        <argument id="condition">
+          <value class="ne">
+            <lhs class="variable">
+              <path element="ip_disassyGoodLocID"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="128">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="171" title="Check Serial status of item">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">Select Name,ID from rstk__sylocid__c where name='</value>
+                      <variable>
+                        <path element="ip_disassyGoodLocID"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_sylocID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="130" title="Set Disassy Good Loc No">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="ip_disassyGoodLocNo"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="131">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="140" title="Set Values: ip_disassyGoodLocNo">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ip_disassyGoodLocNo</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="UniqueId">
+                          <argument id="length">
+                            <value class="value" valueClass="decimal">5</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="124" title="Select Responsible User">
+      <arguments>
+        <argument id="condition">
+          <value class="ne">
+            <lhs class="variable">
+              <path element="ip_responsibleUser"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="125">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="168" title="Check Serial status of item">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">Select ID, Name,rstk__syusr_employee__c  from rstk__syusr__c where Name like '%</value>
+                      <variable>
+                        <path element="ip_responsibleUser"/>
+                      </variable>
+                      <value valueClass="string">%'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_userID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="173" title="Set LOT details">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="op_icitem"/>
+              <path element="rstk__icitem_lotcontrol__c"/>
+            </lhs>
+            <rhs class="value" valueClass="boolean">true</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="174">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="179" title="Set Values: ip_lot">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ip_lot</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="ip_lotNumber"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="178" title="Set Values: ip_lotDate">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ip_lotDate</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="DateFormat">
+                          <argument id="date">
+                            <value class="funcCall" id="DateAdd">
+                              <argument id="date">
+                                <value class="variable">
+                                  <path element="TODAY"/>
+                                </value>
+                              </argument>
+                              <argument id="amount">
+                                <value class="value" valueClass="decimal">4</value>
+                              </argument>
+                              <argument id="unit">
+                                <value class="variable">
+                                  <path element="YEAR"/>
+                                </value>
+                              </argument>
+                              <argument id="holidayCalendar">
+                                <value class="value" valueClass="string">YYYY-MM-dd</value>
+                              </argument>
+                            </value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="105" title="Generate and set Serial Numbers">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="op_icitem"/>
+              <path element="rstk__icitem_srlcontrol__c"/>
+            </lhs>
+            <rhs class="value" valueClass="boolean">true</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="106">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="98" title="Generate Serials">
+              <arguments>
+                <argument id="condition">
+                  <value class="gt">
+                    <lhs class="variable">
+                      <path element="ip_expectedQty"/>
+                    </lhs>
+                    <rhs class="value" valueClass="decimal">0</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="99">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="100" title="Set Values: firstSerial">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">firstSerial</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">P-</value>
+                                    <funcCall id="UniqueId">
+                                      <argument id="length">
+                                        <value class="value" valueClass="decimal">5</value>
+                                      </argument>
+                                    </funcCall>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="101" title="Set Values: op_Serials">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">op_Serials</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="firstSerial"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="102" title="While: {ip_actualYieldQty &gt; 1}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="gt">
+                            <lhs class="variable">
+                              <path element="ip_actualYieldQty"/>
+                            </lhs>
+                            <rhs class="value" valueClass="decimal">1</rhs>
+                          </value>
+                        </argument>
+                        <argument id="counterName">
+                          <value class="value" valueClass="string">LoopCounter</value>
+                        </argument>
+                        <argument id="counterStart">
+                          <value class="value" valueClass="string">1</value>
+                        </argument>
+                        <argument id="counterEnd">
+                          <value class="sub">
+                            <lhs class="variable">
+                              <path element="ip_actualYieldQty"/>
+                            </lhs>
+                            <rhs class="value" valueClass="decimal">1</rhs>
+                          </value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <expectedExceptions/>
+                      <parameterValueSources/>
+                      <clauses>
+                        <clause name="substeps" testItemId="103">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="104" title="Set Values: op_Serials">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">op_Serials</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <variable>
+                                              <path element="op_Serials"/>
+                                            </variable>
+                                            <value valueClass="string">,P-</value>
+                                            <funcCall id="UniqueId">
+                                              <argument id="length">
+                                                <value class="value" valueClass="decimal">5</value>
+                                              </argument>
+                                            </funcCall>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="138" title="Create Object: rstk__icdreq__c=&gt;icdreqId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__icdreq__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">icdreqId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="e563043d-5c98-451e-951e-f6639b066d8d" id="rstk__icdreq_wocst__c">
+          <value class="variable">
+            <path element="ip_woID"/>
+          </value>
+        </argument>
+        <argument argId="c9c40581-306f-4ea6-ba23-17d1d673d366" id="rstk__icdreq_item__c">
+          <value class="variable">
+            <path element="op_icitem"/>
+            <path element="id"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_expqty__c">
+          <value class="variable">
+            <path element="ip_expectedQty"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_actqty__c">
+          <value class="variable">
+            <path element="ip_actualYieldQty"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_calccostpct__c">
+          <value class="variable">
+            <path element="ip_costAllocationPct"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_disgoodlocid__c">
+          <value class="variable">
+            <path element="op_sylocID"/>
+            <path element="ID"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_disgoodlocnum__c">
+          <value class="variable">
+            <path element="ip_disassyGoodLocNo"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_resp2__c">
+          <value class="variable">
+            <path element="op_userID"/>
+            <path element="ID"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_lotno__c">
+          <value class="variable">
+            <path element="ip_lot"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_lotexpdate__c">
+          <value class="variable">
+            <path element="ip_lotDate"/>
+          </value>
+        </argument>
+        <argument id="rstk__icdreq_serial__c">
+          <value class="variable">
+            <path element="op_Serials"/>
+          </value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__icdreq__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_wocst__c" name="rstk__icdreq_wocst__c" title="rstk__icdreq_wocst__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_item__c" name="rstk__icdreq_item__c" title="rstk__icdreq_item__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_expqty__c" name="rstk__icdreq_expqty__c" title="rstk__icdreq_expqty__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_actqty__c" name="rstk__icdreq_actqty__c" title="rstk__icdreq_actqty__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_calccostpct__c" name="rstk__icdreq_calccostpct__c" title="rstk__icdreq_calccostpct__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_disgoodlocid__c" name="rstk__icdreq_disgoodlocid__c" title="rstk__icdreq_disgoodlocid__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_disgoodlocnum__c" name="rstk__icdreq_disgoodlocnum__c" title="rstk__icdreq_disgoodlocnum__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_resp2__c" name="rstk__icdreq_resp2__c" title="rstk__icdreq_resp2__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_lotno__c" name="rstk__icdreq_lotno__c" title="rstk__icdreq_lotno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_lotexpdate__c" name="rstk__icdreq_lotexpdate__c" title="rstk__icdreq_lotexpdate__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icdreq__c&amp;field=rstk__icdreq_serial__c" name="rstk__icdreq_serial__c" title="rstk__icdreq_serial__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="180" title="REad order number ID">
+      <tags/>
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select ID,Name,rstk__wocst_ordsts_pl__c from rstk__wocst__c where id='</value>
+              <variable>
+                <path element="ip_woID"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">op_WORecID</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="123" title="Set Order Status">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">op_orderStatus</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="op_WORecID"/>
+                  <path element="rstk__wocst_ordsts_pl__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:8270d5ab-ca62-49db-a47d-bd07366d8ba7" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:e563043d-5c98-451e-951e-f6639b066d8d" name="ip_woID" title="Work Order ID">
+      <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+      <type/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:f11ba38a-ff39-4ab8-918b-b9ad18f73a84" name="ip_derivedComponent" title="Derived Component">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:de577762-79d9-4c58-8be7-9fe4ae1ffbac" name="ip_expectedQty" title="Expected Qty">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:aea0a14a-d2d6-4c19-bfc1-8ba06f65fe04" name="ip_actualYieldQty" title="Actual Yield Qty">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:d9753ada-0566-4639-b610-dee6216607a1" name="ip_costAllocationPct" title="Cost Allocation Pct">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:ede67615-c969-435d-bc19-efa102e2fedb" name="ip_disassyGoodLocID" title="Disassy Good Loc ID">
+      <summary>The value to be populated.</summary>
+      <type>
+        <choiceType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:ea77e339-5d4b-4954-b01e-d38b108c524e" name="ip_disassyGoodLocNo" title="Disassy Good Loc No">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:d2a7f337-1f51-45ef-93ae-ccfe54d99015" name="ip_responsibleUser" title="Responsible User">
+      <summary>The value to be populated.</summary>
+      <type>
+        <choiceType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:68f1e9ae-a3cb-4b00-bf5e-7bd2400c71aa" name="ip_lotNumber" title="Lot Number">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:1cd9a8f8-dfd7-4772-a8c6-248f666dd99e" name="ip_lotExpDate" title="Lot Exp Date">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="op_orderStatus" title="WO Status">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="op_orderStatus"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="reuseConnectionName"/>
+    <argument id="ip_derivedComponent">
+      <value class="value" valueClass="string">Ms-child3 (Serial item)</value>
+    </argument>
+    <argument id="ip_expectedQty">
+      <value class="value" valueClass="string">2</value>
+    </argument>
+    <argument id="ip_actualYieldQty">
+      <value class="value" valueClass="string">2</value>
+    </argument>
+    <argument id="ip_costAllocationPct">
+      <value class="value" valueClass="string">10.00</value>
+    </argument>
+    <argument id="ip_responsibleUser">
+      <value class="value" valueClass="string">Mayur Suryawanshi</value>
+    </argument>
+    <argument id="ip_lotNumber">
+      <value class="value" valueClass="string">LT1</value>
+    </argument>
+    <argument id="ip_lotExpDate">
+      <value class="value" valueClass="string">8/31/2021</value>
+    </argument>
+    <argument id="ip_disassyGoodLocID">
+      <value class="value" valueClass="string">STK1 (On Hand)</value>
+    </argument>
+    <argument id="ip_disassyGoodLocNo">
+      <value class="value" valueClass="string">1</value>
+    </argument>
+    <argument id="ip_woID">
+      <value class="value" valueClass="string">a9f5f000000ogoq</value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="op_orderStatus">
+      <name class="value" valueClass="string">op_orderStatus</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

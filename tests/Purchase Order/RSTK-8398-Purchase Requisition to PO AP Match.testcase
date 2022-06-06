@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="55">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="90" title="Reading Excel Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Reading Excel Data</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="32">
+          <steps>
+            <caseCall testCaseId="0996b2be-bbb6-4b92-82d8-19ad6683a2ac" testCasePath="tests/Purchase Order/Callable/ReadExcelPath.testcase" testItemId="33">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath">
+                  <name class="value" valueClass="string">ExcelPath</name>
+                </outputArgument>
+                <outputArgument id="ExcelURL" scope="Folder">
+                  <name class="value" valueClass="string">ExcelURL</name>
+                </outputArgument>
+                <outputArgument id="POUIExcel">
+                  <name class="value" valueClass="string">POUIExcel</name>
+                </outputArgument>
+                <outputArgument id="POLoaderExcel">
+                  <name class="value" valueClass="string">POLoaderExcel</name>
+                </outputArgument>
+                <outputArgument id="POSYDATAExcel">
+                  <name class="value" valueClass="string">POSYDATAExcel</name>
+                </outputArgument>
+                <outputArgument id="POSYDataExcel1">
+                  <name class="value" valueClass="string">POSYDataExcel1</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="ReadExcel">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">ReadExcel</value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="InventoryData" variableScope="Test">
+                  <cacheToken>C:/Users/dellDevonforce/Provar/RootstockFinancials/PurchaseOrder/templates/AutomationData.xlsx;1617166738337</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="Vendor"/>
+                    <apiParam name="Project"/>
+                    <apiParam name="OrganizationalDepartment"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="POUIExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">InventoryRequisition</worksheetName>
+                    <valuesRange class="value"/>
+                  </sourceValue>
+                </parameterValueSource>
+                <parameterValueSource variableName="NonInvData" variableScope="Test">
+                  <cacheToken>C:/Users/dellDevonforce/Provar/RootstockFinancials/PurchaseOrder/templates/AutomationData.xlsx;1617166738337</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="Item"/>
+                    <apiParam name="Quantity"/>
+                    <apiParam name="UnitPrice"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="POUIExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">IndirectRequisition</worksheetName>
+                    <valuesRange class="value"/>
+                  </sourceValue>
+                </parameterValueSource>
+                <parameterValueSource variableName="PurReqData" variableScope="Test">
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="POUIExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">PurchaseRequisition</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="3">
+                  <steps/>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="16" title="For Each: {PurReqData}=&gt;poreqdata">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="PurReqData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">poreqdata</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="17">
+          <steps>
+            <caseCall testCaseId="046beae3-e818-4c7e-9f73-18b006df5f2f" testCasePath="tests/Purchase Order/Callable/PurchaseRequisition.testcase" testItemId="4">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="PRData">
+                  <value class="variable">
+                    <path element="poreqdata"/>
+                  </value>
+                </argument>
+                <argument id="ICREQDataSrcData">
+                  <value class="variable">
+                    <path element="InventoryData"/>
+                  </value>
+                </argument>
+                <argument id="SYREQSrcData">
+                  <value class="variable">
+                    <path element="NonInvData"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="PONumber">
+                  <name class="value" valueClass="string">PONumber</name>
+                </outputArgument>
+                <outputArgument id="POHDRID">
+                  <name class="value" valueClass="string">POHDRID</name>
+                </outputArgument>
+                <outputArgument id="OrderNumber">
+                  <name class="value" valueClass="string">OrderNumber</name>
+                </outputArgument>
+                <outputArgument id="CreatedDate">
+                  <name class="value" valueClass="string">CreatedDate</name>
+                </outputArgument>
+                <outputArgument id="POTotal">
+                  <name class="value" valueClass="string">POTotal</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="e595cd7f-483e-48a8-b028-4dfcd2cb52c3" testCasePath="tests/Purchase Order/Callable/PurchaseOrderIssue.testcase" testItemId="5">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="PONumber">
+                  <value class="variable">
+                    <path element="PONumber"/>
+                  </value>
+                </argument>
+                <argument id="POLINEITEM">
+                  <value class="value" valueClass="string">NPAuto_Subcontract (NPAuto_Subcontract)</value>
+                </argument>
+                <argument id="POIssuedata">
+                  <value class="variable">
+                    <path element="POIssuedata"/>
+                  </value>
+                </argument>
+                <argument id="POHDRID">
+                  <value class="variable">
+                    <path element="POHDRID"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="19" title="Fetch Quantity on Hand Before Receipt">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Fetch Quantity on Hand Before Receipt</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="73">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="80" title="Set Values: wb_Quantitypath">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">wb_Quantitypath</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">templates/RSTKF_AutomationData.xlsx</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="81" title="Set Values: ws_quantity">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">ws_quantity</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="value" valueClass="string">InventoryRequisition</value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <caseCall testCaseId="fb25e9f2-c38a-44b3-90f8-52830d59d796" testCasePath="tests/PO_SYDATA/Callable/Inventory QuantityOnHand.testcase" testItemId="78">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="variable">
+                            <path element="reuseConnectionName"/>
+                          </value>
+                        </argument>
+                        <argument id="SourceData_InventoryQuantity">
+                          <value class="variable">
+                            <path element="POReceiptData"/>
+                          </value>
+                        </argument>
+                        <argument id="SrcData_InvyQty">
+                          <value class="variable">
+                            <path element="InventoryData"/>
+                          </value>
+                        </argument>
+                        <argument id="wb_Quantitypath">
+                          <value class="variable">
+                            <path element="wb_Quantitypath"/>
+                          </value>
+                        </argument>
+                        <argument id="ws_quantity">
+                          <value class="variable">
+                            <path element="ws_quantity"/>
+                          </value>
+                        </argument>
+                        <argument id="Quantity">
+                          <value class="value" valueClass="string">QuantityBefore</value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="QtyOnHand">
+                          <name class="value" valueClass="string">QtyOnHand</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="bc86e6b2-9609-43e2-b616-d3e6d10407d7" testCasePath="tests/Purchase Order/Callable/PurchaseOrderReceipt.testcase" testItemId="6">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrdNo">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="IPList">
+                  <value class="variable">
+                    <path element="InventoryData"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="20" title="Fetch Quantity on Hand After Receipt">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Fetch Quantity on Hand After Receipt</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="83">
+                  <steps>
+                    <caseCall testCaseId="fb25e9f2-c38a-44b3-90f8-52830d59d796" testCasePath="tests/PO_SYDATA/Callable/Inventory QuantityOnHand.testcase" testItemId="89">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="variable">
+                            <path element="reuseConnectionName"/>
+                          </value>
+                        </argument>
+                        <argument id="SourceData_InventoryQuantity">
+                          <value class="variable">
+                            <path element="POReceiptData"/>
+                          </value>
+                        </argument>
+                        <argument id="SrcData_InvyQty">
+                          <value class="variable">
+                            <path element="InventoryData"/>
+                          </value>
+                        </argument>
+                        <argument id="wb_Quantitypath">
+                          <value class="variable">
+                            <path element="wb_Quantitypath"/>
+                          </value>
+                        </argument>
+                        <argument id="ws_quantity">
+                          <value class="variable">
+                            <path element="ws_quantity"/>
+                          </value>
+                        </argument>
+                        <argument id="Quantity">
+                          <value class="value" valueClass="string">QuantityAfter</value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="QtyOnHand">
+                          <name class="value" valueClass="string">QtyOnHand</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="973fb7a0-adb3-465a-a1ae-be47ca67f619" testCasePath="tests/Purchase Order/Callable/PurchaseOrderAuthorization.testcase" testItemId="7">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="a589987f-571d-4565-bf06-57f879b6097c" testCasePath="tests/Purchase Order/Callable/POAPMATCH.testcase" testItemId="12">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="Vendor">
+                  <value class="variable">
+                    <path element="poreqdata"/>
+                    <path element="Vendor"/>
+                  </value>
+                </argument>
+                <argument id="POTotal">
+                  <value class="variable">
+                    <path element="POTotal"/>
+                  </value>
+                </argument>
+                <argument id="INVAmt">
+                  <value class="variable">
+                    <path element="POTotal"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="InvoiceNum">
+                  <name class="value" valueClass="string">InvoiceNum</name>
+                </outputArgument>
+                <outputArgument id="BatchNo">
+                  <name class="value" valueClass="string">BatchNo</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="3a1b32ae-c9bd-4d61-9237-2d91ca4c0768" testCasePath="tests/Purchase Order/Callable/CloseBatch.testcase" testItemId="21">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="BatchNumber">
+                  <value class="variable">
+                    <path element="BatchNo"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="29846612-c501-4e3b-863b-1cd4c090c96b" testCasePath="tests/Purchase Order/Callable/POReceiptVerification.testcase" testItemId="15">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="POHDRID">
+                  <value class="variable">
+                    <path element="POHDRID"/>
+                  </value>
+                </argument>
+                <argument id="ExpectedResult"/>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="porcptid">
+                  <name class="value" valueClass="string">porcptid</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="98f49f3a-7453-430c-90fb-e55914fe6081" testCasePath="tests/Purchase Order/Callable/PODMDVerification.testcase" testItemId="8">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="POHDRID">
+                  <value class="variable">
+                    <path element="POHDRID"/>
+                  </value>
+                </argument>
+                <argument id="Item"/>
+                <argument id="ExpQty"/>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="77316cb1-877c-44bd-ae52-84ab20b0758f" testCasePath="tests/Purchase Order/Callable/PODimValVerification.testcase" testItemId="9">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="POHDR">
+                  <value class="variable">
+                    <path element="POHDRID"/>
+                  </value>
+                </argument>
+                <argument id="ExpectedPOlineDimVal">
+                  <value class="variable">
+                    <path element="SourceData"/>
+                    <path element="PolineDimval"/>
+                  </value>
+                </argument>
+                <argument id="ExpectedPODMDDimval">
+                  <value class="variable">
+                    <path element="SourceData"/>
+                    <path element="Podmddimval"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="284adeee-afaa-4faf-8bc4-5ed43dda5dc0" testCasePath="tests/Purchase Order/Callable/CostTransactionVerification.testcase" testItemId="11">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Item">
+                  <value class="variable">
+                    <path element="ExcelData"/>
+                    <path element="Item"/>
+                  </value>
+                </argument>
+                <argument id="CreatedDate">
+                  <value class="variable">
+                    <path element="CreatedDate"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="3a3fd54e-7208-45d3-a39e-fee0eff06e88" testCasePath="tests/Purchase Order/Callable/PayableBatchHeaderVerification.testcase" testItemId="13">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="INVNO">
+                  <value class="variable">
+                    <path element="InvoiceNum"/>
+                  </value>
+                </argument>
+                <argument id="BatchNo">
+                  <value class="variable">
+                    <path element="BatchNo"/>
+                  </value>
+                </argument>
+                <argument id="POTotal">
+                  <value class="variable">
+                    <path element="POTotal"/>
+                  </value>
+                </argument>
+                <argument id="ORDNO">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

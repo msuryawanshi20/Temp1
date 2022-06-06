@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="1" title="UI Connect: Arena">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">Arena</value>
+        </argument>
+        <argument argId="0f997827-e3a0-4ca6-a4a8-c42c84619916" id="resultName">
+          <value class="value" valueClass="string">Arena</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="31f7d4fa-63c0-4fc6-943b-8da8bfa139bd" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="Login to Arena">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Login to Arena</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="3">
+          <steps>
+            <caseCall testCaseId="49b50df1-dfde-4f30-9843-b3a81fb27de6" testCasePath="tests/ArenaPLM/Callable/Login to Arena.testcase" testItemId="4">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">Arena</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Arena">
+                  <name class="value" valueClass="string">Arena</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="7" title="Create Item">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Item</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="8">
+          <steps>
+            <caseCall testCaseId="8cb9e626-5862-4f40-b781-70c6c4c32f81" testCasePath="tests/ArenaPLM/Callable/Create Items in Arena.testcase" testItemId="9">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">Arena</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ItemNumber">
+                  <name class="value" valueClass="string">ItemNumber</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="10" title="Add BOM">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add BOM</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="11">
+          <steps>
+            <caseCall testCaseId="43c22c23-88a3-41a8-ba14-c8794f33c51e" testCasePath="tests/ArenaPLM/Callable/Add BOM.testcase" testItemId="38">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">Arena</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ItemNumber">
+                  <name class="value" valueClass="string">ItemNumber</name>
+                </outputArgument>
+                <outputArgument id="ComponentItemNumber">
+                  <name class="value" valueClass="string">ComponentItemNumber</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="39" title="Add Sourcing Details">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add Sourcing Details</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="40">
+          <steps>
+            <caseCall testCaseId="b80dc4b3-d73e-44b7-b807-514109d2da95" testCasePath="tests/ArenaPLM/Callable/Add Sourcing Relationship.testcase" testItemId="41">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">Arena</value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="43" title="Release to Design">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Release to Design</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="44">
+          <steps>
+            <caseCall testCaseId="d881cb56-36fa-4cff-a849-3f4009628300" testCasePath="tests/ArenaPLM/Callable/Release to Design.testcase" testItemId="45">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">Arena</value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="52" title="Import and Process PLM Items">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Import and Process PLM Items</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="53">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiConnect" name="UiConnect" testItemId="48" title="UI Connect: QARSF_Admin">
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">QARSF_Admin</value>
+                </argument>
+                <argument argId="0f997827-e3a0-4ca6-a4a8-c42c84619916" id="resultName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument argId="31f7d4fa-63c0-4fc6-943b-8da8bfa139bd" id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+                <argument id="privateBrowsingMode"/>
+                <argument id="webBrowser"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="58" title="Import">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Import</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="59">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="64" title="SOQL Query: select rstk__sydefault_lastplmimport__c from rstk__sydefault__c=&gt;LastPLMImportTime">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="value" valueClass="string">select rstk__sydefault_lastplmimport__c from rstk__sydefault__c</value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">LastPLMImportTime</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexExecute" name="ApexExecute" testItemId="47" title="Apex Execute">
+                      <arguments>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="apexBlock">
+                          <value class="value" valueClass="string">rstk.ArenaItemsScheduler.run();</value>
+                        </argument>
+                        <argument id="results">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="resultName">
+                                <value class="value" valueClass="string">ExecuteResult</value>
+                              </namedValue>
+                              <namedValue name="resultScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                              <namedValue name="regularExpression">
+                                <value class="value" valueClass="string">" "</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.Sleep" name="Sleep" testItemId="57" title="Sleep for {60} seconds">
+              <arguments>
+                <argument id="sleepSecs">
+                  <value class="value" valueClass="decimal">60</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="67" title="SOQL Query: select Id\n    ,CreatedDate\n    ,SystemModstamp\n    ,rstk__plmimport_sessionid__c\n    ,rstk__plmimport_status__c from rstk__plmimport__c where CreatedDate&gt;{LastPLMImportTime.rstk__sydefault_lastplmimport__c} order by CreatedDate DESC LIMIT 1=&gt;PLMImportDetails">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,CreatedDate\n    ,SystemModstamp\n    ,rstk__plmimport_sessionid__c\n    ,rstk__plmimport_status__c from rstk__plmimport__c where CreatedDate&gt;</value>
+                      <variable>
+                        <path element="LastPLMImportTime"/>
+                        <path element="rstk__sydefault_lastplmimport__c"/>
+                      </variable>
+                      <value valueClass="string"> order by CreatedDate DESC LIMIT 1</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">PLMImportDetails</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="60" title="Process">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Process</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="61">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexExecute" name="ApexExecute" testItemId="50" title="Apex Execute">
+                      <arguments>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="apexBlock">
+                          <value class="value" valueClass="string">rstk.PLMImportedDataScheduler.run();</value>
+                        </argument>
+                        <argument id="results">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="resultName">
+                                <value class="value" valueClass="string">ExecuteResult</value>
+                              </namedValue>
+                              <namedValue name="resultScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                              <namedValue name="regularExpression">
+                                <value class="value" valueClass="string">" "</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="68" title="On SF PLM Import Session View screen">
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=rstk__plmimport__c&amp;action=View"/>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF PLM Import Session View screen</value>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">Always</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetObjectId">
+                  <value class="variable">
+                    <path element="PLMImportDetails"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="69"/>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="73" title="Read Object: rstk__plmimport__c = {PLMImportDetails.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__plmimport__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="PLMImportDetails"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__plmimport_sessionid__c">
+                  <value class="value" valueClass="string">16</value>
+                </argument>
+                <argument id="rstk__plmimport_status__c">
+                  <value class="value" valueClass="string">Ok</value>
+                </argument>
+                <argument id="rstk__plmimport_itemsok__c">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__plmimport_sessionid__c" title="Check rstk__plmimport_sessionid__c">
+                  <expected class="variable">
+                    <path element="PLMImportDetails"/>
+                    <path element="rstk__plmimport_sessionid__c"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__plmimport_status__c" title="Check rstk__plmimport_status__c">
+                  <expected class="value" valueClass="string">Ok</expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__plmimport_itemsok__c" title="Check rstk__plmimport_itemsok__c">
+                  <expected class="value" valueClass="boolean">true</expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__plmimport__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__plmimport__c&amp;field=rstk__plmimport_sessionid__c" name="rstk__plmimport_sessionid__c" title="Session ID"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__plmimport__c&amp;field=rstk__plmimport_status__c" name="rstk__plmimport_status__c" title="Import Status"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__plmimport__c&amp;field=rstk__plmimport_itemsok__c" name="rstk__plmimport_itemsok__c" title="Items Processed OK"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="78" title="SOQL Query: select Id\n    ,rstk__peitem_item__c from rstk__peitem__c where rstk__peitem_item__c='{ItemNumber}'=&gt;rstkRows_PEItemID">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__peitem_item__c from rstk__peitem__c where rstk__peitem_item__c='</value>
+                      <variable>
+                        <path element="ItemNumber"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_PEItemID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="80" title="On SF Engineering Item Master View screen">
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=rstk__peitem__c&amp;action=View"/>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF Engineering Item Master View screen</value>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">Always</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetObjectId">
+                  <value class="variable">
+                    <path element="rstkRows_PEItemID"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="81"/>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="82" title="SOQL Query: select Id\n    ,rstk__peitem_item__c from rstk__peitem__c where rstk__peitem_item__c='{ComponentItemNumber}'=&gt;rstkRows_ComponentItemID">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__peitem_item__c from rstk__peitem__c where rstk__peitem_item__c='</value>
+                      <variable>
+                        <path element="ComponentItemNumber"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_ComponentItemID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="87" title="SOQL Query: select Id\n    ,rstk__pebom_item__c from rstk__pebom__c where rstk__pebom_item__c='{rstkRows_PEItemID.Id}'=&gt;rstkRows_PEBOMID">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__pebom_item__c from rstk__pebom__c where rstk__pebom_item__c='</value>
+                      <variable>
+                        <path element="rstkRows_PEItemID"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_PEBOMID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="84" title="Read Object: rstk__pebom__c = {rstkRows_PEBOMID.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__pebom__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows_PEBOMID"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__pebom_compitem__c">
+                  <value class="value" valueClass="string">a2S1K000001uqW4UAI</value>
+                </argument>
+                <argument id="rstk__pebom_item__c">
+                  <value class="value" valueClass="string">a2S1K000001uqWEUAY</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__pebom_compitem__c" title="Check rstk__pebom_compitem__c">
+                  <expected class="variable">
+                    <path element="rstkRows_ComponentItemID"/>
+                    <path element="Id"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__pebom_item__c" title="Check rstk__pebom_item__c">
+                  <expected class="variable">
+                    <path element="rstkRows_PEItemID"/>
+                    <path element="Id"/>
+                  </expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__pebom__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__pebom__c&amp;field=rstk__pebom_compitem__c" name="rstk__pebom_compitem__c" title="Component Item">
+                  <summary>Engineering Item number of a part used to manufacture the parent item.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__pebom__c&amp;field=rstk__pebom_item__c" name="rstk__pebom_item__c" title="Parent Item">
+                  <summary>Engineering Item Number of the Parent Item.</summary>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:31f7d4fa-63c0-4fc6-943b-8da8bfa139bd" name="reuseConnectionName" title="reuseConnectionName">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">uiConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

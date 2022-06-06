@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="7">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="294" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reopen</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="314" title="Read Excel Data based on selected Environment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Data based on selected Environment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="297">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="298" title="If: {GetSelectedEnvironment() = &quot;PDE5&quot;}">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">PDE5</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="140">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="315" title="Read Excel Data-Create WO">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Excel Data-Create WO</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="op_excelData" variableScope="Test">
+                          <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/QARSF/RSTK-9520-Refurb Work Order.xlsx;1631618975810</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="RowNumber"/>
+                            <apiParam name="Site"/>
+                            <apiParam name="ItemNumber"/>
+                            <apiParam name="QtyRequired"/>
+                            <apiParam name="DueDate"/>
+                            <apiParam name="Project"/>
+                            <apiParam name="ProjectChargeCode"/>
+                            <apiParam name="ExtractComponent"/>
+                            <apiParam name="ExtractOperations"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/PDE5/RSTK-9529-SYDATA-Create Allocate WO component transaction.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">Create WO</worksheetName>
+                            <valuesRange class="value" valueClass="string">A:G</valuesRange>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="301">
+                          <steps/>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="143">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="144" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                            <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="145">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="312" title="Read Excel Data-Create WO">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Read Excel Data-Create WO</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="op_excelData" variableScope="Test">
+                                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/QARSF/RSTK-9520-Refurb Work Order.xlsx;1631618975810</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="RowNumber"/>
+                                    <apiParam name="Site"/>
+                                    <apiParam name="ItemNumber"/>
+                                    <apiParam name="QtyRequired"/>
+                                    <apiParam name="DueDate"/>
+                                    <apiParam name="Project"/>
+                                    <apiParam name="ProjectChargeCode"/>
+                                    <apiParam name="ExtractComponent"/>
+                                    <apiParam name="ExtractOperations"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                    <workbookPath class="value" valueClass="string">templates/AutomationOrg/RSTK-9529-SYDATA-Create Allocate WO component transaction.xlsx</workbookPath>
+                                    <worksheetName class="value" valueClass="string">Create WO</worksheetName>
+                                    <valuesRange class="value" valueClass="string">A:G</valuesRange>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="hidden" testItemId="316">
+                                  <steps/>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="148">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="149" title="Read Excel Data-Create WO">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Read Excel Data-Create WO</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="op_excelData" variableScope="Test">
+                                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/QARSF/RSTK-9520-Refurb Work Order.xlsx;1631618975810</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="RowNumber"/>
+                                    <apiParam name="Site"/>
+                                    <apiParam name="ItemNumber"/>
+                                    <apiParam name="QtyRequired"/>
+                                    <apiParam name="DueDate"/>
+                                    <apiParam name="Project"/>
+                                    <apiParam name="ProjectChargeCode"/>
+                                    <apiParam name="ExtractComponent"/>
+                                    <apiParam name="ExtractOperations"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                    <workbookPath class="value" valueClass="string">templates/QARSF/RSTK-9529-SYDATA-Create Allocate WO component transaction.xlsx</workbookPath>
+                                    <worksheetName class="value" valueClass="string">Create WO</worksheetName>
+                                    <valuesRange class="value" valueClass="string">A:G</valuesRange>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="hidden" testItemId="313">
+                                  <steps/>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="293" title="Read Excel Data and create record for excel rows">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="op_excelData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">op_excelDataRow</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="substeps" testItemId="5">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="7" title="Create Work Order">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Create Work Order</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="40">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="41" title="Check Serial status of item">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select Name,rstk__icitem_srlcontrol__c,rstk__icitem_lotcontrol__c from rstk__icitem__c where name like '</value>
+                              <variable>
+                                <path element="op_excelDataRow"/>
+                                <path element="ItemNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_IsSerialTrack</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <caseCall testCaseId="c6daa6cb-5a01-495d-b74f-629e9d4b23a1" testCasePath="tests/SYDATA-Work Order/Callable/API-Create Work Order.testcase" testItemId="322">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="ip_site">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="Site"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_OrderNumber">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Pro-SY_</value>
+                              <funcCall id="UniqueId">
+                                <argument id="length">
+                                  <value class="value" valueClass="decimal">5</value>
+                                </argument>
+                              </funcCall>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="ip_InventoryItemName">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="ItemNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_Qty">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="QtyRequired"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_ProjectName">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="Project"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_ProjectChargeCode">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="ProjectChargeCode"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_dueDate">
+                          <value class="funcCall" id="DateFormat">
+                            <argument id="date">
+                              <value class="variable">
+                                <path element="op_excelDataRow"/>
+                                <path element="DueDate"/>
+                              </value>
+                            </argument>
+                          </value>
+                        </argument>
+                        <argument id="ip_reworkFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="ip_refurbFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="ip_consignedFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="op_OrderNumber">
+                          <name class="value" valueClass="string">op_OrderNumber</name>
+                        </outputArgument>
+                        <outputArgument id="op_orderStatus">
+                          <name class="value" valueClass="string">op_orderStatus</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="14" title="REad order number ID">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select ID,Name from rstk__wocst__c where Name='</value>
+                              <variable>
+                                <path element="op_OrderNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_WORecID</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="16" title="Create SYDATA-Extract operation transaction Verify order status and Verify Operation are extracted">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Process SYDATA</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="12">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" isTitleUpdated="true" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="15" title="Create SYDATA-Extract operations transaction">
+                      <arguments>
+                        <argument id="objectType">
+                          <value class="value" valueClass="string">rstk__sydata__c</value>
+                        </argument>
+                        <argument id="resultIdName">
+                          <value class="value" valueClass="string">op_sydataID</value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="assignmentRuleId"/>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="rstk__sydata_txntype__c">
+                          <value class="value" valueClass="string">Extract Operations</value>
+                        </argument>
+                        <argument id="rstk__sydata_process__c">
+                          <value class="value" valueClass="string">Ready</value>
+                        </argument>
+                        <argument id="rstk__sydata_wocst__c">
+                          <value class="variable">
+                            <path element="op_WORecID"/>
+                            <path element="ID"/>
+                          </value>
+                        </argument>
+                        <argument id="Name">
+                          <value class="funcCall" id="UniqueId">
+                            <argument id="length">
+                              <value class="value" valueClass="decimal">7</value>
+                            </argument>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_backgroundprocessing__c">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="BackgroundProcessing"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterGeneratorProperties>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__sydata__c</propertyValue>
+                      </parameterGeneratorProperties>
+                      <generatedParameters>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_txntype__c" name="rstk__sydata_txntype__c" title="rstk__sydata_txntype__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_process__c" name="rstk__sydata_process__c" title="rstk__sydata_process__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_wocst__c" name="rstk__sydata_wocst__c" title="rstk__sydata_wocst__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=Name" name="Name" title="Name"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_backgroundprocessing__c" name="rstk__sydata_backgroundprocessing__c" title="rstk__sydata_backgroundprocessing__c"/>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="17" title="Read status of recently created sydata record">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select id,rstk__sydata_process__c from rstk__sydata__c\twhere id='</value>
+                              <variable>
+                                <path element="op_sydataID"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_sydata</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" isTitleUpdated="true" name="WaitFor" testItemId="18" title="Wait for record is to be processed">
+                      <tags/>
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_sydata"/>
+                              <path element="rstk__sydata_process__c"/>
+                            </lhs>
+                          </value>
+                        </argument>
+                        <argument id="testAtStart">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="maxIterations">
+                          <value class="value" valueClass="decimal">100000</value>
+                        </argument>
+                        <argument id="sleepSecs">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="188">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="219" title="Read status of recently created sydata record">
+                              <tags/>
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select id,rstk__sydata_process__c from rstk__sydata__c\twhere id='</value>
+                                      <variable>
+                                        <path element="op_sydataID"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_sydata</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="22" title="If: {op_sydata.rstk__sydata_process__c = &quot;ProcessingComplete&quot;}">
+                              <tags/>
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="op_sydata"/>
+                                      <path element="rstk__sydata_process__c"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="string">ProcessingComplete</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="191">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="21" title="REad order number ID">
+                                      <tags/>
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select ID,Name,rstk__wocst_ordsts_pl__c\t from rstk__wocst__c where Name='</value>
+                                              <variable>
+                                                <path element="op_OrderNumber"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_WORecIDAfterTransaction</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="24" title="Assert: 2-Firm EqualTo {op_WORecIDAfterTransaction.rstk__wocst_ordsts_pl__c}">
+                                      <arguments>
+                                        <argument id="expectedValue">
+                                          <value class="value" valueClass="string">2-Firm</value>
+                                        </argument>
+                                        <argument id="actualValue">
+                                          <value class="variable">
+                                            <path element="op_WORecIDAfterTransaction"/>
+                                            <path element="rstk__wocst_ordsts_pl__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="comparisonType">
+                                          <value class="value" valueClass="string">EqualTo</value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="numeric">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="retainDecimals">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="nullGreater">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchMultiLine">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchDotAll">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="failureMessage">
+                                          <value class="value" valueClass="string">Work Order status Mismatch</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="292" title="Break"/>
+                                  </steps>
+                                </clause>
+                                <clause name="else" testItemId="216">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="200" title="If: {op_sydata.rstk__sydata_process__c = &quot;Validation Failure&quot; OR op_sydata.rstk__sydata_process__c = &quot;Batch Processing Failure&quot; OR op_sydata.rstk__sydata_process__c = &quot;Processing Failure&quot;}">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="or">
+                                            <lhs class="or">
+                                              <lhs class="eq">
+                                                <lhs class="variable">
+                                                  <path element="op_sydata"/>
+                                                  <path element="rstk__sydata_process__c"/>
+                                                </lhs>
+                                                <rhs class="value" valueClass="string">Validation Failure</rhs>
+                                              </lhs>
+                                              <rhs class="eq">
+                                                <lhs class="variable">
+                                                  <path element="op_sydata"/>
+                                                  <path element="rstk__sydata_process__c"/>
+                                                </lhs>
+                                                <rhs class="value" valueClass="string">Batch Processing Failure</rhs>
+                                              </rhs>
+                                            </lhs>
+                                            <rhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="op_sydata"/>
+                                                <path element="rstk__sydata_process__c"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">Processing Failure</rhs>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="then" testItemId="201">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="209" title="Fail Test: Validation Failure: Please check SYDATA transaction with Record ID:{op_sydataID}">
+                                              <arguments>
+                                                <argument id="message">
+                                                  <value class="compound">
+                                                    <parts>
+                                                      <value valueClass="string">Validation Failure: Please check SYDATA transaction with Record ID:</value>
+                                                      <variable>
+                                                        <path element="op_sydataID"/>
+                                                      </variable>
+                                                    </parts>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="208" title="Break"/>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="25" title="Read number of WOORDOP Extracted for WO">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select count(ID) from rstk__woordop__c where rstk__woordop_ordno__c='</value>
+                              <variable>
+                                <path element="op_WORecID"/>
+                                <path element="ID"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_woordopCount</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="26" title="Verify if operations are extracted or not.">
+              <arguments>
+                <argument id="condition">
+                  <value class="le">
+                    <lhs class="variable">
+                      <path element="op_woordopCount"/>
+                      <path element="expr0"/>
+                    </lhs>
+                    <rhs class="value" valueClass="decimal">0</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="27">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="28" title="Fail Test: Operation not extracted.">
+                      <arguments>
+                        <argument id="message">
+                          <value class="value" valueClass="string">Operation not extracted.</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="317" title="Create SYDATA-Allocate WO component transaction and Verify order status.">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Process SYDATA</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="318">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" isTitleUpdated="true" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="299" title="Create SYDATA-Allocate WO component transaction">
+                      <arguments>
+                        <argument id="objectType">
+                          <value class="value" valueClass="string">rstk__sydata__c</value>
+                        </argument>
+                        <argument id="resultIdName">
+                          <value class="value" valueClass="string">op_sydataID</value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="assignmentRuleId"/>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="rstk__sydata_txntype__c">
+                          <value class="value" valueClass="string">Allocate WO Components</value>
+                        </argument>
+                        <argument id="rstk__sydata_process__c">
+                          <value class="value" valueClass="string">Ready</value>
+                        </argument>
+                        <argument id="rstk__sydata_wocst__c">
+                          <value class="variable">
+                            <path element="op_WORecID"/>
+                            <path element="ID"/>
+                          </value>
+                        </argument>
+                        <argument id="Name">
+                          <value class="funcCall" id="UniqueId">
+                            <argument id="length">
+                              <value class="value" valueClass="decimal">7</value>
+                            </argument>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_backgroundprocessing__c">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="BackgroundProcessing"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterGeneratorProperties>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__sydata__c</propertyValue>
+                      </parameterGeneratorProperties>
+                      <generatedParameters>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_txntype__c" name="rstk__sydata_txntype__c" title="rstk__sydata_txntype__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_process__c" name="rstk__sydata_process__c" title="rstk__sydata_process__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_wocst__c" name="rstk__sydata_wocst__c" title="rstk__sydata_wocst__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=Name" name="Name" title="Name"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_backgroundprocessing__c" name="rstk__sydata_backgroundprocessing__c" title="rstk__sydata_backgroundprocessing__c"/>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="300" title="Read status of recently created sydata record">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select id,rstk__sydata_process__c from rstk__sydata__c\twhere id='</value>
+                              <variable>
+                                <path element="op_sydataID"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_sydata</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.WaitFor" isTitleUpdated="true" name="WaitFor" testItemId="319" title="Wait for record is to be processed">
+                      <tags/>
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_sydata"/>
+                              <path element="rstk__sydata_process__c"/>
+                            </lhs>
+                          </value>
+                        </argument>
+                        <argument id="testAtStart">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="maxIterations">
+                          <value class="value" valueClass="decimal">100000</value>
+                        </argument>
+                        <argument id="sleepSecs">
+                          <value class="value" valueClass="decimal">3</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="302">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="303" title="Read status of recently created sydata record">
+                              <tags/>
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select id,rstk__sydata_process__c from rstk__sydata__c\twhere id='</value>
+                                      <variable>
+                                        <path element="op_sydataID"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_sydata</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="304" title="Check SYDATA processing status and WO status">
+                              <tags/>
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="op_sydata"/>
+                                      <path element="rstk__sydata_process__c"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="string">ProcessingComplete</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="305">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="306" title="REad order number ID">
+                                      <tags/>
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select ID,Name,rstk__wocst_ordsts_pl__c\t from rstk__wocst__c where Name='</value>
+                                              <variable>
+                                                <path element="op_OrderNumber"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_WORecIDAfterTransaction</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="307" title="Assert: 4-Ready for activity EqualTo {op_WORecIDAfterTransaction.rstk__wocst_ordsts_pl__c}">
+                                      <arguments>
+                                        <argument id="expectedValue">
+                                          <value class="value" valueClass="string">4-Ready for activity</value>
+                                        </argument>
+                                        <argument id="actualValue">
+                                          <value class="variable">
+                                            <path element="op_WORecIDAfterTransaction"/>
+                                            <path element="rstk__wocst_ordsts_pl__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="comparisonType">
+                                          <value class="value" valueClass="string">EqualTo</value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="numeric">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="retainDecimals">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="nullGreater">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchMultiLine">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchDotAll">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="failureMessage">
+                                          <value class="value" valueClass="string">Work Order status Mismatch</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="308" title="Break"/>
+                                  </steps>
+                                </clause>
+                                <clause name="else" testItemId="309">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="310" title="If: {op_sydata.rstk__sydata_process__c = &quot;Validation Failure&quot; OR op_sydata.rstk__sydata_process__c = &quot;Batch Processing Failure&quot; OR op_sydata.rstk__sydata_process__c = &quot;Processing Failure&quot;}">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="or">
+                                            <lhs class="or">
+                                              <lhs class="eq">
+                                                <lhs class="variable">
+                                                  <path element="op_sydata"/>
+                                                  <path element="rstk__sydata_process__c"/>
+                                                </lhs>
+                                                <rhs class="value" valueClass="string">Validation Failure</rhs>
+                                              </lhs>
+                                              <rhs class="eq">
+                                                <lhs class="variable">
+                                                  <path element="op_sydata"/>
+                                                  <path element="rstk__sydata_process__c"/>
+                                                </lhs>
+                                                <rhs class="value" valueClass="string">Batch Processing Failure</rhs>
+                                              </rhs>
+                                            </lhs>
+                                            <rhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="op_sydata"/>
+                                                <path element="rstk__sydata_process__c"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">Processing Failure</rhs>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="then" testItemId="311">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Fail" name="Fail" testItemId="320" title="Fail Test: Validation Failure: Please check SYDATA transaction with Record ID:{op_sydataID}">
+                                              <arguments>
+                                                <argument id="message">
+                                                  <value class="compound">
+                                                    <parts>
+                                                      <value valueClass="string">Validation Failure: Please check SYDATA transaction with Record ID:</value>
+                                                      <variable>
+                                                        <path element="op_sydataID"/>
+                                                      </variable>
+                                                    </parts>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="321" title="Break"/>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

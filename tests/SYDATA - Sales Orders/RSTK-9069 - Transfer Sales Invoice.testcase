@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="48" title="Read Excel Path">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Path</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="40">
+          <steps>
+            <caseCall testCaseId="45166f67-6482-468a-9d8a-64329d6e898c" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Read Excel Data.testcase" testItemId="60">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_CustomerMaster">
+                  <name class="value" valueClass="string">ExcelPath_CustomerMaster</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SYDATA">
+                  <name class="value" valueClass="string">ExcelPath_SYDATA</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_AR">
+                  <name class="value" valueClass="string">ExcelPath_AR</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="58" title="Read Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData_SOHeader" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddHeader</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOLine" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddLine</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Firm" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">FirmAllLines</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Allocate" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">Allocate</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_PickPackShip" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">PickPackShip</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_CreateInvoice" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">CreateInvoice</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_ApproveInvoice" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">ApproveInvoice</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_TransferInvoice" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SYDATA"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">TransferInvoice</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="59">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="Create Sales Order Header">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Sales Order Header</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="3">
+          <steps>
+            <caseCall testCaseId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Sales Order Header - SOAPI.testcase" testItemId="15">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOHeader">
+                  <value class="variable">
+                    <path element="SourceData_SOHeader"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="rstkRows_SOHeader">
+                  <name class="value" valueClass="string">rstkRows_SOHeader</name>
+                </outputArgument>
+                <outputArgument id="OrderNumber">
+                  <name class="value" valueClass="string">OrderNumber</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="6" title="Add SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add SO Lines</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="7">
+          <steps>
+            <caseCall testCaseId="2045d3ed-782f-4b58-afa5-bc89ec24265b" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Add SO Lines for SYDATA.testcase" testItemId="18">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOLine">
+                  <value class="variable">
+                    <path element="SourceData_SOLine"/>
+                  </value>
+                </argument>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="10" title="Firm All SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Firm All SO Lines</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="11">
+          <steps>
+            <caseCall testCaseId="85b5dbbd-458d-4123-8349-92fea88265a7" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Firm All Sales Order Lines.testcase" testItemId="12">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Firm">
+                  <value class="variable">
+                    <path element="SourceData_Firm"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="19" title="Allocate SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Allocate Sales Order Lines</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="20">
+          <steps>
+            <caseCall testCaseId="0228c441-4d65-48fc-a5cf-feb7282152e0" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Allocate Sales Order Lines.testcase" testItemId="22">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Firm">
+                  <value class="variable">
+                    <path element="SourceData_Firm"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="23" title="Pick-Pack-Ship SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Pick-Pack-Ship SO Lines</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="24">
+          <steps>
+            <caseCall testCaseId="4275be32-6028-485b-a6f6-b75d8ffbc0ad" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Pick-Pack-Ship Sales Order Lines.testcase" testItemId="27">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pick">
+                  <value class="variable">
+                    <path element="SourceData_Pick"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPack">
+                  <value class="variable">
+                    <path element="SourceData_PickPack"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPackShip">
+                  <value class="variable">
+                    <path element="SourceData_PickPackShip"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="28" title="Create SO Invoice">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create SO Invoice</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="29">
+          <steps>
+            <caseCall testCaseId="b22fe2b8-4548-41a3-b6b5-bd339b9781a2" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Create Sales Order Invoice.testcase" testItemId="30">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pick">
+                  <value class="variable">
+                    <path element="SourceData_Pick"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pack">
+                  <value class="variable">
+                    <path element="SourceData_Pack"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Ship">
+                  <value class="variable">
+                    <path element="SourceData_Ship"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPackShip">
+                  <value class="variable">
+                    <path element="SourceData_PickPackShip"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_CreateInvoice">
+                  <value class="variable">
+                    <path element="SourceData_CreateInvoice"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="31" title="Approve Sales Invoice">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Approve Sales Invoice</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="32">
+          <steps>
+            <caseCall testCaseId="27c094d2-8375-42df-bb99-94c14098dfee" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Approve Sales Invoice.testcase" testItemId="33">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SalesInvPayment">
+                  <value class="variable">
+                    <path element="SourceData_SalesInvPayment"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_ApproveInvoice">
+                  <value class="variable">
+                    <path element="SourceData_ApproveInvoice"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="45" title="Transfer Sales Invoice">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Transfer Sales Invoice</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="46">
+          <steps>
+            <caseCall testCaseId="7e52e28e-252f-481a-9ec3-42e3c295fd89" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Transfer Sales Invoice.testcase" testItemId="47">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_ApproveInvoice">
+                  <value class="variable">
+                    <path element="SourceData_ApproveInvoice"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_TransferInvoice">
+                  <value class="variable">
+                    <path element="SourceData_TransferInvoice"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="50" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="44"/>
+      </clauses>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param name="SourceData_Firm" title="SourceData_Firm">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_Firm</sourceValue>
+    </param>
+    <param name="SourceData_Allocate" title="SourceData_Allocate">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_Allocate"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_PickPackShip" title="SourceData_PickPackShip">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_PickPackShip</sourceValue>
+    </param>
+    <param name="SourceData_CreateInvoice" title="SourceData_CreateInvoice">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_CreateInvoice</sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="SourceData_Firm">
+      <name class="value" valueClass="string">SourceData_Firm</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Allocate">
+      <name class="value" valueClass="string">SourceData_Allocate</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Pick">
+      <name class="value" valueClass="string">SourceData_Pick</name>
+    </outputArgument>
+    <outputArgument id="SourceData_PickPackShip">
+      <name class="value" valueClass="string">SourceData_PickPackShip</name>
+    </outputArgument>
+    <outputArgument id="SourceData_CreateInvoice">
+      <name class="value" valueClass="string">SourceData_CreateInvoice</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

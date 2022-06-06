@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Inherit" id="1" registryId="e96413e4-912a-4972-9d1d-ada2bc1b837b" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="65" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument argId="75286acf-87a4-4cfb-a883-4f3c139429dc" id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument argId="7061a638-e301-4679-9e69-1a9408a64140" id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument argId="f1b37cff-4ed5-428d-83fb-65a1328f3348" id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="b74583e2-d197-4577-bc5c-26d8542bbd71" id="uiApplicationName"/>
+        <argument argId="5f9a456e-0661-4a87-b757-b2d469d02baf" id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="36cd1c9c-ed1d-45aa-914a-467b5a66f721" id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="a1b75626-b318-47ae-be1a-c92bd7bcb0db" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument argId="dd76e292-fc00-4665-b0e7-3d5f6d8a4dc4" id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument argId="ad73b231-9230-4173-845b-4fa21bdfa45a" id="privateBrowsingMode"/>
+        <argument argId="05cf5aea-6bf4-4c81-95c5-44aad39d3d07" id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="a4d1219d-c635-4bbd-89a8-e6a66a1ffd8e" id="autoCleanup">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument argId="0e5496b8-a408-4518-b192-748321c3b047" id="cleanupConnectionName">
+          <value class="value"/>
+        </argument>
+        <argument argId="097062ca-e3c2-4644-872e-1a62e8fed647" id="logFileLocation"/>
+        <argument argId="fdc60618-6f01-42e5-9a06-cd8f13f9132d" id="username"/>
+        <argument argId="ca2f2f71-1854-43f1-8cb6-eb4bf7a2c325" id="password"/>
+        <argument argId="84db8092-cab3-45e7-b240-59ee7795c0aa" id="securityToken"/>
+        <argument argId="19692fe3-26ed-4dd1-b0f7-f72590ced0dc" id="environment"/>
+        <argument argId="d4ee2e71-dfdb-4deb-8a88-5ae27143ac51" id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument argId="c17073ff-e0ef-4192-97c4-59a41d41fdda" id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="66" title="Open RMA Header page">
+      <arguments>
+        <argument argId="8248c4ae-03c9-4bdc-819b-aba2fe3b3909" id="condition">
+          <value class="ne">
+            <lhs class="variable">
+              <path element="ip_recordID"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="55">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="53" title="On SF Return Material Authorization View screen">
+              <arguments>
+                <argument argId="41341afe-3eab-41c6-962e-ad10fae2d092" id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument argId="215d7391-0aa7-43a5-aedb-cc93adde6e71" id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=rstk__sormh__c&amp;action=View"/>
+                </argument>
+                <argument argId="9b1fb91f-b1e8-46fd-9f61-dd0008f67bdd" id="navigate">
+                  <value class="value" valueClass="string">IfNeccessary</value>
+                </argument>
+                <argument argId="f9a42689-a11c-469d-b914-c82eb37ac7dd" id="targetDescription">
+                  <value class="value" valueClass="string">On SF Return Material Authorization View screen</value>
+                </argument>
+                <argument argId="5eea1705-444e-4c36-bdc5-29ed9418f4e1" id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument argId="6cb60480-4767-487e-bf6c-fa7956069070" id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument argId="a47eaab4-50c0-49ca-a459-c7b4c3960155" id="closeWindow"/>
+                <argument argId="be4cfbca-316e-42c9-8be3-c2ff5f5bb0c0" id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument argId="ffa3d1f3-4786-4035-b1ff-f932bb259cb4" id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetResultName"/>
+                <argument id="sfUiTargetResultScope"/>
+                <argument argId="29dad89b-7dcc-4b9e-b77c-763106084e2c" id="sfUiTargetObjectId">
+                  <value class="variable">
+                    <path element="ip_recordID"/>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="52"/>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="67" title="On SF rstk__SormhView page with pageobject Rstk__ Sormh View">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="sf:ui:target?page=rstk__SormhView&amp;pageObject=pageobjects.rstk__SormhView"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On SF rstk__SormhView page with pageobject Rstk__ Sormh View</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="sfUiTargetObjectId">
+          <value class="value" valueClass="string">a6Z1K0000009KCM</value>
+        </argument>
+        <argument id="sfUiTargetVfIndex">
+          <value class="value" valueClass="string">1</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="62">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="68" title="Click the Quick Create RMA Details button">
+              <arguments>
+                <argument id="locator">
+                  <value class="uiLocator" uri="ui:locator?name=quickCreateRMADetails"/>
+                </argument>
+                <argument id="interaction">
+                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                </argument>
+                <argument id="hover">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="afterWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="interactionDescription">
+                  <value class="value" valueClass="string">Click the Quick Create RMA Details button</value>
+                </argument>
+                <argument id="autoRetry"/>
+                <argument id="ieClickMethod">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+              </arguments>
+              <generatedParameters>
+                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                  <type>
+                    <booleanType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                  <summary>How the click should be executed for Internet Explorer.</summary>
+                  <type>
+                    <choiceType>
+                      <constraints>
+                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                      </constraints>
+                    </choiceType>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+          <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+          <type>
+            <numericType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="69" title="On SF rstk__Quickcreatesorma page with pageobject Rstk__quickcreatesorma">
+      <arguments>
+        <argument argId="ffb1d461-90bd-49c2-af73-f51f59e1fe25" id="uiConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument argId="fdd8f90e-4e97-4034-a940-0b4c08f2d4cb" id="target">
+          <value class="uiTarget" uri="sf:ui:target?pageObject=pageobjects.rstk__quickcreatesorma&amp;page=rstk__Quickcreatesorma"/>
+        </argument>
+        <argument argId="5646ef00-aa08-4677-9e35-20b4305c93b2" id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument argId="4a5398e6-431a-4c16-bc48-321478165f58" id="targetDescription">
+          <value class="value" valueClass="string">On SF rstk__Quickcreatesorma page with pageobject Rstk__quickcreatesorma</value>
+        </argument>
+        <argument argId="7bd319dd-53ad-4760-85b6-fc2716b9e502" id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument argId="cd4a33a9-b0bf-4fb0-94aa-5c9d6012638e" id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument argId="191605aa-4d09-488f-8f14-60fa3ffe7645" id="closeWindow"/>
+        <argument argId="17c26e1d-2b7e-4a81-8fac-4e279e368f4f" id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument argId="7e6b1b5b-4a15-4226-a666-7fef15ae4483" id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument argId="f1bb7b7d-24d9-4e58-826d-d2412487765c" id="sfUiTargetVfIndex">
+          <value class="value" valueClass="string">1</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="70">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="75" title="Set Use Product Defaults for Inventory Locs To TRUE">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="ip_UseProductDefaultsforInventoryLocs"/>
+                    </lhs>
+                    <rhs class="value" valueClass="boolean">true</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="76">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="71" title="Check the Use Product Defaults For Inventory Locs field">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:locator?name=useProductDefaultsForInventoryLocs"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=check"/>
+                        </argument>
+                        <argument id="blur">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="pressEnter">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="beforeWait">
+                          <value class="uiWait" uri="default"/>
+                        </argument>
+                        <argument id="afterWait">
+                          <value class="uiWait" uri="default"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Check the Use Product Defaults For Inventory Locs field</value>
+                        </argument>
+                        <argument id="autoRetry"/>
+                        <argument id="ieClickMethod">
+                          <value class="value" valueClass="string">Default</value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="ieClickMethod" seq="10000" title="IE Click Method">
+                          <summary>How the click should be executed for Internet Explorer.</summary>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="77" title="Set Individual Lines for Kit Components To TRUE">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="ip_IndividualLinesforKitComponents"/>
+                    </lhs>
+                    <rhs class="value" valueClass="boolean">true</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="78">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="72" title="Check the Individual Lines For Kit Components field">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:locator?name=individualLinesForKitComponents"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=check"/>
+                        </argument>
+                        <argument id="blur">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="pressEnter">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="beforeWait">
+                          <value class="uiWait" uri="default"/>
+                        </argument>
+                        <argument id="afterWait">
+                          <value class="uiWait" uri="default"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Check the Individual Lines For Kit Components field</value>
+                        </argument>
+                        <argument id="autoRetry"/>
+                        <argument id="ieClickMethod">
+                          <value class="value" valueClass="string">Default</value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="ieClickMethod" seq="10000" title="IE Click Method">
+                          <summary>How the click should be executed for Internet Explorer.</summary>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="87" title="Search and select invoice Number">
+              <arguments>
+                <argument id="condition">
+                  <value class="ne">
+                    <lhs class="variable">
+                      <path element="ip_invoiceNumber"/>
+                    </lhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="88">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="83" title="Call the selectInvoiceNumber method">
+                      <arguments>
+                        <argument argId="20f64ecf-fe3e-44b6-92c5-d138165004b7" id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=selectInvoiceNumber&amp;pageId=pageobjects.rstk__quickcreatesorma"/>
+                        </argument>
+                        <argument argId="c18e20e6-7a39-4bb2-a8df-3c4180b97fa2" id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument argId="bfec0916-1727-4e40-8afb-1c7e482dc619" id="interactionDescription">
+                          <value class="value" valueClass="string">Call the selectInvoiceNumber method</value>
+                        </argument>
+                        <argument argId="21e1ecfc-57b2-43d3-8339-39fd8a069532" id="beforeWait"/>
+                        <argument argId="57fd3ce9-c985-48eb-b54e-df6ba8b4e86c" id="afterWait">
+                          <value class="uiWait" uri="ui:wait:auraBusy?timeout=60"/>
+                        </argument>
+                        <argument argId="e8614a14-3168-4cb4-bcee-9ff4420350ab" id="autoRetry"/>
+                        <argument argId="263b9a8a-b381-4b2f-8f39-a9f4fe376c06" id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument argId="bed6b754-c1f6-41cd-91d6-06bed374ac78" id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument argId="d98ffd0d-a547-4ef7-838a-01d580c42545" id="param_InvoiceNumber">
+                          <value class="variable">
+                            <path element="ip_invoiceNumber"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="param_InvoiceNumber" title="Invoice Number">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="104" title="SOQL Query: select count() from rstk__soinvline__c where rstk__soinvline_invoice__r.name='{ip_invoiceNumber}'=&gt;op_rowCount">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select count() from rstk__soinvline__c where rstk__soinvline_invoice__r.name='</value>
+                              <variable>
+                                <path element="ip_invoiceNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_rowCount</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="91" title="Select Invoice Line">
+              <arguments>
+                <argument id="condition">
+                  <value class="and">
+                    <lhs class="ne">
+                      <lhs class="variable">
+                        <path element="ip_invoiceNumber"/>
+                      </lhs>
+                    </lhs>
+                    <rhs class="ne">
+                      <lhs class="variable">
+                        <path element="ip_invLine"/>
+                      </lhs>
+                    </rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="92">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="73" title="Set the SO Invoice Line select to {ip_invLine}">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:locator?name=SOInvoiceLine"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=set"/>
+                        </argument>
+                        <argument argId="4ca3f553-2151-4cc1-9cb2-21ff787d0503" id="value">
+                          <value class="variable">
+                            <path element="ip_invLine"/>
+                          </value>
+                        </argument>
+                        <argument id="blur">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="pressEnter">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="beforeWait">
+                          <value class="uiWait" uri="default"/>
+                        </argument>
+                        <argument id="afterWait">
+                          <value class="uiWait" uri="ui:wait:auraBusy?timeout=60"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Set the SO Invoice Line select to {ip_invLine}</value>
+                        </argument>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="value" seq="10000" title="Value">
+                          <summary>The value to be populated.</summary>
+                          <type>
+                            <choiceType/>
+                          </type>
+                        </apiParam>
+                        <apiParam group="value" name="blur" seq="10001" title="Tab off field">
+                          <summary>Whether the tab key should be pressed after the value is populated.</summary>
+                          <type>
+                            <booleanType/>
+                          </type>
+                        </apiParam>
+                        <apiParam group="value" name="pressEnter" seq="10002" title="Press Enter">
+                          <summary>Whether the Enter key should be pressed after the value is populated.</summary>
+                          <type>
+                            <booleanType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="105" title="SOQL Query: select count() from rstk__soinvline__c where name='{ip_invLine}'=&gt;op_rowCount">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select count() from rstk__soinvline__c where name='</value>
+                              <variable>
+                                <path element="ip_invLine"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_rowCount</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="94" title="Select Shipper">
+              <arguments>
+                <argument id="condition">
+                  <value class="ne">
+                    <lhs class="variable">
+                      <path element="ip_ShipperNumber"/>
+                    </lhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="95">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="85" title="Call the selectShipperNumber method">
+                      <arguments>
+                        <argument argId="3463d879-47d4-42f9-93b0-554155eebd66" id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=selectShipperNumber&amp;pageId=pageobjects.rstk__quickcreatesorma"/>
+                        </argument>
+                        <argument argId="3fcec57b-d43b-455c-be6e-3bc7bc5a2de6" id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Call the selectShipperNumber method</value>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="afterWait">
+                          <value class="uiWait" uri="ui:wait:auraBusy?timeout=60"/>
+                        </argument>
+                        <argument id="autoRetry"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument argId="4399e1c3-7b60-4fdc-ae45-2e3a93007a70" id="param_ShipperNumber">
+                          <value class="variable">
+                            <path element="ip_ShipperNumber"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="param_ShipperNumber" title="Shipper Number">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="115" title="SOQL Query: select count() from rstk__soshipline__c where rstk__soshipline_shipper__r.name='{ip_ShipperNumber}'=&gt;op_rowCount">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select count() from rstk__soshipline__c where rstk__soshipline_shipper__r.name='</value>
+                              <variable>
+                                <path element="ip_ShipperNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_rowCount</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="108" title="While: {op_rowCount &gt; 0}">
+              <arguments>
+                <argument id="condition">
+                  <value class="gt">
+                    <lhs class="variable">
+                      <path element="op_rowCount"/>
+                    </lhs>
+                    <rhs class="value" valueClass="decimal">0</rhs>
+                  </value>
+                </argument>
+                <argument id="counterName">
+                  <value class="value" valueClass="string">LoopCounter</value>
+                </argument>
+                <argument id="counterStart">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="counterEnd"/>
+                <argument id="continueOnFailure">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="109">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithRow" name="UiWithRow" testItemId="97" title="With Rma Details Table rows {op_rowCount}">
+                      <arguments>
+                        <argument id="uiConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="sf:ui:locator:row?table=rmaDetailsTable"/>
+                        </argument>
+                        <argument id="uiRowLocator">
+                          <value class="variable">
+                            <path element="op_rowCount"/>
+                          </value>
+                        </argument>
+                        <argument id="locatorDescription">
+                          <value class="value" valueClass="string">With Rma Details Table rows {op_rowCount}</value>
+                        </argument>
+                        <argument id="failIfNotFound">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                        <argument id="debugRowLocator">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Row</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Local</value>
+                        </argument>
+                        <argument argId="1fb3b2b5-30f2-4ec1-91a4-79e03d7e71ce" id="autoRetry">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="98">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="101" title="Check the Select Row field">
+                              <arguments>
+                                <argument argId="fb7e30c8-26b7-47d3-a99a-cd8e64b95261" id="locator">
+                                  <value class="uiLocator" uri="ui:locator?name=selectRow"/>
+                                </argument>
+                                <argument argId="cdd42318-abe7-4e21-a36d-05f94727e2a3" id="interaction">
+                                  <value class="uiInteraction" uri="ui:interaction?name=check"/>
+                                </argument>
+                                <argument argId="9d7c3d1b-6331-4ca1-aceb-b50ce8267d60" id="interactionDescription">
+                                  <value class="value" valueClass="string">Check the Select Row field</value>
+                                </argument>
+                                <argument argId="a44dc16e-1a41-442d-a3d9-43c0844c1af1" id="beforeWait"/>
+                                <argument id="afterWait"/>
+                                <argument id="autoRetry"/>
+                                <argument id="captureBefore">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="ieClickMethod">
+                                  <value class="value" valueClass="string">Default</value>
+                                </argument>
+                              </arguments>
+                              <generatedParameters>
+                                <apiParam group="value" name="ieClickMethod" seq="10000" title="IE Click Method">
+                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                  <type>
+                                    <choiceType>
+                                      <constraints>
+                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                      </constraints>
+                                    </choiceType>
+                                  </type>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="103" title="Set Values: op_rowCount">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">op_rowCount</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="sub">
+                                          <lhs class="variable">
+                                            <path element="op_rowCount"/>
+                                          </lhs>
+                                          <rhs class="value" valueClass="decimal">1</rhs>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                      <generatedParameters>
+                        <apiParam group="options" name="autoRetry" title="Auto Retry">
+                          <summary>Whether to wait for the rows to be visible.</summary>
+                          <type>
+                            <booleanType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="74" title="Click the Create RMA Details button">
+              <arguments>
+                <argument id="locator">
+                  <value class="uiLocator" uri="ui:locator?name=createRMADetails"/>
+                </argument>
+                <argument id="interaction">
+                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                </argument>
+                <argument id="hover">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="beforeWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="afterWait">
+                  <value class="uiWait" uri="default"/>
+                </argument>
+                <argument id="interactionDescription">
+                  <value class="value" valueClass="string">Click the Create RMA Details button</value>
+                </argument>
+                <argument id="autoRetry"/>
+                <argument id="ieClickMethod">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+              </arguments>
+              <generatedParameters>
+                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                  <type>
+                    <booleanType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                  <summary>How the click should be executed for Internet Explorer.</summary>
+                  <type>
+                    <choiceType>
+                      <constraints>
+                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                      </constraints>
+                    </choiceType>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+          <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+          <type>
+            <numericType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:a1b75626-b318-47ae-be1a-c92bd7bcb0db" name="reuseConnectionName" title="Override Connection">
+      <summary>What should happen if a connection with the same Result Name is already open.\r\n\r\nWARNING: Setting this to Reuse can be dangerous (see remarks).</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:29dad89b-7dcc-4b9e-b77c-763106084e2c" name="ip_recordID" title="Record ID">
+      <summary>The condition that is tested.\r\n\r\nIf it evaluates to true then the Then steps are executed, otherwise any Else steps.</summary>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param name="ip_UseProductDefaultsforInventoryLocs" title="Use Product Defaults for Inventory Locs">
+      <summary/>
+      <type>
+        <booleanType/>
+      </type>
+    </param>
+    <param name="ip_IndividualLinesforKitComponents" title="Individual Lines for Kit Components">
+      <summary/>
+      <type>
+        <booleanType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:d98ffd0d-a547-4ef7-838a-01d580c42545" name="ip_invoiceNumber" title="Invoice Number">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:4ca3f553-2151-4cc1-9cb2-21ff787d0503" name="ip_invLine" title="Invoice Line">
+      <summary>The value to be populated.</summary>
+      <type>
+        <choiceType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:4399e1c3-7b60-4fdc-ae45-2e3a93007a70" name="ip_ShipperNumber" title="Shipper Number">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="ip_recordID">
+      <value class="value" valueClass="string">a7k5f000000YWIu</value>
+    </argument>
+    <argument id="ip_UseProductDefaultsforInventoryLocs">
+      <value class="value" valueClass="string">false</value>
+    </argument>
+    <argument id="ip_IndividualLinesforKitComponents">
+      <value class="value" valueClass="string">false</value>
+    </argument>
+    <argument id="ip_invoiceNumber">
+      <value class="value" valueClass="string">INV-176</value>
+    </argument>
+    <argument id="ip_invLine">
+      <value class="value" valueClass="string">100_176 - 1</value>
+    </argument>
+    <argument id="ip_ShipperNumber">
+      <value class="value" valueClass="string">RMA-QT1Q - 1</value>
+    </argument>
+  </args>
+</testCase>

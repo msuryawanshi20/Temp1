@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Inherit" registryId="3e069dd4-2c97-4417-b09b-08fef9e683f1" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: QARSF_Admin (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument argId="7b4e6eb2-4490-4278-864a-6eeda49e5e15" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="3" title="Read Object: rstk__icitemsite__c = {recID}">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__icitemsite__c</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">rstkRead</value>
+        </argument>
+        <argument argId="3cd0eee0-7289-4c40-88a1-1185c5da6edb" id="objectId">
+          <value class="variable">
+            <path element="recID"/>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument argId="4996e773-04d6-4d2d-8217-8cfadd62f96b" id="rstk__icitemsite_site__c">
+          <value class="value" valueClass="string">a7q410000008aSQAAY</value>
+        </argument>
+        <argument argId="33853282-4f9b-4995-ab68-eab4de5d6704" id="rstk__icitemsite_icitem__c">
+          <value class="value" valueClass="string">a1E41000007fTK5EAM</value>
+        </argument>
+        <argument argId="456a0d3e-b7ad-4fb6-803b-466772c45c02" id="rstk__icitemsite_qtyoh__c">
+          <value class="value" valueClass="decimal">958.0</value>
+        </argument>
+        <argument argId="1b97d03e-a0cf-4293-95da-d13b7087c8b7" id="rstk__icitemsite_qtycons__c">
+          <value class="value" valueClass="decimal">0.0</value>
+        </argument>
+        <argument argId="4500c7ba-2c7f-4092-892a-2819ad91b8d3" id="rstk__icitemsite_qtyohnn__c">
+          <value class="value" valueClass="decimal">0.0</value>
+        </argument>
+        <argument argId="f3e46452-9cd6-4eb7-9ee7-efdaa31c9f4f" id="rstk__icitemsite_qtyvmi__c">
+          <value class="value" valueClass="decimal">0.0</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+      <resultAssertions>
+        <resultAssertion resultName="rstk__icitemsite_site__c" title="Verify Site">
+          <expected class="variable">
+            <path element="ipSite"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__icitemsite_icitem__c" title="Verify Item Number">
+          <expected class="variable">
+            <path element="ipInvItem"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__icitemsite_qtyoh__c" title="Verify Qty On-Hand">
+          <expected class="variable">
+            <path element="ipQtyOnHand"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__icitemsite_qtycons__c" title="Verify Qty Consigned">
+          <expected class="variable">
+            <path element="ipQtyConsigned"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__icitemsite_qtyohnn__c" title="Verify Qty Non-Nettable">
+          <expected class="variable">
+            <path element="ipQtyNonNettable"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__icitemsite_qtyvmi__c" title="Verify Qty Vendor Managed">
+          <expected class="variable">
+            <path element="ipVmiQty"/>
+          </expected>
+        </resultAssertion>
+      </resultAssertions>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__icitemsite__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_site__c" name="rstk__icitemsite_site__c" title="Site"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_icitem__c" name="rstk__icitemsite_icitem__c" title="Inv Item"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyoh__c" name="rstk__icitemsite_qtyoh__c" title="Qty On-Hand"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtycons__c" name="rstk__icitemsite_qtycons__c" title="Qty Consigned"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyohnn__c" name="rstk__icitemsite_qtyohnn__c" title="Qty Non-Nettable"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyvmi__c" name="rstk__icitemsite_qtyvmi__c" title="Qty Vendor Managed"/>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:7b4e6eb2-4490-4278-864a-6eeda49e5e15" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="recID" title="Record Id">
+      <summary>The Id of Object to be updated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_icitem__c" name="ipInvItem" title="Inv Item">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_site__c" name="ipSite" title="Site">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtycons__c" name="ipQtyConsigned" title="Qty Consigned">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyoh__c" name="ipQtyOnHand" title="Qty On-Hand">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyohnn__c" name="ipQtyNonNettable" title="Qty Non-Nettable">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icitemsite__c&amp;field=rstk__icitemsite_qtyvmi__c" name="ipVmiQty" title="Qty Vendor Managed">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="recID">
+      <value class="value" valueClass="string">a1L41000003VBBSEA4</value>
+    </argument>
+    <argument id="ipSite">
+      <value class="value" valueClass="string">a7q410000008aSQAAY</value>
+    </argument>
+    <argument id="ipInvItem">
+      <value class="value" valueClass="string">a1E41000007fTK5EAM</value>
+    </argument>
+    <argument id="ipQtyOnHand">
+      <value class="value" valueClass="decimal">958.0</value>
+    </argument>
+    <argument id="ipQtyConsigned">
+      <value class="value" valueClass="decimal">0.0</value>
+    </argument>
+    <argument id="ipQtyNonNettable">
+      <value class="value" valueClass="decimal">0.0</value>
+    </argument>
+    <argument id="ipVmiQty">
+      <value class="value" valueClass="decimal">0.0</value>
+    </argument>
+  </args>
+</testCase>

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="4" title="Salesforce Connect: QARSF_Admin (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="6" title="SOQL Query: select rstk__icitemsiteproj_qtyoh__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'=&gt;QtyOnHand">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="value" valueClass="string">select rstk__icitemsiteproj_qtyoh__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">QtyOnHand</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="7" title="Set Values: QtyOnHandBefore">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">QtyOnHandBefore</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="QtyOnHand"/>
+                  <path element="rstk__icitemsiteproj_qtyoh__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Folder</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="3" title="SOQL Query: select rstk__icitemsiteproj_qtyavail__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'=&gt;QtyAvailable">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="value" valueClass="string">select rstk__icitemsiteproj_qtyavail__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">QtyAvailable</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="8" title="Set Values: QtyAvailableBefore">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">QtyAvailableBefore</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="QtyAvailable"/>
+                  <path element="rstk__icitemsiteproj_qtyavail__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Folder</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="2" title="SOQL Query: select rstk__icitemsiteproj_qtyalloc__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'=&gt;QtyAllocated">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="value" valueClass="string">select rstk__icitemsiteproj_qtyalloc__c from rstk__icitemsiteproj__c where rstk__icitemsiteproj_item__c='a1E1K000009MBG1'</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">QtyAllocated</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="11" title="Set Values: QtyAllocatedBefore">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">QtyAllocatedBefore</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="QtyAllocated"/>
+                  <path element="rstk__icitemsiteproj_qtyalloc__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Global</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.io.Write" name="Write" testItemId="12" title="Write: =&gt;">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="data"/>
+        <argument id="dataUrl">
+          <value class="excelTarget">
+            <workbookPath class="value" valueClass="string">workbook.xlsx</workbookPath>
+          </value>
+        </argument>
+        <argument id="targetDescription"/>
+      </arguments>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param defaultScope="Folder" name="QtyOnHandBefore" title="QtyOnHandBefore">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="QtyOnHandBefore"/>
+      </sourceValue>
+    </param>
+    <param defaultScope="Folder" name="QtyAvailableBefore" title="QtyAvailableBefore">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="QtyAvailableBefore"/>
+      </sourceValue>
+    </param>
+    <param defaultScope="Folder" name="QtyAllocatedBefore" title="QtyAllocatedBefore">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="QtyAllocatedBefore"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="QtyOnHandBefore" scope="Folder">
+      <name class="value" valueClass="string">QtyOnHandBefore</name>
+    </outputArgument>
+    <outputArgument id="QtyAvailableBefore" scope="Folder">
+      <name class="value" valueClass="string">QtyAvailableBefore</name>
+    </outputArgument>
+    <outputArgument id="QtyAllocatedBefore" scope="Folder">
+      <name class="value" valueClass="string">QtyAllocatedBefore</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

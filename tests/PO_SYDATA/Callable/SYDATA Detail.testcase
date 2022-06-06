@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="14" registryId="89feb42a-baf8-407f-8fe8-d5f9ef188b7e" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="48" title="SOQL Query: select Id,Name ,rstk__porcptap_amtcomp__c,rstk__porcptap_qtycomp__c,rstk__porcptap_rcptdate__c,rstk__porcptap_upricercpt__c from rstk__porcptap__c where rstk__porcptap_ordno__c ='{POHDRID}'=&gt;porcpt">
+      <arguments>
+        <argument argId="ca282044-0b90-462f-8ba1-06e05baa2f40" id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,Name ,rstk__porcptap_amtcomp__c,rstk__porcptap_qtycomp__c,rstk__porcptap_rcptdate__c,rstk__porcptap_upricercpt__c from rstk__porcptap__c where rstk__porcptap_ordno__c ='</value>
+              <variable>
+                <path element="POHDRID"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument argId="84ef94d9-7dd4-4dd2-9874-6588745181eb" id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument argId="69e2bc6c-7a4b-49f3-82c8-e51cd13be778" id="resultListName">
+          <value class="value" valueClass="string">porcpt</value>
+        </argument>
+        <argument argId="3412b43b-1358-4b16-881b-0653f3f57ef0" id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="49" title="For Each: {porcpt}=&gt;porcptsydatad">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="porcpt"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">porcptsydatad</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="50">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="47" title="Create Object: rstk__sydatad__c=&gt;sydatadId">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__sydatad__c</value>
+                </argument>
+                <argument id="resultIdName">
+                  <value class="value" valueClass="string">sydatadId</value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="assignmentRuleId"/>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument argId="d2c1c8da-f41f-4586-a169-0425341d4a2f" id="rstk__sydatad_sydata__c">
+                  <value class="variable">
+                    <path element="POAPMatchNum"/>
+                  </value>
+                </argument>
+                <argument argId="d1204fc6-3a2a-4ad2-bcc1-611f23fe09dc" id="rstk__sydatad_type__c">
+                  <value class="variable">
+                    <path element="SYDATAD"/>
+                    <path element="TransactionDetailType"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydatad_porcptap__c">
+                  <value class="variable">
+                    <path element="porcptsydatad"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="Name">
+                  <value class="variable">
+                    <path element="SYDATAD"/>
+                    <path element="Name"/>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__sydatad__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydatad__c&amp;field=rstk__sydatad_sydata__c" name="rstk__sydatad_sydata__c" title="rstk__sydatad_sydata__c">
+                  <summary>Not Applicable</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydatad__c&amp;field=rstk__sydatad_type__c" name="rstk__sydatad_type__c" title="rstk__sydatad_type__c">
+                  <summary>Not Applicable</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydatad__c&amp;field=rstk__sydatad_porcptap__c" name="rstk__sydatad_porcptap__c" title="rstk__sydatad_porcptap__c">
+                  <summary>Not Applicable</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydatad__c&amp;field=Name" name="Name" title="Name"/>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:d2c1c8da-f41f-4586-a169-0425341d4a2f" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_poline__c" name="POAPMatchNum" title="POAPMatchNum">
+      <summary>Not Applicable</summary>
+    </param>
+    <param linkedToUrl="provar:hasvalue:7d284dc8-a80f-400c-9eb7-8172c88efe58" name="SYDATAD" title="SYDATAD">
+      <summary>The list to be processed.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="POHDRID" title="POHDRID">
+      <summary>The life-span of the result list.</summary>
+      <type>
+        <choiceType>
+          <constraints>
+            <valueConstraint name="unrestricted">false</valueConstraint>
+          </constraints>
+        </choiceType>
+      </type>
+    </param>
+  </params>
+  <outputParams/>
+  <args>
+    <argument id="POAPMatchNum">
+      <value class="variable">
+        <path element="poapmatchsydataid"/>
+      </value>
+    </argument>
+    <argument id="SYDATAD">
+      <value class="variable">
+        <path element="SYDATAD"/>
+      </value>
+    </argument>
+    <argument id="POHDRID">
+      <value class="variable">
+        <path element="POHDRID"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="poapmatchsydataid">
+      <name class="value" valueClass="string">poapmatchsydataid</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

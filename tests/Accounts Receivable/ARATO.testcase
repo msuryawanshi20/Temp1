@@ -1,0 +1,1244 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="15">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="104" title="Read Excel Path">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Path</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="67">
+          <steps>
+            <caseCall testCaseId="45166f67-6482-468a-9d8a-64329d6e898c" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Read Excel Data.testcase" testItemId="103">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_CustomerMaster">
+                  <name class="value" valueClass="string">ExcelPath_CustomerMaster</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SYDATA">
+                  <name class="value" valueClass="string">ExcelPath_SYDATA</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_AR">
+                  <name class="value" valueClass="string">ExcelPath_AR</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_MRP">
+                  <name class="value" valueClass="string">ExcelPath_MRP</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_FSL">
+                  <name class="value" valueClass="string">ExcelPath_FSL</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SOSetup">
+                  <name class="value" valueClass="string">ExcelPath_SOSetup</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SingleLine">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SingleLine</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="105" title="Read Data for ARATO">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data for ARATO</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData_ARATO" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">ARATO</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="106">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="107" title="For Each: {SourceData_ARATO}=&gt;ARATO">
+              <arguments>
+                <argument id="list">
+                  <value class="variable">
+                    <path element="SourceData_ARATO"/>
+                  </value>
+                </argument>
+                <argument id="fromItem">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="valueName">
+                  <value class="value" valueClass="string">ARATO</value>
+                </argument>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="108">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="187" title="Set Values: DocumentNumber">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">DocumentNumber</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">INV-</value>
+                                    <funcCall id="UniqueId">
+                                      <argument id="length">
+                                        <value class="value" valueClass="decimal">4</value>
+                                      </argument>
+                                    </funcCall>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="119" title="Set Values: TransactionAmountHomeCurrency">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">TransactionAmountHomeCurrency</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="mult">
+                                  <lhs class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="TransactionAmountARCurrency"/>
+                                  </lhs>
+                                  <rhs class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="RateOfExchange"/>
+                                  </rhs>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="110" title="Create Object: rstkf__arato__c=&gt;aratoId">
+                      <arguments>
+                        <argument id="objectType">
+                          <value class="value" valueClass="string">rstkf__arato__c</value>
+                        </argument>
+                        <argument id="resultIdName">
+                          <value class="value" valueClass="string">aratoId</value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="Name">
+                          <value class="funcCall" id="UniqueId">
+                            <argument id="length">
+                              <value class="value" valueClass="decimal">4</value>
+                            </argument>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_cramt__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="CreditAmount"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_dimval1__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="DimensionValue1"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_dimval2__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="DimensionValue2"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_dimval3__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="DimensionValue3"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_dimval4__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="DimensionValue4"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_docno__c">
+                          <value class="variable">
+                            <path element="DocumentNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_dramt__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="DebitAmount"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_exchrate__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="RateOfExchange"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_glacct__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="Account"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_glcmp__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="FinancialCompany"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_gldiv__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="FinancialDivision"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_homeamt__c">
+                          <value class="variable">
+                            <path element="TransactionAmountHomeCurrency"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_maintamt__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="TransactionAmountARCurrency"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_socust__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="Customer"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_source__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="PostingType"/>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_trantype__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="TransactionType"/>
+                          </value>
+                        </argument>
+                        <argument id="assignmentRuleId"/>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="rstkf__arato_trandate__c">
+                          <value class="funcCall" id="DateAdd">
+                            <argument id="date">
+                              <value class="variable">
+                                <path element="TODAY"/>
+                              </value>
+                            </argument>
+                          </value>
+                        </argument>
+                        <argument id="rstkf__arato_loadasposted__c">
+                          <value class="variable">
+                            <path element="ARATO"/>
+                            <path element="UploadAsPosted"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources/>
+                      <parameterGeneratorProperties>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstkf__arato__c</propertyValue>
+                      </parameterGeneratorProperties>
+                      <generatedParameters>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=Name" name="Name" title="Name"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_cramt__c" name="rstkf__arato_cramt__c" title="rstkf__arato_cramt__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_dimval1__c" name="rstkf__arato_dimval1__c" title="rstkf__arato_dimval1__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_dimval2__c" name="rstkf__arato_dimval2__c" title="rstkf__arato_dimval2__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_dimval3__c" name="rstkf__arato_dimval3__c" title="rstkf__arato_dimval3__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_dimval4__c" name="rstkf__arato_dimval4__c" title="rstkf__arato_dimval4__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_docno__c" name="rstkf__arato_docno__c" title="rstkf__arato_docno__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_dramt__c" name="rstkf__arato_dramt__c" title="rstkf__arato_dramt__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_exchrate__c" name="rstkf__arato_exchrate__c" title="rstkf__arato_exchrate__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_glacct__c" name="rstkf__arato_glacct__c" title="rstkf__arato_glacct__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_glcmp__c" name="rstkf__arato_glcmp__c" title="rstkf__arato_glcmp__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_gldiv__c" name="rstkf__arato_gldiv__c" title="rstkf__arato_gldiv__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_homeamt__c" name="rstkf__arato_homeamt__c" title="rstkf__arato_homeamt__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_maintamt__c" name="rstkf__arato_maintamt__c" title="rstkf__arato_maintamt__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_socust__c" name="rstkf__arato_socust__c" title="rstkf__arato_socust__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_source__c" name="rstkf__arato_source__c" title="rstkf__arato_source__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_trantype__c" name="rstkf__arato_trantype__c" title="rstkf__arato_trantype__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_trandate__c" name="rstkf__arato_trandate__c" title="rstkf__arato_trandate__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_loadasposted__c" name="rstkf__arato_loadasposted__c" title="rstkf__arato_loadasposted__c"/>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="111" title="Verify the ARATO record created">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Verify the ARATO record created</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="112">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="114" title="Read Object: rstkf__arato__c = {aratoId}">
+                              <arguments>
+                                <argument id="objectType">
+                                  <value class="value" valueClass="string">rstkf__arato__c</value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">rstkfRead</value>
+                                </argument>
+                                <argument id="objectId">
+                                  <value class="variable">
+                                    <path element="aratoId"/>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="rstkf__arato_isimport__c">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="rstkf__arato_arinvtxn__c">
+                                  <value class="value" valueClass="string">a9M1K00000009CPUAY</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                              <resultAssertions>
+                                <resultAssertion comparisonType="IsPresent" resultName="rstkf__arato_arinvtxn__c" title="Check rstkf__arato_arinvtxn__c">
+                                  <expected class="value" valueClass="string">a9M1K00000009CPUAY</expected>
+                                </resultAssertion>
+                              </resultAssertions>
+                              <parameterGeneratorProperties>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstkf__arato__c</propertyValue>
+                              </parameterGeneratorProperties>
+                              <generatedParameters>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_isimport__c" name="rstkf__arato_isimport__c" title="Import API"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arato__c&amp;field=rstkf__arato_arinvtxn__c" name="rstkf__arato_arinvtxn__c" title="Receivable Transaction"/>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="115" title="Verify the Receivable Transaction created">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Verify the Receivable Transaction created</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="116">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="122" title="SOQL Query: select Id,\trstkf__arinvtxn_arinvh__c from rstkf__arinvtxn__c where rstkf__arinvtxn_docno__c='{DocumentNumber}' AND rstkf__arinvtxn_trantype__c='{ARATO.TransactionType}'=&gt;rstkfRows_arinvtxn">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Id,\trstkf__arinvtxn_arinvh__c from rstkf__arinvtxn__c where rstkf__arinvtxn_docno__c='</value>
+                                      <variable>
+                                        <path element="DocumentNumber"/>
+                                      </variable>
+                                      <value valueClass="string">' AND rstkf__arinvtxn_trantype__c='</value>
+                                      <variable>
+                                        <path element="ARATO"/>
+                                        <path element="TransactionType"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">rstkfRows_arinvtxn</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="121" title="SOQL Query: SELECT rstkf__arinvtxn_dimvals__c FROM rstkf__arinvtxn__c WHERE Id = '{rstkfRows_arinvtxn.Id}'=&gt;rstkfRows_arinvtxn_dimvals">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">SELECT rstkf__arinvtxn_dimvals__c FROM rstkf__arinvtxn__c WHERE Id = '</value>
+                                      <variable>
+                                        <path element="rstkfRows_arinvtxn"/>
+                                        <path element="Id"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">rstkfRows_arinvtxn_dimvals</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="124" title="SOQL Query: SELECT rstk__dimval1__c,rstk__dimval2__c,rstk__dimval3__c,rstk__dimval4__c FROM rstk__dimvals__c WHERE Id = '{rstkfRows_arinvtxn_dimvals.rstkf__arinvtxn_dimvals__c}'=&gt;rstkRows_dimvals">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">SELECT rstk__dimval1__c,rstk__dimval2__c,rstk__dimval3__c,rstk__dimval4__c FROM rstk__dimvals__c WHERE Id = '</value>
+                                      <variable>
+                                        <path element="rstkfRows_arinvtxn_dimvals"/>
+                                        <path element="rstkf__arinvtxn_dimvals__c"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">rstkRows_dimvals</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="126" title="Assert: {rstkRows_dimvals.rstk__dimval1__c} EqualTo {ARATO.DimensionValue1}">
+                              <arguments>
+                                <argument id="expectedValue">
+                                  <value class="variable">
+                                    <path element="rstkRows_dimvals"/>
+                                    <path element="rstk__dimval1__c"/>
+                                  </value>
+                                </argument>
+                                <argument id="comparisonType">
+                                  <value class="value" valueClass="string">EqualTo</value>
+                                </argument>
+                                <argument id="actualValue">
+                                  <value class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="DimensionValue1"/>
+                                  </value>
+                                </argument>
+                                <argument id="caseSensitive">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="numeric">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="retainDecimals">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="nullGreater">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchMultiLine">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchDotAll">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="failureMessage"/>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="127" title="Assert: {rstkRows_dimvals.rstk__dimval2__c} EqualTo {ARATO.DimensionValue2}">
+                              <arguments>
+                                <argument id="expectedValue">
+                                  <value class="variable">
+                                    <path element="rstkRows_dimvals"/>
+                                    <path element="rstk__dimval2__c"/>
+                                  </value>
+                                </argument>
+                                <argument id="comparisonType">
+                                  <value class="value" valueClass="string">EqualTo</value>
+                                </argument>
+                                <argument id="actualValue">
+                                  <value class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="DimensionValue2"/>
+                                  </value>
+                                </argument>
+                                <argument id="caseSensitive">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="numeric">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="retainDecimals">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="nullGreater">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchMultiLine">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchDotAll">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="failureMessage"/>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="128" title="Assert: {rstkRows_dimvals.rstk__dimval3__c} EqualTo {ARATO.DimensionValue3}">
+                              <arguments>
+                                <argument id="expectedValue">
+                                  <value class="variable">
+                                    <path element="rstkRows_dimvals"/>
+                                    <path element="rstk__dimval3__c"/>
+                                  </value>
+                                </argument>
+                                <argument id="comparisonType">
+                                  <value class="value" valueClass="string">EqualTo</value>
+                                </argument>
+                                <argument id="actualValue">
+                                  <value class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="DimensionValue3"/>
+                                  </value>
+                                </argument>
+                                <argument id="caseSensitive">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="numeric">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="retainDecimals">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="nullGreater">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchMultiLine">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchDotAll">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="failureMessage"/>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="125" title="Assert: {rstkRows_dimvals.rstk__dimval4__c} EqualTo {ARATO.DimensionValue4}">
+                              <arguments>
+                                <argument id="expectedValue">
+                                  <value class="variable">
+                                    <path element="rstkRows_dimvals"/>
+                                    <path element="rstk__dimval4__c"/>
+                                  </value>
+                                </argument>
+                                <argument id="comparisonType">
+                                  <value class="value" valueClass="string">EqualTo</value>
+                                </argument>
+                                <argument id="actualValue">
+                                  <value class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="DimensionValue4"/>
+                                  </value>
+                                </argument>
+                                <argument id="caseSensitive">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                                <argument id="numeric">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="retainDecimals">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="nullGreater">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchMultiLine">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="matchDotAll">
+                                  <value class="value" valueClass="boolean">false</value>
+                                </argument>
+                                <argument id="failureMessage"/>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="118" title="Read Object: rstkf__arinvtxn__c = {rstkfRows_arinvtxn.Id}">
+                              <arguments>
+                                <argument id="objectType">
+                                  <value class="value" valueClass="string">rstkf__arinvtxn__c</value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">rstkfRead</value>
+                                </argument>
+                                <argument id="objectId">
+                                  <value class="variable">
+                                    <path element="rstkfRows_arinvtxn"/>
+                                    <path element="Id"/>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_docno__c">
+                                  <value class="value" valueClass="string">SR-RSTK-7809-1-DM</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_sumhomevalue__c">
+                                  <value class="value" valueClass="decimal">9.99</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_summaintvalue__c">
+                                  <value class="value" valueClass="decimal">9.99</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_session_status__c">
+                                  <value class="value" valueClass="string">Posted</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_socust__c">
+                                  <value class="value" valueClass="string">a5B1K0000008g5NUAQ</value>
+                                </argument>
+                                <argument id="rstkf__arinvtxn_trantype__c">
+                                  <value class="value" valueClass="string">Debit Memo</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                              <resultAssertions>
+                                <resultAssertion resultName="rstkf__arinvtxn_docno__c" title="Check rstkf__arinvtxn_docno__c">
+                                  <expected class="variable">
+                                    <path element="DocumentNumber"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="rstkf__arinvtxn_sumhomevalue__c" title="Check rstkf__arinvtxn_sumhomevalue__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="CurrentValueHomeCurrency"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="rstkf__arinvtxn_summaintvalue__c" title="Check rstkf__arinvtxn_summaintvalue__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="CurrentValueTransactionCurrency"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="rstkf__arinvtxn_session_status__c" title="Check rstkf__arinvtxn_session_status__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="SessionStatus"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="rstkf__arinvtxn_socust__c" title="Check rstkf__arinvtxn_socust__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="Customer"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="rstkf__arinvtxn_trantype__c" title="Check rstkf__arinvtxn_trantype__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="TransactionType"/>
+                                  </expected>
+                                </resultAssertion>
+                                <resultAssertion resultName="Document_Amount_Document_Currency__c" title="Check Document_Amount_Document_Currency__c">
+                                  <expected class="variable">
+                                    <path element="ARATO"/>
+                                    <path element="TransactionAmountARCurrency"/>
+                                  </expected>
+                                </resultAssertion>
+                              </resultAssertions>
+                              <parameterGeneratorProperties>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstkf__arinvtxn__c</propertyValue>
+                              </parameterGeneratorProperties>
+                              <generatedParameters>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_docno__c" name="rstkf__arinvtxn_docno__c" title="Document Number"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_sumhomevalue__c" name="rstkf__arinvtxn_sumhomevalue__c" title="Current Value - Home Currency"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_summaintvalue__c" name="rstkf__arinvtxn_summaintvalue__c" title="Current Value - Transaction Currency"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_session_status__c" name="rstkf__arinvtxn_session_status__c" title="Session Status"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_socust__c" name="rstkf__arinvtxn_socust__c" title="Customer"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=rstkf__arinvtxn_trantype__c" name="rstkf__arinvtxn_trantype__c" title="Transaction Type"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__arinvtxn__c&amp;field=Document_Amount_Document_Currency__c" name="Document_Amount_Document_Currency__c" title="Document Amount - Document Currency"/>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="170" title="If: {ARATO.UploadAsPosted = &quot;false&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="ARATO"/>
+                              <path element="UploadAsPosted"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">false</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="171">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="134" title="Post the Receivable Transaction">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Post the Receivable Transaction</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="135">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="140" title="On SF Receivable Session View screen">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="target">
+                                          <value class="uiTarget" uri="sf:ui:target?object=rstkf__arinvh__c&amp;action=View"/>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">On SF Receivable Session View screen</value>
+                                        </argument>
+                                        <argument id="navigate">
+                                          <value class="value" valueClass="string">IfNeccessary</value>
+                                        </argument>
+                                        <argument id="windowSelection">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="windowSize">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="closeWindow"/>
+                                        <argument id="captureBefore">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="sfUiTargetObjectId">
+                                          <value class="variable">
+                                            <path element="rstkfRows_arinvtxn"/>
+                                            <path element="rstkf__arinvtxn_arinvh__c"/>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="141">
+                                          <steps/>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                                          <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                                          <type>
+                                            <textType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="144" title="On SF rstkf__arinvh page with pageobject Rstkf__arinvh">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="target">
+                                          <value class="uiTarget" uri="sf:ui:target?page=rstkf__arinvh&amp;pageObject=pageobjects.rstkf__arinvh"/>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">On SF rstkf__arinvh page with pageobject Rstkf__arinvh</value>
+                                        </argument>
+                                        <argument id="navigate">
+                                          <value class="value" valueClass="string">IfNeccessary</value>
+                                        </argument>
+                                        <argument id="windowSelection">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="windowSize">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="closeWindow"/>
+                                        <argument id="captureBefore">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="sfUiTargetObjectId">
+                                          <value class="variable">
+                                            <path element="rstkfRows_arinvtxn"/>
+                                            <path element="rstkf__arinvtxn_arinvh__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="sfUiTargetVfIndex">
+                                          <value class="value" valueClass="string">1</value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="145">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="146" title="UI Assert-Verify Receivable Session page title">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Values</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="ReceivableSessionTitle">
+                                                      <fieldLocator uri="ui:locator?name=ReceivableSessionTitle"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo">
+                                                          <value class="value" valueClass="string">Receivable Session</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="147" title="UI Assert-Verify Status">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Values</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Status">
+                                                      <fieldLocator uri="ui:locator?name=Status"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo">
+                                                          <value class="value" valueClass="string">Pending</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="148" title="Click the Post Session button">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:locator?name=PostSession"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=action"/>
+                                                </argument>
+                                                <argument id="hover">
+                                                  <value class="value" valueClass="boolean">true</value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="beforeWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="afterWait">
+                                                  <value class="uiWait" uri="default"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Click the Post Session button</value>
+                                                </argument>
+                                                <argument id="autoRetry"/>
+                                                <argument id="ieClickMethod">
+                                                  <value class="value" valueClass="string">Default</value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="hover" seq="10000" title="Hover before Clicking">
+                                                  <summary>Whether the mouse should hover over the field before it is clicked.</summary>
+                                                  <type>
+                                                    <booleanType/>
+                                                  </type>
+                                                </apiParam>
+                                                <apiParam group="value" name="ieClickMethod" seq="10001" title="IE Click Method">
+                                                  <summary>How the click should be executed for Internet Explorer.</summary>
+                                                  <type>
+                                                    <choiceType>
+                                                      <constraints>
+                                                        <valueConstraint name="valuesSource">com.provar.core.model.base.java.EnumChoiceListValuesSource</valueConstraint>
+                                                        <valueConstraint name="valuesSourceDependencies">com.provar.core.model.ui.api.ClickMethod</valueConstraint>
+                                                      </constraints>
+                                                    </choiceType>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiHandleAlert" name="UiHandleAlert" testItemId="149" title="Handle UI Alerts">
+                                              <arguments>
+                                                <argument id="alerts">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <namedValues mutable="Mutable">
+                                                      <namedValue name="expectedMessage">
+                                                        <value class="value" valueClass="string">Please confirm you wish to post this session</value>
+                                                      </namedValue>
+                                                      <namedValue name="comparisonType">
+                                                        <value class="value" valueClass="string">EqualTo</value>
+                                                      </namedValue>
+                                                      <namedValue name="caseSensitive">
+                                                        <value class="value" valueClass="boolean">false</value>
+                                                      </namedValue>
+                                                      <namedValue name="isNormalise">
+                                                        <value class="value" valueClass="boolean">false</value>
+                                                      </namedValue>
+                                                      <namedValue name="isRegex">
+                                                        <value class="value" valueClass="boolean">false</value>
+                                                      </namedValue>
+                                                      <namedValue name="response">
+                                                        <value class="value" valueClass="string">OK</value>
+                                                      </namedValue>
+                                                      <namedValue name="beforeWait"/>
+                                                      <namedValue name="afterWait">
+                                                        <value class="uiWait" uri="ui:wait:timed?seconds=10"/>
+                                                      </namedValue>
+                                                      <namedValue name="autoRetry"/>
+                                                    </namedValues>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Sleep" name="Sleep" testItemId="150" title="Sleep for {10} seconds">
+                                              <arguments>
+                                                <argument id="sleepSecs">
+                                                  <value class="value" valueClass="decimal">10</value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="151" title="UI Assert-Verify Status">
+                                              <arguments>
+                                                <argument id="resultName">
+                                                  <value class="value" valueClass="string">Status</value>
+                                                </argument>
+                                                <argument id="resultScope">
+                                                  <value class="value" valueClass="string">Test</value>
+                                                </argument>
+                                                <argument id="fieldAssertions">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <uiFieldAssertion resultName="Status">
+                                                      <fieldLocator uri="ui:locator?name=Status"/>
+                                                      <attributeAssertions>
+                                                        <uiAttributeAssertion attributeName="value" comparisonType="EqualTo">
+                                                          <value class="value" valueClass="string">Posted</value>
+                                                        </uiAttributeAssertion>
+                                                      </attributeAssertions>
+                                                    </uiFieldAssertion>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="columnAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="pageAssertions">
+                                                  <value class="valueList" mutable="Mutable"/>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="autoRetry"/>
+                                              </arguments>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+                                          <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+                                          <type>
+                                            <numericType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="164" title="Verify the GL Transaction created">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Verify the GL Transaction created</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="165">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="169" title="SOQL Query: SELECT count() FROM rstkf__gltxn__c WHERE rstkf__gltxn_arinvtxn_docno__c = '{DocumentNumber}'=&gt;rstkfRows_gltxnActual">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">SELECT count() FROM rstkf__gltxn__c WHERE rstkf__gltxn_arinvtxn_docno__c = '</value>
+                                              <variable>
+                                                <path element="DocumentNumber"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">rstkfRows_gltxnActual</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="191" title="Assert: {rstkfRows_gltxnActual} EqualTo {ARATO.ExpectedGLTXNCount}">
+                                      <arguments>
+                                        <argument id="expectedValue">
+                                          <value class="variable">
+                                            <path element="rstkfRows_gltxnActual"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="comparisonType">
+                                          <value class="value" valueClass="string">EqualTo</value>
+                                        </argument>
+                                        <argument id="actualValue">
+                                          <value class="variable">
+                                            <path element="ARATO"/>
+                                            <path element="ExpectedGLTXNCount"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                        <argument id="numeric">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="retainDecimals">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="nullGreater">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchMultiLine">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchDotAll">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="failureMessage"/>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="193">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="188" title="Verify the GL Transaction created">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Verify the GL Transaction created</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="189">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="190" title="SOQL Query: SELECT count() FROM rstkf__gltxn__c WHERE rstkf__gltxn_arinvtxn_docno__c = '{DocumentNumber}'=&gt;rstkfRows_gltxnActual">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">SELECT count() FROM rstkf__gltxn__c WHERE rstkf__gltxn_arinvtxn_docno__c = '</value>
+                                              <variable>
+                                                <path element="DocumentNumber"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">rstkfRows_gltxnActual</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="192" title="Assert: {rstkfRows_gltxnActual} EqualTo {ARATO.ExpectedGLTXNCount}">
+                                      <arguments>
+                                        <argument id="expectedValue">
+                                          <value class="variable">
+                                            <path element="rstkfRows_gltxnActual"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="comparisonType">
+                                          <value class="value" valueClass="string">EqualTo</value>
+                                        </argument>
+                                        <argument id="actualValue">
+                                          <value class="variable">
+                                            <path element="ARATO"/>
+                                            <path element="ExpectedGLTXNCount"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                        <argument id="numeric">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="retainDecimals">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="nullGreater">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchMultiLine">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchDotAll">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="failureMessage"/>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="129" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="130">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

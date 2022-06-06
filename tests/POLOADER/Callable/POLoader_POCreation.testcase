@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="5" registryId="bf68b852-4f80-489c-b812-ecc3b72db4cc" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="d82e3dae-00f9-4c3a-8882-9809968cfaf5" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="3" title="Read Add Both Data">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Add Both Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData" variableScope="Test">
+          <cacheToken>C:/Users/dellDevonforce/Provar/ERPFinalProj/rsqasampleproj/templates/RSTKF_AutomationData.xlsx;1624364287371</cacheToken>
+          <cachedParameters>
+            <apiParam name="APIMode"/>
+            <apiParam name="OverrideDimension"/>
+            <apiParam name="OverrideAddress"/>
+            <apiParam name="Name"/>
+            <apiParam name="Division"/>
+            <apiParam name="Vendor"/>
+            <apiParam name="Street"/>
+            <apiParam name="City"/>
+            <apiParam name="State"/>
+            <apiParam name="Zipcode"/>
+            <apiParam name="Country"/>
+            <apiParam name="Item"/>
+            <apiParam name="QtyReq"/>
+            <apiParam name="UnitPrice"/>
+            <apiParam name="Project"/>
+            <apiParam name="Dim1"/>
+            <apiParam name="Dim3"/>
+            <apiParam name="Dim4"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="value" valueClass="string">templates/POLOADER.xlsx</workbookPath>
+            <worksheetName class="value" valueClass="string">AddBothDefault</worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="53"/>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="94" title="Addition of PO and PO Line">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Addition of PO and PO Line</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="95">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="107" title="Add PO Header">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Add PO Header</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="132">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="111" title="For Each: {List}=&gt;addheader">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="List"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">addheader</value>
+                        </argument>
+                        <argument id="continueOnFailure"/>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="112">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="248" title="SOQL Query: SELECT Id,Name FROM rstk__povend__c where Name =  '{addheader.Vendor}'=&gt;povend">
+                              <tags/>
+                              <arguments>
+                                <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">SELECT Id,Name FROM rstk__povend__c where Name =  '</value>
+                                      <variable>
+                                        <path element="addheader"/>
+                                        <path element="Vendor"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">povend</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="249" title="Set Values: VendorID">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">VendorID</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="povend"/>
+                                          <path element="Id"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="233" title="Create Object: rstk__poloader__c=&gt;addheaderId">
+                              <arguments>
+                                <argument id="objectType">
+                                  <value class="value" valueClass="string">rstk__poloader__c</value>
+                                </argument>
+                                <argument id="resultIdName">
+                                  <value class="value" valueClass="string">addheaderId</value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="assignmentRuleId"/>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="Name">
+                                  <value class="variable">
+                                    <path element="addheader"/>
+                                    <path element="Name"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_process__c">
+                                  <value class="variable">
+                                    <path element="addheader"/>
+                                    <path element="Process"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_mode__c">
+                                  <value class="variable">
+                                    <path element="addheader"/>
+                                    <path element="APIMode"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_vendno__c">
+                                  <value class="variable">
+                                    <path element="VendorID"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_div__c">
+                                  <value class="variable">
+                                    <path element="addheader"/>
+                                    <path element="Division"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_poagh__c">
+                                  <value class="variable">
+                                    <path element="addheader"/>
+                                    <path element="Agreement"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <parameterGeneratorProperties>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__poloader__c</propertyValue>
+                              </parameterGeneratorProperties>
+                              <generatedParameters>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=Name" name="Name" title="Name"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_process__c" name="rstk__poloader_process__c" title="rstk__poloader_process__c">
+                                  <summary>This is an indicator for the status of the Load  process.</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_mode__c" name="rstk__poloader_mode__c" title="rstk__poloader_mode__c">
+                                  <summary>Mode/function for this transaction.  Options are\n\nAdd Header\nAdd Line\nAdd Both\nChange Header\nChange Line\nChange Both\nClose Line Short\nSubmit to Vendor</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_vendno__c" name="rstk__poloader_vendno__c" title="rstk__poloader_vendno__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_div__c" name="rstk__poloader_div__c" title="rstk__poloader_div__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_poagh__c" name="rstk__poloader_poagh__c" title="rstk__poloader_poagh__c"/>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="240" title="SOQL Query: select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c from rstk__poloader__c where id = '{addheaderId}'=&gt;poloaderhdrapi">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c from rstk__poloader__c where id = '</value>
+                                      <variable>
+                                        <path element="addheaderId"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">poloaderhdrapi</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="239" title="Set Values: POHDRID">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">POHDRID</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="poloaderhdrapi"/>
+                                          <path element="rstk__poloader_pohdr__c"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="109" title="Add PO Line">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Add PO Line</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="138">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="104" title="For Each: {AddLineData}=&gt;poloaderaddline">
+                      <arguments>
+                        <argument argId="6e2269ff-7a52-4e98-9817-61bb652a2a39" id="list">
+                          <value class="variable">
+                            <path element="AddLineData"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">poloaderaddline</value>
+                        </argument>
+                        <argument id="continueOnFailure"/>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="105">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="110" title="Create Object: rstk__poloader__c=&gt;addlineId">
+                              <arguments>
+                                <argument id="objectType">
+                                  <value class="value" valueClass="string">rstk__poloader__c</value>
+                                </argument>
+                                <argument id="resultIdName">
+                                  <value class="value" valueClass="string">addlineId</value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="assignmentRuleId"/>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                                <argument id="Name">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="Name"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_poitem__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="Item"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_process__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="Process"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_proj__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="Project"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_qtyreq__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="Quantity"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_schedrcptdte__c">
+                                  <value class="funcCall" id="DateFormat">
+                                    <argument id="date">
+                                      <value class="funcCall" id="DateAdd">
+                                        <argument id="date">
+                                          <value class="variable">
+                                            <path element="TODAY"/>
+                                          </value>
+                                        </argument>
+                                      </value>
+                                    </argument>
+                                    <argument id="outputFormat">
+                                      <value class="value" valueClass="string">yyyy-MM-dd</value>
+                                    </argument>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_mode__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="APIMode"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_pohdr__c">
+                                  <value class="variable">
+                                    <path element="POHDRID"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstk__poloader_unitprice__c">
+                                  <value class="variable">
+                                    <path element="poloaderaddline"/>
+                                    <path element="UnitPrice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <parameterGeneratorProperties>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__poloader__c</propertyValue>
+                              </parameterGeneratorProperties>
+                              <generatedParameters>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=Name" name="Name" title="Name"/>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_poitem__c" name="rstk__poloader_poitem__c" title="rstk__poloader_poitem__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_process__c" name="rstk__poloader_process__c" title="rstk__poloader_process__c">
+                                  <summary>This is an indicator for the status of the Load  process.</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_proj__c" name="rstk__poloader_proj__c" title="rstk__poloader_proj__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_qtyreq__c" name="rstk__poloader_qtyreq__c" title="rstk__poloader_qtyreq__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_schedrcptdte__c" name="rstk__poloader_schedrcptdte__c" title="rstk__poloader_schedrcptdte__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_mode__c" name="rstk__poloader_mode__c" title="rstk__poloader_mode__c">
+                                  <summary>Mode/function for this transaction.  Options are\n\nAdd Header\nAdd Line\nAdd Both\nChange Header\nChange Line\nChange Both\nClose Line Short\nSubmit to Vendor</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_pohdr__c" name="rstk__poloader_pohdr__c" title="rstk__poloader_pohdr__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_unitprice__c" name="rstk__poloader_unitprice__c" title="rstk__poloader_unitprice__c">
+                                  <summary>Not Applicable</summary>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="113" title="SOQL Query: select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c,rstk__poloader_asyncgroup__c,rstk__poloader_poline__c from rstk__poloader__c where id = '{addlineId}'=&gt;addlineapi">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c,rstk__poloader_asyncgroup__c,rstk__poloader_poline__c from rstk__poloader__c where id = '</value>
+                                      <variable>
+                                        <path element="addlineId"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">addlineapi</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="242" title="Set Values: POLINEID">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">POLINEID</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="variable">
+                                          <path element="addlineapi"/>
+                                          <path element="rstk__poloader_poline__c"/>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="167" title="While: {addlineapi.rstk__poloader_process__c = &quot;Ready&quot;}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="addlineapi"/>
+                                      <path element="rstk__poloader_process__c"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="string">Ready</rhs>
+                                  </value>
+                                </argument>
+                                <argument id="counterName">
+                                  <value class="value" valueClass="string">LoopCounter</value>
+                                </argument>
+                                <argument id="counterStart">
+                                  <value class="value" valueClass="decimal">1</value>
+                                </argument>
+                                <argument id="counterEnd"/>
+                                <argument id="continueOnFailure"/>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="119">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="172" title="SOQL Query: select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c,rstk__poloader_asyncgroup__c,rstk__poloader_poline__c from rstk__poloader__c where id = '{addlineId}'=&gt;addlineapi">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c,rstk__poloader_asyncgroup__c,rstk__poloader_poline__c from rstk__poloader__c where id = '</value>
+                                              <variable>
+                                                <path element="addlineId"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">addlineapi</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="244" title="SOQL Query: select Id,rstk__pohdr_ordsts__c,rstk__pohdr_totamt__c,rstk__pohdr_ordno__c,CreatedDate from rstk__pohdr__c where Id ='{POHDRID}'=&gt;pohdr">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__pohdr_ordsts__c,rstk__pohdr_totamt__c,rstk__pohdr_ordno__c,CreatedDate from rstk__pohdr__c where Id ='</value>
+                      <variable>
+                        <path element="POHDRID"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">pohdr</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="247" title="Set Values: POTotal">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">POTotal</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="pohdr"/>
+                          <path element="rstk__pohdr_totamt__c"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="246" title="Set Values: POOrderNum">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">POOrderNum</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="pohdr"/>
+                          <path element="rstk__pohdr_ordno__c"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:d82e3dae-00f9-4c3a-8882-9809968cfaf5" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:b583ea69-5b01-4e1d-b0a7-85c0742cb824" name="List" title="List">
+      <summary>The list to be processed.</summary>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:6e2269ff-7a52-4e98-9817-61bb652a2a39" name="AddLineData" title="AddLineData">
+      <summary>The list to be processed.</summary>
+      <type>
+        <textType/>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="POHDRID" title="POHDRID">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POHDRID"/>
+      </sourceValue>
+    </param>
+    <param name="POLINEID" title="POLINEID">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POLINEID"/>
+      </sourceValue>
+    </param>
+    <param name="POTotal" title="POTotal">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POTotal"/>
+      </sourceValue>
+    </param>
+    <param name="POOrderNum" title="POOrderNum">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POOrderNum"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="List">
+      <value class="variable">
+        <path element="SourceData"/>
+      </value>
+    </argument>
+    <argument id="AddLineData">
+      <value class="variable">
+        <path element="SourceData"/>
+      </value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="POHDRID">
+      <name class="value" valueClass="string">POHDRID</name>
+    </outputArgument>
+    <outputArgument id="POLINEID">
+      <name class="value" valueClass="string">POLINEID</name>
+    </outputArgument>
+    <outputArgument id="POTotal">
+      <name class="value" valueClass="string">POTotal</name>
+    </outputArgument>
+    <outputArgument id="POOrderNum">
+      <name class="value" valueClass="string">POOrderNum</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

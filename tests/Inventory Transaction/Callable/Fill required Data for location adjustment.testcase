@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" registryId="0df56bb1-270f-4c60-b741-32d249ba58af" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="09186798-1f2c-40bc-91b1-9b2bec86607c" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="95" title="On SF rstk__Stocklocadj2 page with pageobject Rstk__ Stocklocadj 2">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="sf:ui:target?page=rstk__Stocklocadj2&amp;pageObject=pageobjects.rstk__Stocklocadj2"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Dont</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On SF rstk__Stocklocadj2 page with pageobject Rstk__ Stocklocadj 2</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="sfUiTargetVfIndex">
+          <value class="value" valueClass="string">1</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="6">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="36" title="Call the setAdjustOption method">
+              <arguments>
+                <argument id="locator">
+                  <value class="uiLocator" uri="ui:pageobject:method?operation=setAdjustOption&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                </argument>
+                <argument id="interaction">
+                  <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                </argument>
+                <argument id="interactionDescription">
+                  <value class="value" valueClass="string">Call the setAdjustOption method</value>
+                </argument>
+                <argument id="beforeWait"/>
+                <argument id="afterWait">
+                  <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                </argument>
+                <argument id="autoRetry"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument argId="5ebeed96-d6c9-481f-9b53-446370bec6b3" id="param_locationID">
+                  <value class="variable">
+                    <path element="ip_locationID"/>
+                  </value>
+                </argument>
+                <argument argId="4d3afcb8-8823-41e7-9c0f-0f9e5ec9d6de" id="param_locationNumber">
+                  <value class="variable">
+                    <path element="ip_locationNumber"/>
+                  </value>
+                </argument>
+                <argument argId="0069baaf-4506-43d8-a539-870353ed3e66" id="param_LotNumber">
+                  <value class="variable">
+                    <path element="ip_LotNumber"/>
+                  </value>
+                </argument>
+                <argument argId="f787e430-8daa-4905-8871-6af4cd3a8eda" id="param_adjustmentOption">
+                  <value class="variable">
+                    <path element="ip_adjustmentOption"/>
+                  </value>
+                </argument>
+              </arguments>
+              <generatedParameters>
+                <apiParam group="value" name="param_adjustmentOption" seq="3" title="Adjustment Option">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_locationID" title="Location ID">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_locationNumber" seq="1" title="Location Number">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+                <apiParam group="value" name="param_LotNumber" seq="2" title="Lot Number">
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="73" title="Set Qty/Serials">
+              <arguments>
+                <argument argId="ad83053b-3d18-443a-a57a-89abcc9793cd" id="condition">
+                  <value class="or">
+                    <lhs class="eq">
+                      <lhs class="variable">
+                        <path element="op_serialStatus"/>
+                        <path element="rstk__icitem_srlcontrol__c"/>
+                      </lhs>
+                      <rhs class="value" valueClass="string">Yes</rhs>
+                    </lhs>
+                    <rhs class="eq">
+                      <lhs class="variable">
+                        <path element="op_serialStatus"/>
+                        <path element="rstk__icitem_srlcontrol__c"/>
+                      </lhs>
+                      <rhs class="value" valueClass="boolean">true</rhs>
+                    </rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="74">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="79" title="Call the selectSerialNumber method">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=selectSerialNumber&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Call the selectSerialNumber method</value>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="afterWait"/>
+                        <argument id="autoRetry"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument argId="89c4b14f-9017-43e1-bf14-1ef2105127cf" id="param_NumberOfSerialTobeSelected">
+                          <value class="variable">
+                            <path element="ip_qty"/>
+                          </value>
+                        </argument>
+                        <argument id="param_resultName">
+                          <value class="value" valueClass="string">op_selectedSerials</value>
+                        </argument>
+                        <argument id="param_resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="param_locationID"/>
+                        <argument id="param_locationNumber"/>
+                        <argument id="param_LotNumber"/>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="param_NumberOfSerialTobeSelected" title="Number Of Serial Tobe Selected">
+                          <type>
+                            <numericType>
+                              <constraints>
+                                <valueConstraint name="length">9</valueConstraint>
+                                <valueConstraint name="decimalPlaces">0</valueConstraint>
+                              </constraints>
+                            </numericType>
+                          </type>
+                        </apiParam>
+                        <apiParam group="value" name="param_resultName" seq="1001" title="Result Name">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                        <apiParam group="value" name="param_resultScope" seq="1002" title="Result Scope">
+                          <defaultValue>Test</defaultValue>
+                          <type>
+                            <choiceType>
+                              <constraints>
+                                <valueConstraint name="boundedValues">Global:Test Run|Folder:Test Folder|Test:Test Case|GroupStep:Group Step|Local:Test Step</valueConstraint>
+                              </constraints>
+                            </choiceType>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="75">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="80" title="Call the setQty method">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=setQty&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Call the setQty method</value>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="afterWait"/>
+                        <argument id="autoRetry"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument argId="af6d713d-3437-404b-a74f-513a57196af2" id="param_qty">
+                          <value class="variable">
+                            <path element="ip_qty"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="param_qty" title="Qty">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="93" title="Set Transaction date based on Cost Accounting Control Record flags">
+              <arguments>
+                <argument argId="02a89de9-fb28-4545-bfdd-a4118e1c11ff" id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="op_overrideDateStatus"/>
+                      <path element="rstk__csacctcntl_invadjdateovr__c"/>
+                    </lhs>
+                    <rhs class="value" valueClass="boolean">true</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="94">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="83" title="Set Transaction Date">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="ne">
+                            <lhs class="variable">
+                              <path element="op_LocationDetailsRow"/>
+                              <path element="TransactionDate"/>
+                            </lhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="84">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="87" title="Call the setTransactionDate method">
+                              <arguments>
+                                <argument id="locator">
+                                  <value class="uiLocator" uri="ui:pageobject:method?operation=setTransactionDate&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                                </argument>
+                                <argument id="interaction">
+                                  <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                                </argument>
+                                <argument id="interactionDescription">
+                                  <value class="value" valueClass="string">Call the setTransactionDate method</value>
+                                </argument>
+                                <argument id="beforeWait"/>
+                                <argument id="afterWait"/>
+                                <argument id="autoRetry"/>
+                                <argument id="captureBefore">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="captureAfter">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument argId="285eb30a-6a28-4eb7-ba11-24972f53db18" id="param_date">
+                                  <value class="funcCall" id="DateFormat">
+                                    <argument id="date">
+                                      <value class="variable" topLevel="true">
+                                        <path element="ip_TransactionDate"/>
+                                      </value>
+                                    </argument>
+                                    <argument id="outputFormat">
+                                      <value class="value" valueClass="string">MM/dd/yyyy</value>
+                                    </argument>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <generatedParameters>
+                                <apiParam group="value" name="param_date" title="Date">
+                                  <type>
+                                    <textType/>
+                                  </type>
+                                </apiParam>
+                              </generatedParameters>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="88" title="Enter Transaction Comments">
+              <arguments>
+                <argument id="condition">
+                  <value class="ne">
+                    <lhs class="variable">
+                      <path element="ip_comments"/>
+                    </lhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="89">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="38" title="Call the setComments method">
+                      <arguments>
+                        <argument id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=setComments&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument id="interactionDescription">
+                          <value class="value" valueClass="string">Call the setComments method</value>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="afterWait"/>
+                        <argument id="autoRetry"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="param_locationID">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LocationID"/>
+                          </value>
+                        </argument>
+                        <argument id="param_locationNumber">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LocationNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="param_LotNumber">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LotSerialNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="param_adjustmentOption">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="AdjustOption"/>
+                          </value>
+                        </argument>
+                        <argument id="param_qty">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="ProcessQtySerials"/>
+                          </value>
+                        </argument>
+                        <argument argId="2f5bab77-e7c6-43fd-858a-e28d9e8fadfa" id="param_comments">
+                          <value class="variable">
+                            <path element="ip_comments"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters>
+                        <apiParam group="value" name="param_comments" title="Comments">
+                          <type>
+                            <textType/>
+                          </type>
+                        </apiParam>
+                      </generatedParameters>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="39" title="Set Cycle Count Flag">
+              <arguments>
+                <argument argId="3d6bf233-eda5-430f-8fc9-dc58c4a83680" id="condition">
+                  <value class="or">
+                    <lhs class="or">
+                      <lhs class="eq">
+                        <lhs class="variable">
+                          <path element="ip_CycleCount"/>
+                        </lhs>
+                        <rhs class="value" valueClass="boolean">true</rhs>
+                      </lhs>
+                      <rhs class="eq">
+                        <lhs class="variable">
+                          <path element="ip_CycleCount"/>
+                        </lhs>
+                        <rhs class="value" valueClass="string">TRUE</rhs>
+                      </rhs>
+                    </lhs>
+                    <rhs class="ne">
+                      <lhs class="variable">
+                        <path element="ip_CycleCount"/>
+                      </lhs>
+                    </rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="40">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="35" title="Call the setCycleCount method">
+                      <arguments>
+                        <argument argId="be2943ab-fe74-4a36-bd9d-b9489ed62371" id="locator">
+                          <value class="uiLocator" uri="ui:pageobject:method?operation=setCycleCount&amp;pageId=pageobjects.rstk__Stocklocadj2"/>
+                        </argument>
+                        <argument id="interaction">
+                          <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                        </argument>
+                        <argument argId="df2aea70-5feb-4b67-b599-c7bff7de0a5c" id="interactionDescription">
+                          <value class="value" valueClass="string">Call the setCycleCount method</value>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="afterWait"/>
+                        <argument id="autoRetry"/>
+                        <argument id="captureBefore">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="param_locationID">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LocationID"/>
+                          </value>
+                        </argument>
+                        <argument id="param_locationNumber">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LocationNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="param_LotNumber">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="LotSerialNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="param_adjustmentOption">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="AdjustOption"/>
+                          </value>
+                        </argument>
+                        <argument id="param_qty">
+                          <value class="variable">
+                            <path element="op_LocationDetailsRow"/>
+                            <path element="ProcessQtySerials"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <generatedParameters/>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+          <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+          <type>
+            <numericType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:09186798-1f2c-40bc-91b1-9b2bec86607c" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:5ebeed96-d6c9-481f-9b53-446370bec6b3" name="ip_locationID" title="Location ID">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:4d3afcb8-8823-41e7-9c0f-0f9e5ec9d6de" name="ip_locationNumber" title="Location Number">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:0069baaf-4506-43d8-a539-870353ed3e66" name="ip_LotNumber" title="Lot Number">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:f787e430-8daa-4905-8871-6af4cd3a8eda" name="ip_adjustmentOption" title="Adjustment Option">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param name="op_serialStatus" title="op_serialStatus">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:af6d713d-3437-404b-a74f-513a57196af2" name="ip_qty" title="Qty">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param name="op_overrideDateStatus" title="op_overrideDateStatus">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_TransactionDate" title="Transaction Date">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:2f5bab77-e7c6-43fd-858a-e28d9e8fadfa" name="ip_comments" title="Comments">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:df2aea70-5feb-4b67-b599-c7bff7de0a5c" name="ip_CycleCount" title="Cycle Count">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName"/>
+    <argument id="ip_locationID"/>
+    <argument id="ip_locationNumber"/>
+    <argument id="ip_LotNumber"/>
+    <argument id="ip_adjustmentOption"/>
+    <argument id="op_serialStatus"/>
+    <argument id="ip_qty"/>
+    <argument id="op_overrideDateStatus"/>
+    <argument id="ip_TransactionDate"/>
+    <argument id="ip_comments"/>
+    <argument id="ip_CycleCount"/>
+  </args>
+</testCase>

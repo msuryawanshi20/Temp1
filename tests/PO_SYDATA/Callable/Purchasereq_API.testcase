@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="25">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="2" title="Create Object: rstk__poreq__c=&gt;poreqId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__poreq__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">poreqId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="rstk__poreq_div__c">
+          <value class="value" valueClass="string">a8d5f0000004JbG</value>
+        </argument>
+        <argument id="rstk__poreq_pjproj__c">
+          <value class="value" valueClass="string">a3A5f000000xGXA</value>
+        </argument>
+        <argument id="rstk__poreq_povend__c">
+          <value class="value" valueClass="string">a4X5f000000tkbm</value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__poreq__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poreq__c&amp;field=rstk__poreq_div__c" name="rstk__poreq_div__c" title="rstk__poreq_div__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poreq__c&amp;field=rstk__poreq_pjproj__c" name="rstk__poreq_pjproj__c" title="rstk__poreq_pjproj__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poreq__c&amp;field=rstk__poreq_povend__c" name="rstk__poreq_povend__c" title="rstk__poreq_povend__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="3" title="Create Object: rstk__icreq__c=&gt;icreqId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__icreq__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">icreqId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="rstk__icreq_item__c">
+          <value class="value" valueClass="string">a1X5f000003jnlg</value>
+        </argument>
+        <argument id="rstk__icreq_proj__c">
+          <value class="value" valueClass="string">a3A5f000000xGXA</value>
+        </argument>
+        <argument id="rstk__icreq_qtyreq__c">
+          <value class="value" valueClass="decimal">10</value>
+        </argument>
+        <argument id="rstk__icreq_div__c">
+          <value class="value" valueClass="string">a8d5f0000004JbG</value>
+        </argument>
+        <argument id="rstk__icreq_duedte__c">
+          <value class="funcCall" id="DateFormat">
+            <argument id="date">
+              <value class="funcCall" id="DateAdd">
+                <argument id="date">
+                  <value class="variable">
+                    <path element="TODAY"/>
+                  </value>
+                </argument>
+              </value>
+            </argument>
+            <argument id="outputFormat">
+              <value class="value" valueClass="string">yyyy-MM-dd</value>
+            </argument>
+          </value>
+        </argument>
+        <argument id="rstk__icreq_ordno__c">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">NPAuto_</value>
+              <funcCall id="UniqueId">
+                <argument id="length">
+                  <value class="value" valueClass="decimal">3</value>
+                </argument>
+              </funcCall>
+              <value valueClass="string">1</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="rstk__icreq_poreq__c">
+          <value class="variable">
+            <path element="poreqId"/>
+          </value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__icreq__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_item__c" name="rstk__icreq_item__c" title="rstk__icreq_item__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_proj__c" name="rstk__icreq_proj__c" title="rstk__icreq_proj__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_qtyreq__c" name="rstk__icreq_qtyreq__c" title="rstk__icreq_qtyreq__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_div__c" name="rstk__icreq_div__c" title="rstk__icreq_div__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_duedte__c" name="rstk__icreq_duedte__c" title="rstk__icreq_duedte__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_ordno__c" name="rstk__icreq_ordno__c" title="rstk__icreq_ordno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_poreq__c" name="rstk__icreq_poreq__c" title="rstk__icreq_poreq__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="5" title="Create Object: rstk__syreqind__c=&gt;syreqindId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__syreqind__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">syreqindId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="rstk__syreqind_item__c">
+          <value class="value" valueClass="string">a415f000000lOCi</value>
+        </argument>
+        <argument id="rstk__syreqind_qtyreq__c">
+          <value class="value" valueClass="decimal">5</value>
+        </argument>
+        <argument id="rstk__syreqind_poreq__c">
+          <value class="variable">
+            <path element="poreqId"/>
+          </value>
+        </argument>
+        <argument id="rstk__syreqind_duedte__c">
+          <value class="funcCall" id="DateFormat">
+            <argument id="date">
+              <value class="funcCall" id="DateAdd">
+                <argument id="date">
+                  <value class="variable">
+                    <path element="TODAY"/>
+                  </value>
+                </argument>
+              </value>
+            </argument>
+            <argument id="outputFormat">
+              <value class="value" valueClass="string">yyyy-MM-dd</value>
+            </argument>
+          </value>
+        </argument>
+        <argument id="rstk__syreqind_div__c">
+          <value class="value" valueClass="string">a8d5f0000004JbG</value>
+        </argument>
+        <argument id="rstk__syreqind_ordno__c">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">NPNonInv_</value>
+              <funcCall id="UniqueId">
+                <argument id="length">
+                  <value class="value" valueClass="decimal">3</value>
+                </argument>
+              </funcCall>
+              <value valueClass="string">1</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="rstk__syreqind_proj__c">
+          <value class="value" valueClass="string">a3A5f000000xGXA</value>
+        </argument>
+        <argument id="rstk__syreqind_unitprice__c">
+          <value class="value" valueClass="string">50</value>
+        </argument>
+        <argument id="rstk__syreqind_site__c">
+          <value class="value" valueClass="string">a9A5f000000YM1d</value>
+        </argument>
+        <argument id="rstk__syreqind_itemtype__c">
+          <value class="value" valueClass="string">Indirect Material</value>
+        </argument>
+        <argument id="rstk__syreqind_uom__c">
+          <value class="value" valueClass="string">a9K5f000000kJDx</value>
+        </argument>
+        <argument id="rstk__syreqind_requestor__c"/>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__syreqind__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_item__c" name="rstk__syreqind_item__c" title="rstk__syreqind_item__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_qtyreq__c" name="rstk__syreqind_qtyreq__c" title="rstk__syreqind_qtyreq__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_poreq__c" name="rstk__syreqind_poreq__c" title="rstk__syreqind_poreq__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_duedte__c" name="rstk__syreqind_duedte__c" title="rstk__syreqind_duedte__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_div__c" name="rstk__syreqind_div__c" title="rstk__syreqind_div__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_ordno__c" name="rstk__syreqind_ordno__c" title="rstk__syreqind_ordno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_proj__c" name="rstk__syreqind_proj__c" title="rstk__syreqind_proj__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_unitprice__c" name="rstk__syreqind_unitprice__c" title="rstk__syreqind_unitprice__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_site__c" name="rstk__syreqind_site__c" title="rstk__syreqind_site__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_itemtype__c" name="rstk__syreqind_itemtype__c" title="rstk__syreqind_itemtype__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_uom__c" name="rstk__syreqind_uom__c" title="rstk__syreqind_uom__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__syreqind__c&amp;field=rstk__syreqind_requestor__c" name="rstk__syreqind_requestor__c" title="rstk__syreqind_requestor__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexUpdateObject" name="ApexUpdateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.UpdateCustomObjectTestStepCommand" testItemId="7" title="Update Object: rstk__poreq__c = {poreqId}">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__poreq__c</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">rstkUpdated</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="objectId">
+          <value class="variable">
+            <path element="poreqId"/>
+          </value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="rstk__poreq_status__c">
+          <value class="value" valueClass="string">Approved</value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.UpdateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.UpdateCustomObjectTestStepCommand.CustomObjectName">rstk__poreq__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poreq__c&amp;field=rstk__poreq_status__c" name="rstk__poreq_status__c" title="rstk__poreq_status__c"/>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+</testCase>

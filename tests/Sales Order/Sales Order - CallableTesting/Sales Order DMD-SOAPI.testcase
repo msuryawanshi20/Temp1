@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase registryId="223985d6-8aee-42af-b2eb-599259f1a11b" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="f6660659-e4e1-41f9-942d-360e2c830538" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="2" title="Set Values: OrderNumber">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">OrderNumber</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="OrderNumber"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="29" title="Read SOORDDMD Data">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read SOORDDMD Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="ExcelData_SOORDDMD" variableScope="Test">
+          <cacheToken>C:/Users/Ashok/Provar/WorkspaceMy1/Test_RSTK_1/templates/SOORDDMD.xlsx;1614864337889</cacheToken>
+          <cachedParameters>
+            <apiParam name="Item"/>
+            <apiParam name="ComponentItem"/>
+            <apiParam name="QtyRequired"/>
+            <apiParam name="QtyIssued"/>
+            <apiParam name="QtyRemaining"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="value" valueClass="string">templates/SOORDDMD.xlsx</workbookPath>
+            <worksheetName class="value" valueClass="string">SOORDDMD</worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData" variableScope="Test"/>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="30">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="17" title="For Each: {SourceData_SOORDDMD}=&gt;varSOORDDMD">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData_SOORDDMD"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">varSOORDDMD</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="18">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="7" title="SOQL Query: SELECT Id FROM rstk__soorddmd__c WHERE Name LIKE '{OrderNumber}%' AND rstk__soorddmd_compitem__c = '{varSOORDDMD.Item}'=&gt;rstkRows">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">SELECT Id FROM rstk__soorddmd__c WHERE Name LIKE '</value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                      <value valueClass="string">%' AND rstk__soorddmd_compitem__c = '</value>
+                      <variable>
+                        <path element="varSOORDDMD"/>
+                        <path element="Item"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="37" title="Read Object: rstk__soorddmd__c = {rstkRows.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soorddmd__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Name">
+                  <value class="value" valueClass="string">157-001 (Item_prod_stock)</value>
+                </argument>
+                <argument id="rstk__soorddmd_compitem__c">
+                  <value class="value" valueClass="string">Item_prod_stock</value>
+                </argument>
+                <argument id="rstk__soorddmd_qtyiss__c">
+                  <value class="value" valueClass="decimal">0.0</value>
+                </argument>
+                <argument id="rstk__soorddmd_qtyreq__c">
+                  <value class="value" valueClass="decimal">1.0</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion comparisonType="Contains" resultName="Name" title="Check Name">
+                  <expected class="variable">
+                    <path element="OrderNumber"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soorddmd_compitem__c" title="Check rstk__soorddmd_compitem__c">
+                  <expected class="variable">
+                    <path element="varSOORDDMD"/>
+                    <path element="Item"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soorddmd_qtyiss__c" title="Check rstk__soorddmd_qtyiss__c">
+                  <expected class="variable">
+                    <path element="varSOORDDMD"/>
+                    <path element="QtyIssued"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soorddmd_qtyreq__c" title="Check rstk__soorddmd_qtyreq__c">
+                  <expected class="variable">
+                    <path element="varSOORDDMD"/>
+                    <path element="QtyRequired"/>
+                  </expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">SFConnection</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__soorddmd__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=Name" name="Name" title="SOORDDMD Name"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_compitem__c" name="rstk__soorddmd_compitem__c" title="Item">
+                  <summary>This is the Component Item Number on this Sales Order Line</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_qtyiss__c" name="rstk__soorddmd_qtyiss__c" title="Qty Issued">
+                  <summary>This is the Quantity issued on this Sale Order Line</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_qtyreq__c" name="rstk__soorddmd_qtyreq__c" title="Qty Required">
+                  <summary>Total quantity required.</summary>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="34" title="Read Object: rstk__soorddmd__c = {rstkRows.Id}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soorddmd__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__soorddmd_qtyreq__c">
+                  <value class="value" valueClass="decimal">1.0</value>
+                </argument>
+                <argument id="rstk__soorddmd_qtyiss__c">
+                  <value class="value" valueClass="decimal">0.0</value>
+                </argument>
+                <argument id="rstk__soorddmd_qtyoutstdg__c">
+                  <value class="value" valueClass="decimal">1.0</value>
+                </argument>
+                <argument id="rstk__soorddmd_compicitem__c">
+                  <value class="value" valueClass="string">a2f0W000002D5R4QAK</value>
+                </argument>
+                <argument id="rstk__soorddmd_soline__c">
+                  <value class="value" valueClass="string">a4w0W0000020fQTQAY</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion/>
+              </resultAssertions>
+              <parameterValueSources/>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">SFConnection</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__soorddmd__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_qtyreq__c" name="rstk__soorddmd_qtyreq__c" title="Qty Required">
+                  <summary>Total quantity required.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_qtyiss__c" name="rstk__soorddmd_qtyiss__c" title="Qty Issued">
+                  <summary>This is the Quantity issued on this Sale Order Line</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_qtyoutstdg__c" name="rstk__soorddmd_qtyoutstdg__c" title="Qty Remaining">
+                  <summary>This is the Quantity still to be issued  on this Sale Order Line</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_compicitem__c" name="rstk__soorddmd_compicitem__c" title="Component Item">
+                  <summary>Item number of Kit Component</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soorddmd__c&amp;field=rstk__soorddmd_soline__c" name="rstk__soorddmd_soline__c" title="Sales Order Line">
+                  <summary>Sales Order Line for this demand.</summary>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="13" title="On SF Sales Order Demand View screen">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=rstk__soorddmd__c&amp;action=View"/>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF Sales Order Demand View screen</value>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">Always</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetObjectId">
+                  <value class="variable">
+                    <path element="rstkRows"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="14">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="15" title="UI Assert-Verify SO Line ">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Values</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="rstk__soorddmd_soline__c">
+                              <fieldLocator uri="ui:locator?name=rstk__soorddmd_soline__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3Drstk__soorddmd__c%26field%3Drstk__soorddmd_soline__c"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="Contains" normalize="true">
+                                  <value class="variable">
+                                    <path element="SONumber"/>
+                                  </value>
+                                </uiAttributeAssertion>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="16" title="UI Assert-Verify Component Item ">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Values</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="rstk__soorddmd_compicitem__c">
+                              <fieldLocator uri="ui:locator?name=rstk__soorddmd_compicitem__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3Drstk__soorddmd__c%26field%3Drstk__soorddmd_compicitem__c"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                                  <value class="variable">
+                                    <path element="varSOORDDMD"/>
+                                    <path element="ComponentItem"/>
+                                  </value>
+                                </uiAttributeAssertion>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="31" title="UI Assert-Verify Qty Required">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Values</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="rstk__soorddmd_qtyreq__c">
+                              <fieldLocator uri="ui:locator?name=rstk__soorddmd_qtyreq__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3Drstk__soorddmd__c%26field%3Drstk__soorddmd_qtyreq__c"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                                  <value class="variable">
+                                    <path element="varSOORDDMD"/>
+                                    <path element="QtyRequired"/>
+                                  </value>
+                                </uiAttributeAssertion>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="32" title="UI Assert-Verify Qty Issued">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Values</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="rstk__soorddmd_qtyiss__c">
+                              <fieldLocator uri="ui:locator?name=rstk__soorddmd_qtyiss__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3Drstk__soorddmd__c%26field%3Drstk__soorddmd_qtyiss__c"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                                  <value class="variable">
+                                    <path element="varSOORDDMD"/>
+                                    <path element="QtyIssued"/>
+                                  </value>
+                                </uiAttributeAssertion>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="33" title="UI Assert-Verify Qty Remaining">
+                      <tags>
+                        <string>disabled</string>
+                      </tags>
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">Values</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="rstk__soorddmd_qtyoutstdg__c">
+                              <fieldLocator uri="ui:locator?name=rstk__soorddmd_qtyoutstdg__c&amp;binding=sf%3Aui%3Abinding%3Aobject%3Fobject%3Drstk__soorddmd__c%26field%3Drstk__soorddmd_qtyoutstdg__c"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="EqualTo" normalize="true">
+                                  <value class="variable">
+                                    <path element="varSOORDDMD"/>
+                                    <path element="QtyRemaining"/>
+                                  </value>
+                                </uiAttributeAssertion>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="49" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="50"/>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="OrderNumber" title="OrderNumber">
+      <summary>The value to be set.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:f6660659-e4e1-41f9-942d-360e2c830538" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="SourceData_SOORDDMD" title="SourceData_SOORDDMD">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="SourceData_SOORDDMD">
+      <value class="variable">
+        <path element="SourceData_SOORDDMD"/>
+      </value>
+    </argument>
+    <argument id="OrderNumber">
+      <value class="variable">
+        <path element="OrderNumber"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

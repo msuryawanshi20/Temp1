@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="3" registryId="c6daa6cb-5a01-495d-b74f-629e9d4b23a1" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="7c9fa566-d570-4694-993f-cc0b44c0a9b8" id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="7aa53c3f-505d-41d5-bd31-6b609ea58bc5" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="85" title="SOQL Query: select Id,rstk__sysite_div__c\tfrom rstk__sysite__c where name='{ip_site}'=&gt;op_siteID">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,rstk__sysite_div__c\tfrom rstk__sysite__c where name='</value>
+              <variable>
+                <path element="ip_site"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">op_siteID</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="109" title="SOQL Query: select Id,rstk__formula_homeprojind__c from rstk__icitem__c where name ='{ip_InventoryItemName}' and rstk__icitem_div__c\t='{op_siteID.rstk__sysite_div__c}'=&gt;op_InventoryItemName">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,rstk__formula_homeprojind__c from rstk__icitem__c where name ='</value>
+              <variable>
+                <path element="ip_InventoryItemName"/>
+              </variable>
+              <value valueClass="string">' and rstk__icitem_div__c\t='</value>
+              <variable>
+                <path element="op_siteID"/>
+                <path element="rstk__sysite_div__c"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">op_InventoryItemName</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="86" title="Set Due Date">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="ip_dueDate"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="87">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="88" title="Set Values: ip_dueDate">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ip_dueDate</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="DateFormat">
+                          <argument id="date">
+                            <value class="funcCall" id="DateAdd">
+                              <argument id="date">
+                                <value class="variable">
+                                  <path element="TODAY"/>
+                                </value>
+                              </argument>
+                              <argument id="amount">
+                                <value class="value" valueClass="decimal">5</value>
+                              </argument>
+                            </value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="89" title="Enter Project Name">
+      <arguments>
+        <argument id="condition">
+          <value class="ne">
+            <lhs class="variable">
+              <path element="ip_ProjectName"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="90">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="91" title="SOQL Query: select Id,rstk__pjproj_wbsact__c from rstk__pjproj__c where name like '%{ip_ProjectName}%'=&gt;Temp_projID">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__pjproj_wbsact__c from rstk__pjproj__c where name like '%</value>
+                      <variable>
+                        <path element="ip_ProjectName"/>
+                      </variable>
+                      <value valueClass="string">%'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">Temp_projID</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="107" title="Read Project Charge code status">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">Select name,rstk__pjproj_wbsact__c from rstk__pjproj__c where id ='</value>
+                      <variable>
+                        <path element="Temp_projID"/>
+                        <path element="id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_isProjectChargeCodeActive</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+        <clause name="else" testItemId="93">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="95" title="If: {op_InventoryItemName.rstk__formula_homeprojind__css != Project Home}">
+              <arguments>
+                <argument id="condition">
+                  <value class="ne">
+                    <lhs class="variable">
+                      <path element="op_InventoryItemName"/>
+                      <path element="rstk__formula_homeprojind__css"/>
+                    </lhs>
+                    <rhs class="variable">
+                      <path element="Project Home"/>
+                    </rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="96">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="97" title="SOQL Query: select Id from rstk__pjproj__c where name like '%{ip_ProjectName}%'=&gt;op_ProjectName">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select Id from rstk__pjproj__c where name like '%</value>
+                              <variable>
+                                <path element="ip_ProjectName"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_ProjectName</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="110"/>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="98" title="Set Values: op_ProjectName">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">op_ProjectName</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="op_ProjectName"/>
+                          <path element="Id"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="99" title="Read Project Charge code status">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">Select name,rstk__pjproj_wbsact__c from rstk__pjproj__c where id in (select rstk__sydiv_dflthomeproj__c from rstk__sydiv__c where ID='</value>
+                      <variable>
+                        <path element="op_siteID"/>
+                        <path element="rstk__sysite_div__c"/>
+                      </variable>
+                      <value valueClass="string">')</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_isProjectChargeCodeActive</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="100" title="Select Project Charge code value">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="op_isProjectChargeCodeActive"/>
+              <path element="rstk__pjproj_wbsact__c"/>
+            </lhs>
+            <rhs class="value" valueClass="boolean">true</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="101">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="102" title="SOQL Query: select id from rstk__pjprojwbs__c where name='{ip_ProjectChargeCode}' and rstk__pjprojwbs_proj__c='{Temp_projID.id}'=&gt;op_ProjectChargeCode">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select id from rstk__pjprojwbs__c where name='</value>
+                      <variable>
+                        <path element="ip_ProjectChargeCode"/>
+                      </variable>
+                      <value valueClass="string">' and rstk__pjprojwbs_proj__c='</value>
+                      <variable>
+                        <path element="Temp_projID"/>
+                        <path element="id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_ProjectChargeCode</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="103" title="Create Object: rstk__wocst__c=&gt;op_wocstId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__wocst__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">op_wocstId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="rstk__wocst_duedte__c">
+          <value class="variable">
+            <path element="ip_dueDate"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_item__c">
+          <value class="variable">
+            <path element="op_InventoryItemName"/>
+            <path element="Id"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_ordno__c">
+          <value class="variable">
+            <path element="ip_OrderNumber"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_ordsts_pl__c">
+          <value class="value" valueClass="string">2-Firm</value>
+        </argument>
+        <argument id="rstk__wocst_pjprojwbs__c">
+          <value class="variable">
+            <path element="op_ProjectChargeCode"/>
+            <path element="id"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_proj__c">
+          <value class="variable">
+            <path element="Temp_projID"/>
+            <path element="Id"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_qtyreq__c">
+          <value class="variable">
+            <path element="ip_Qty"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_site__c">
+          <value class="variable">
+            <path element="op_siteID"/>
+            <path element="Id"/>
+          </value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="rstk__wocst_reworkind__c">
+          <value class="variable">
+            <path element="ip_reworkFlag"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_refurbind__c">
+          <value class="variable">
+            <path element="ip_refurbFlag"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_consignind__c">
+          <value class="variable">
+            <path element="ip_consignedFlag"/>
+          </value>
+        </argument>
+        <argument id="rstk__wocst_div__c">
+          <value class="variable">
+            <path element="op_siteID"/>
+            <path element="rstk__sysite_div__c"/>
+          </value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__wocst__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_duedte__c" name="rstk__wocst_duedte__c" title="rstk__wocst_duedte__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_item__c" name="rstk__wocst_item__c" title="rstk__wocst_item__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_ordno__c" name="rstk__wocst_ordno__c" title="rstk__wocst_ordno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_ordsts_pl__c" name="rstk__wocst_ordsts_pl__c" title="rstk__wocst_ordsts_pl__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_pjprojwbs__c" name="rstk__wocst_pjprojwbs__c" title="rstk__wocst_pjprojwbs__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_proj__c" name="rstk__wocst_proj__c" title="rstk__wocst_proj__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_qtyreq__c" name="rstk__wocst_qtyreq__c" title="rstk__wocst_qtyreq__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_site__c" name="rstk__wocst_site__c" title="rstk__wocst_site__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_reworkind__c" name="rstk__wocst_reworkind__c" title="rstk__wocst_reworkind__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_refurbind__c" name="rstk__wocst_refurbind__c" title="rstk__wocst_refurbind__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_consignind__c" name="rstk__wocst_consignind__c" title="rstk__wocst_consignind__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__wocst__c&amp;field=rstk__wocst_div__c" name="rstk__wocst_div__c" title="rstk__wocst_div__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="104" title="SOQL Query: select rstk__wocst_ordno__c,Name,rstk__wocst_ordsts_pl__c from rstk__wocst__c where ID='{op_wocstId}'=&gt;op_woDetails">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select rstk__wocst_ordno__c,Name,rstk__wocst_ordsts_pl__c from rstk__wocst__c where ID='</value>
+              <variable>
+                <path element="op_wocstId"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">op_woDetails</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="105" title="Set Order number">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">op_OrderNumber</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="op_woDetails"/>
+                  <path element="rstk__wocst_ordno__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" isTitleUpdated="true" name="SetValues" testItemId="106" title="Set Order Status">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">op_orderStatus</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="op_woDetails"/>
+                  <path element="rstk__wocst_ordsts_pl__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:7aa53c3f-505d-41d5-bd31-6b609ea58bc5" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:f4de403b-9650-4cf0-bc76-c1d15243f098" name="ip_site" title="Site">
+      <summary>The value to be populated.</summary>
+      <type>
+        <choiceType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:96cc0786-5700-40ac-b8a8-223a050ff0fd" name="ip_OrderNumber" title="Order Number">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:473d403a-0536-4a5c-b626-2fbd7b93cb01" name="ip_InventoryItemName" title="Inventory Item Name">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:eaba8b01-e914-4354-8be1-cf9210982a07" name="ip_Qty" title="Qty">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:1ccc7cab-0f50-4b34-a356-7bbc6ae230aa" name="ip_ProjectName" title="Project Name">
+      <summary/>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:cef20f3e-e7a9-45ea-8a3c-834f78d29e9b" name="ip_ProjectChargeCode" title="Project Charge Code">
+      <summary>The value to be populated.</summary>
+      <type>
+        <choiceType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:a2c1b8d9-6ee9-4b79-8ff5-c5dc8921da23" name="ip_dueDate" title="Due Date">
+      <summary>The value to be populated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="mimeType">text/plain</valueConstraint>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:b832b772-76d3-4d61-be10-a4958fcd10e2" name="ip_reworkFlag" title="Rework">
+      <summary>The control to be set.</summary>
+      <type>
+        <uiInteractionType>
+          <constraints>
+            <valueConstraint name="operations"/>
+          </constraints>
+        </uiInteractionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:54dfeb9e-66bd-405e-9193-0f026fbc14c7" name="ip_refurbFlag" title="Refurb">
+      <summary>The control to be set.</summary>
+      <type>
+        <uiInteractionType>
+          <constraints>
+            <valueConstraint name="operations"/>
+          </constraints>
+        </uiInteractionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:eaa526f6-a63b-49b6-a23f-1e6bf602b98e" name="ip_consignedFlag" title="Consigned">
+      <summary>The control to be set.</summary>
+      <type>
+        <uiInteractionType>
+          <constraints>
+            <valueConstraint name="operations"/>
+          </constraints>
+        </uiInteractionType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="op_OrderNumber" title="Order Number">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="op_OrderNumber"/>
+      </sourceValue>
+    </param>
+    <param name="op_orderStatus" title="Order Status">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="op_orderStatus"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="reuseConnectionName"/>
+    <argument id="ip_site">
+      <value class="value" valueClass="string">10 (Denver)</value>
+    </argument>
+    <argument id="ip_OrderNumber">
+      <value class="compound">
+        <parts>
+          <value valueClass="string">Pro-</value>
+          <funcCall id="UniqueId">
+            <argument id="length">
+              <value class="value" valueClass="decimal">4</value>
+            </argument>
+          </funcCall>
+        </parts>
+      </value>
+    </argument>
+    <argument id="ip_InventoryItemName">
+      <value class="value" valueClass="string">Pro-Lot Track (Lot Track)</value>
+    </argument>
+    <argument id="ip_Qty">
+      <value class="value" valueClass="string">03</value>
+    </argument>
+    <argument id="ip_ProjectName">
+      <value class="value" valueClass="string">1020 (100 charge code active)</value>
+    </argument>
+    <argument id="ip_ProjectChargeCode">
+      <value class="value" valueClass="string">1020_PC1</value>
+    </argument>
+    <argument id="ip_dueDate"/>
+    <argument id="ip_reworkFlag">
+      <value class="value" valueClass="string">false</value>
+    </argument>
+    <argument id="ip_refurbFlag">
+      <value class="value" valueClass="string">false</value>
+    </argument>
+    <argument id="ip_consignedFlag">
+      <value class="value" valueClass="string">false</value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="op_OrderNumber">
+      <name class="value" valueClass="string">op_OrderNumber</name>
+    </outputArgument>
+    <outputArgument id="op_orderStatus">
+      <name class="value" valueClass="string">op_orderStatus</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

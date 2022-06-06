@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="40">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="38" title="Read Excel Data">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Data</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="39">
+          <steps>
+            <caseCall testCaseId="0996b2be-bbb6-4b92-82d8-19ad6683a2ac" testCasePath="tests/Purchase Order/Callable/ReadExcelPath.testcase" testItemId="36">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="POUIExcel">
+                  <name class="value" valueClass="string">POUIExcel</name>
+                </outputArgument>
+                <outputArgument id="POLoaderExcel">
+                  <name class="value" valueClass="string">POLoaderExcel</name>
+                </outputArgument>
+                <outputArgument id="POSYDATAExcel">
+                  <name class="value" valueClass="string">POSYDATAExcel</name>
+                </outputArgument>
+                <outputArgument id="POSydataExcel1">
+                  <name class="value" valueClass="string">POSydataExcel1</name>
+                </outputArgument>
+                <outputArgument id="FinExcel">
+                  <name class="value" valueClass="string">FinExcel</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="3" title="GL Transaction Data">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">GL Transaction Data</value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="gltxn" variableScope="Test">
+                  <cacheToken>C:/Users/Namrata/git/rsqasampleproj/templates/QARSF/Account Payable.xlsx;1644227746117</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="Account"/>
+                    <apiParam name="DebitAmount"/>
+                    <apiParam name="CreditAmount"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="FinExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">GLAccount</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+                <parameterValueSource variableName="objdata" variableScope="Test">
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="FinExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">ObjectName</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="29">
+                  <steps/>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <caseCall testCaseId="e08077a2-003a-4ff5-934b-36bbc985a8a4" testCasePath="tests/Account Payable/Callable/FetchingObjectsId.testcase" testItemId="63">
+      <arguments>
+        <argument id="objdata">
+          <value class="variable">
+            <path element="objdata"/>
+          </value>
+        </argument>
+      </arguments>
+      <outputArguments>
+        <outputArgument id="CompanyID">
+          <name class="value" valueClass="string">CompanyID</name>
+        </outputArgument>
+        <outputArgument id="VendorID">
+          <name class="value" valueClass="string">VendorID</name>
+        </outputArgument>
+        <outputArgument id="AccountID">
+          <name class="value" valueClass="string">AccountID</name>
+        </outputArgument>
+        <outputArgument id="FisYear">
+          <name class="value" valueClass="string">FisYear</name>
+        </outputArgument>
+        <outputArgument id="BankAccID">
+          <name class="value" valueClass="string">BankAccID</name>
+        </outputArgument>
+      </outputArguments>
+    </caseCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="70" title="GL Transaction Inquiry After Invoice Creation">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">GL Transaction Inquiry After Invoice Creation</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="71">
+          <steps>
+            <caseCall testCaseId="54831982-02ea-43bc-b39b-44c0f7252e2f" testCasePath="tests/GeneralLedger/GL Transaction Inquiry.testcase" testItemId="53">
+              <arguments>
+                <argument id="glaccount">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                    <path element="GLAccountName"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="endingbal">
+                  <name class="value" valueClass="string">endingbal</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="4e3cbb14-4166-4aa4-98f0-c1ea25307902" testCasePath="tests/GeneralLedger/EndingBalance.testcase" testItemId="56">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="glsrcdata">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                  </value>
+                </argument>
+                <argument id="wb_glaccountpath">
+                  <value class="variable">
+                    <path element="FinExcel"/>
+                  </value>
+                </argument>
+                <argument id="ws_glaccount">
+                  <value class="value" valueClass="string">GLAccount</value>
+                </argument>
+                <argument id="Balance">
+                  <value class="value" valueClass="string">AmountBefore</value>
+                </argument>
+                <argument id="ip_endbal">
+                  <value class="variable">
+                    <path element="endingbal"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="QtyOnHand">
+                  <name class="value" valueClass="string">QtyOnHand</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="bdc41502-a550-4dfc-8f75-0e86c114adc8" testCasePath="tests/Account Payable/Callable/PayableSession.testcase" testItemId="54">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="InvoiceData">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="APINVH">
+                  <name class="value" valueClass="string">APINVH</name>
+                </outputArgument>
+                <outputArgument id="INVNum">
+                  <name class="value" valueClass="string">INVNum</name>
+                </outputArgument>
+                <outputArgument id="sessionno">
+                  <name class="value" valueClass="string">sessionno</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="54831982-02ea-43bc-b39b-44c0f7252e2f" testCasePath="tests/GeneralLedger/GL Transaction Inquiry.testcase" testItemId="55">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="glaccount">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                    <path element="GLAccountName"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="endingbal">
+                  <name class="value" valueClass="string">endingbal</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="4e3cbb14-4166-4aa4-98f0-c1ea25307902" testCasePath="tests/GeneralLedger/EndingBalance.testcase" testItemId="57">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="glsrcdata">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                  </value>
+                </argument>
+                <argument id="wb_glaccountpath">
+                  <value class="variable">
+                    <path element="FinExcel"/>
+                  </value>
+                </argument>
+                <argument id="ws_glaccount">
+                  <value class="value" valueClass="string">GLAccount</value>
+                </argument>
+                <argument id="Balance">
+                  <value class="value" valueClass="string">AmountAfter</value>
+                </argument>
+                <argument id="ip_endbal">
+                  <value class="variable">
+                    <path element="endingbal"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="QtyOnHand">
+                  <name class="value" valueClass="string">QtyOnHand</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="64" title="Set Values: InvAmtAfter">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">InvAmtBefore</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="AmountBefore"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">InvTotal</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="TransactionTotal"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">InvAmtAfter</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="AmountAfter"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="gltxndata" variableScope="Test">
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="FinExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">GLAccount</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="65" title="Assert: {InvAmtBefore - InvTotal} EqualTo {InvAmtAfter}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="sub">
+                    <lhs class="variable">
+                      <path element="InvAmtBefore"/>
+                    </lhs>
+                    <rhs class="variable">
+                      <path element="InvTotal"/>
+                    </rhs>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="InvAmtAfter"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage">
+                  <value class="value" valueClass="string">Ending Balance not updating</value>
+                </argument>
+              </arguments>
+              <parameterValueSources/>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="79" title="GL Transaction Inquiry After Payment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">GL Transaction Inquiry After Payment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="80">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="69" title="Set Values: PayAmtBefore">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">PayAmtBefore</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="AmountAfter"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterValueSources/>
+            </apiCall>
+            <caseCall testCaseId="bf602e96-0dcf-4bc2-a8d3-ca6b7868740e" testCasePath="tests/Account Payable/Callable/Postpayment.testcase" testItemId="62">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Vendor">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                    <path element="Vendor"/>
+                  </value>
+                </argument>
+                <argument id="InvoiceName">
+                  <value class="variable">
+                    <path element="INVNum"/>
+                  </value>
+                </argument>
+                <argument id="BankName">
+                  <value class="variable">
+                    <path element="BankAccID"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="54831982-02ea-43bc-b39b-44c0f7252e2f" testCasePath="tests/GeneralLedger/GL Transaction Inquiry.testcase" testItemId="66">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="glaccount">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                    <path element="GLAccountName"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="endingbal">
+                  <name class="value" valueClass="string">endingbal</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="4e3cbb14-4166-4aa4-98f0-c1ea25307902" testCasePath="tests/GeneralLedger/EndingBalance.testcase" testItemId="67">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="glsrcdata">
+                  <value class="variable">
+                    <path element="gltxn"/>
+                  </value>
+                </argument>
+                <argument id="wb_glaccountpath">
+                  <value class="variable">
+                    <path element="FinExcel"/>
+                  </value>
+                </argument>
+                <argument id="ws_glaccount">
+                  <value class="value" valueClass="string">GLAccount</value>
+                </argument>
+                <argument id="Balance">
+                  <value class="value" valueClass="string">AmountAfter</value>
+                </argument>
+                <argument id="ip_endbal">
+                  <value class="variable">
+                    <path element="endingbal"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="QtyOnHand">
+                  <name class="value" valueClass="string">QtyOnHand</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="61" title="Set Values: PayAmtAfter">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">PayTotal</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="TransactionTotal"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">PayAmtAfter</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="funcCall" id="NumberFormat">
+                          <argument id="numberToFormat">
+                            <value class="variable">
+                              <path element="gltxndata"/>
+                              <path element="AmountAfter"/>
+                            </value>
+                          </argument>
+                          <argument id="outputFormat">
+                            <value class="value" valueClass="string">####.##</value>
+                          </argument>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="gltxndata" variableScope="Test">
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="variable">
+                      <path element="FinExcel"/>
+                    </workbookPath>
+                    <worksheetName class="value" valueClass="string">GLAccount</worksheetName>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="59" title="Assert: {PayAmtBefore + PayTotal} EqualTo {PayAmtAfter}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="add">
+                    <lhs class="variable">
+                      <path element="PayAmtBefore"/>
+                    </lhs>
+                    <rhs class="variable">
+                      <path element="PayTotal"/>
+                    </rhs>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="PayAmtAfter"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage">
+                  <value class="value" valueClass="string">Ending Balance not updating</value>
+                </argument>
+              </arguments>
+              <parameterValueSources/>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

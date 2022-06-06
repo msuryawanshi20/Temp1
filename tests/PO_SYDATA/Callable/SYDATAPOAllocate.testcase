@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="14" registryId="4a722179-6d10-4a8b-9321-dd225168c5dc" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="27" title="Fetch PODMD ID">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Fetch PODMD ID</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="28">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="26" title="SOQL Query: select Id,Name,rstk__podmd_qtyiss__c,rstk__podmd_ordno__c,CreatedDate from rstk__podmd__c where rstk__podmd_ordno__c = '{POHDRID}'=&gt;podmd">
+              <arguments>
+                <argument argId="4b4e49dd-87f6-4f49-8e62-a88cb7bbc323" id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,Name,rstk__podmd_qtyiss__c,rstk__podmd_ordno__c,CreatedDate from rstk__podmd__c where rstk__podmd_ordno__c = '</value>
+                      <variable>
+                        <path element="POHDRID"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">podmd</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="30" title="Set Values: PODMDID">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">PODMDID</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="podmd"/>
+                          <path element="Id"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="31" title="Allocate/Deallocate PO Components">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Allocate/Deallocate PO Components</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="32">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="4" title="For Each: {SourceData}=&gt;poallocate">
+              <arguments>
+                <argument argId="7d284dc8-a80f-400c-9eb7-8172c88efe58" id="list">
+                  <value class="variable">
+                    <path element="SourceData"/>
+                  </value>
+                </argument>
+                <argument id="fromItem">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="valueName">
+                  <value class="value" valueClass="string">poallocate</value>
+                </argument>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="5">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="3" title="Create Object: rstk__sydata__c=&gt;sydataId">
+                      <arguments>
+                        <argument id="objectType">
+                          <value class="value" valueClass="string">rstk__sydata__c</value>
+                        </argument>
+                        <argument id="resultIdName">
+                          <value class="value" valueClass="string">sydataId</value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="assignmentRuleId"/>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                        <argument id="Name">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="Name"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_txntype__c">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="TransactionType"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_process__c">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="Process"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_backgroundprocessing__c">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="BackgroundProcessing"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_txnqty__c">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="Quantity"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_sydiv__c">
+                          <value class="variable">
+                            <path element="poallocate"/>
+                            <path element="Division"/>
+                          </value>
+                        </argument>
+                        <argument argId="03240d7b-4711-485c-9ddb-8d85f3e462d3" id="rstk__sydata_poline__c">
+                          <value class="variable">
+                            <path element="POlineId"/>
+                          </value>
+                        </argument>
+                        <argument id="rstk__sydata_podmd__c">
+                          <value class="variable">
+                            <path element="PODMDID"/>
+                          </value>
+                        </argument>
+                        <argument argId="91479e67-7eeb-4fc8-b539-69cb6dc9e5d2" id="rstk__sydata_pohdr__c">
+                          <value class="variable">
+                            <path element="POHDRID"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <parameterGeneratorProperties>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__sydata__c</propertyValue>
+                      </parameterGeneratorProperties>
+                      <generatedParameters>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=Name" name="Name" title="Name"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_txntype__c" name="rstk__sydata_txntype__c" title="rstk__sydata_txntype__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_process__c" name="rstk__sydata_process__c" title="rstk__sydata_process__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_backgroundprocessing__c" name="rstk__sydata_backgroundprocessing__c" title="rstk__sydata_backgroundprocessing__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_txnqty__c" name="rstk__sydata_txnqty__c" title="rstk__sydata_txnqty__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_sydiv__c" name="rstk__sydata_sydiv__c" title="rstk__sydata_sydiv__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_poline__c" name="rstk__sydata_poline__c" title="rstk__sydata_poline__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_podmd__c" name="rstk__sydata_podmd__c" title="rstk__sydata_podmd__c"/>
+                        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_pohdr__c" name="rstk__sydata_pohdr__c" title="rstk__sydata_pohdr__c"/>
+                      </generatedParameters>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="17" title="SOQL Query: select Id,Name,rstk__sydata_process__c from rstk__sydata__c where Id = '{sydataId}'=&gt;poallocateapi">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select Id,Name,rstk__sydata_process__c from rstk__sydata__c where Id = '</value>
+                              <variable>
+                                <path element="sydataId"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">poallocateapi</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="18" title="While: {poallocateapi.rstk__sydata_process__c = &quot;Ready&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="poallocateapi"/>
+                              <path element="rstk__sydata_process__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Ready</rhs>
+                          </value>
+                        </argument>
+                        <argument id="counterName">
+                          <value class="value" valueClass="string">LoopCounter</value>
+                        </argument>
+                        <argument id="counterStart">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="counterEnd"/>
+                        <argument id="continueOnFailure"/>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="19">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="23" title="SOQL Query: select Id,Name,rstk__sydata_process__c from rstk__sydata__c where Id = '{sydataId}'=&gt;poallocateapi">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select Id,Name,rstk__sydata_process__c from rstk__sydata__c where Id = '</value>
+                                      <variable>
+                                        <path element="sydataId"/>
+                                      </variable>
+                                      <value valueClass="string">'</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">poallocateapi</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="24" title="Assert: ProcessingComplete EqualTo {poallocateapi.rstk__sydata_process__c}">
+                      <arguments>
+                        <argument id="expectedValue">
+                          <value class="value" valueClass="string">ProcessingComplete</value>
+                        </argument>
+                        <argument id="actualValue">
+                          <value class="variable">
+                            <path element="poallocateapi"/>
+                            <path element="rstk__sydata_process__c"/>
+                          </value>
+                        </argument>
+                        <argument id="comparisonType">
+                          <value class="value" valueClass="string">EqualTo</value>
+                        </argument>
+                        <argument id="caseSensitive">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                        <argument id="numeric">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="retainDecimals">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="nullGreater">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="matchMultiLine">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="matchDotAll">
+                          <value class="value" valueClass="boolean">false</value>
+                        </argument>
+                        <argument id="failureMessage"/>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="41" title="Verify PODMD record">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify PODMD record</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="42">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="43" title="SOQL Query: select Id,Name,rstk__podmd_qtyalloc__c,rstk__podmd_ordno__c,CreatedDate from rstk__podmd__c where Id = '{PODMDID}'=&gt;op_podmd">
+              <arguments>
+                <argument argId="4b4e49dd-87f6-4f49-8e62-a88cb7bbc323" id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,Name,rstk__podmd_qtyalloc__c,rstk__podmd_ordno__c,CreatedDate from rstk__podmd__c where Id = '</value>
+                      <variable>
+                        <path element="PODMDID"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_podmd</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="44" title="Assert: {SourceData.Quantity} EqualTo {op_podmd.rstk__podmd_qtyalloc__c}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="variable">
+                    <path element="SourceData"/>
+                    <path element="Quantity"/>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="op_podmd"/>
+                    <path element="rstk__podmd_qtyalloc__c"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage"/>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:03240d7b-4711-485c-9ddb-8d85f3e462d3" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_poline__c" name="POlineId" title="POlineId">
+      <summary/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:7d284dc8-a80f-400c-9eb7-8172c88efe58" name="SourceData" title="SourceData">
+      <summary>The list to be processed.</summary>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:91479e67-7eeb-4fc8-b539-69cb6dc9e5d2" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_pohdr__c" name="POHDRID" title="POHDRID">
+      <summary/>
+    </param>
+  </params>
+  <args>
+    <argument id="POlineId">
+      <value class="variable">
+        <path element="POLINEID"/>
+      </value>
+    </argument>
+    <argument id="SourceData">
+      <value class="variable">
+        <path element="SourceData"/>
+      </value>
+    </argument>
+    <argument id="POHDRID">
+      <value class="variable">
+        <path element="POHDRID"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

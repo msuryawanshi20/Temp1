@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="9">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="74" title="Read Excel Path">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Path</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="94">
+          <steps>
+            <caseCall testCaseId="45166f67-6482-468a-9d8a-64329d6e898c" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Read Excel Data.testcase" testItemId="98">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_CustomerMaster">
+                  <name class="value" valueClass="string">ExcelPath_CustomerMaster</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SYDATA">
+                  <name class="value" valueClass="string">ExcelPath_SYDATA</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_AR">
+                  <name class="value" valueClass="string">ExcelPath_AR</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="75" title="Read Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData_CreditMemo" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">CreditMemo</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="92"/>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="81" title="Create Credit Memo from sitemap">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Credit Memo from sitemap</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="82">
+          <steps>
+            <caseCall testCaseId="26ec0df2-63e6-44cc-8cc0-65233b69eb3b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Credit Memo from sitemap.testcase" testItemId="83">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_CreditMemo">
+                  <value class="variable">
+                    <path element="SourceData_CreditMemo"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="CreditMemoNumberID">
+                  <name class="value" valueClass="string">CreditMemoNumberID</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="87" title="Delete Credit Memo">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Delete Credit Memo</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="88">
+          <steps>
+            <caseCall testCaseId="e680bb12-a5e2-45f9-8407-c9df39276783" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Delete Credit Memo.testcase" testItemId="89">
+              <arguments>
+                <argument id="rstkRows_Invoice">
+                  <value class="variable">
+                    <path element="rstkRows_Invoice"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="CreditMemoNumberID">
+                  <value class="variable">
+                    <path element="CreditMemoNumberID"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="58" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="funcCall" id="GetSelectedEnvironment"/>
+            <rhs class="value" valueClass="string">AutomationOrg</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="59">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="2" title="Create Credit Memo from sitemap">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Create Credit Memo from sitemap</value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="SourceData_CreditMemo" variableScope="Test">
+                  <cacheToken>C:\\Users\\Ashok\\Provar\\WS_RSAutomation\\rsqasampleproj\\templates\\QARSF\\WIP-Create and Delete Credit Memo.xlsx;1629717670384</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="CustomerName"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="value" valueClass="string">templates/AutomationOrg/Credit Memo.xlsx</workbookPath>
+                    <worksheetName class="value" valueClass="string">CreditMemo</worksheetName>
+                    <valuesRange class="value"/>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="3">
+                  <steps>
+                    <caseCall testCaseId="26ec0df2-63e6-44cc-8cc0-65233b69eb3b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Credit Memo from sitemap.testcase" testItemId="43">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="SourceData_CreditMemo">
+                          <value class="variable">
+                            <path element="SourceData_CreditMemo"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="CreditMemoNumberID">
+                          <name class="value" valueClass="string">CreditMemoNumberID</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="55" title="Delete Credit Memo">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Delete Credit Memo</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="56">
+                  <steps>
+                    <caseCall testCaseId="e680bb12-a5e2-45f9-8407-c9df39276783" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Delete Credit Memo.testcase" testItemId="57">
+                      <arguments>
+                        <argument id="rstkRows_Invoice">
+                          <value class="variable">
+                            <path element="rstkRows_Invoice"/>
+                          </value>
+                        </argument>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="CreditMemoNumberID">
+                          <value class="variable">
+                            <path element="CreditMemoNumberID"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="66" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="funcCall" id="GetSelectedEnvironment"/>
+            <rhs class="value" valueClass="string">QARSF</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="67">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="68" title="Create Credit Memo from sitemap">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Create Credit Memo from sitemap</value>
+                </argument>
+              </arguments>
+              <parameterValueSources>
+                <parameterValueSource variableName="SourceData_CreditMemo" variableScope="Test">
+                  <cacheToken>C:\\Users\\Ashok\\Provar\\WS_RSAutomation\\rsqasampleproj\\templates\\QARSF\\WIP-Create and Delete Credit Memo.xlsx;1629717670384</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="CustomerName"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="value" valueClass="string">templates/QARSF/Credit Memo.xlsx</workbookPath>
+                    <worksheetName class="value" valueClass="string">CreditMemo</worksheetName>
+                    <valuesRange class="value"/>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="69">
+                  <steps>
+                    <caseCall testCaseId="26ec0df2-63e6-44cc-8cc0-65233b69eb3b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Credit Memo from sitemap.testcase" testItemId="70">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="SourceData_CreditMemo">
+                          <value class="variable">
+                            <path element="SourceData_CreditMemo"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="CreditMemoNumberID">
+                          <name class="value" valueClass="string">CreditMemoNumberID</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="71" title="Delete Credit Memo">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Delete Credit Memo</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="72">
+                  <steps>
+                    <caseCall testCaseId="e680bb12-a5e2-45f9-8407-c9df39276783" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Delete Credit Memo.testcase" testItemId="73">
+                      <arguments>
+                        <argument id="rstkRows_Invoice">
+                          <value class="variable">
+                            <path element="rstkRows_Invoice"/>
+                          </value>
+                        </argument>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="CreditMemoNumberID">
+                          <value class="variable">
+                            <path element="CreditMemoNumberID"/>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="53" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="54"/>
+      </clauses>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param name="SourceData_Firm" title="SourceData_Firm">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_Firm</sourceValue>
+    </param>
+    <param name="SourceData_Allocate" title="SourceData_Allocate">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_Allocate"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_PickPackShip" title="SourceData_PickPackShip">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_PickPackShip</sourceValue>
+    </param>
+    <param name="SourceData_CreateInvoice" title="SourceData_CreateInvoice">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_CreateInvoice</sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="SourceData_Firm">
+      <name class="value" valueClass="string">SourceData_Firm</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Allocate">
+      <name class="value" valueClass="string">SourceData_Allocate</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Pick">
+      <name class="value" valueClass="string">SourceData_Pick</name>
+    </outputArgument>
+    <outputArgument id="SourceData_PickPackShip">
+      <name class="value" valueClass="string">SourceData_PickPackShip</name>
+    </outputArgument>
+    <outputArgument id="SourceData_CreateInvoice">
+      <name class="value" valueClass="string">SourceData_CreateInvoice</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

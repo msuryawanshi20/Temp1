@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="9" registryId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="4" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="63e4d1f4-b6e1-4156-b0b2-4fd225d040c8" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+      <parameterValueSources/>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="66" title="Read Data for SOAPI Add Header">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data for SOAPI Add Header</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="67">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="16" title="For Each: {SourceData_SOHeader}=&gt;Row_AddHeader">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData_SOHeader"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">Row_AddHeader</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="substeps" testItemId="17">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="30" title="Set Values: OrderNumber">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">OrderNumber</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="compound">
+                          <parts>
+                            <value valueClass="string">SO-</value>
+                            <funcCall id="UniqueId">
+                              <argument id="length">
+                                <value class="value" valueClass="decimal">4</value>
+                              </argument>
+                            </funcCall>
+                          </parts>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="29" title="Create Object: rstk__soapi__c=&gt;soapiId">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soapi__c</value>
+                </argument>
+                <argument id="resultIdName">
+                  <value class="value" valueClass="string">soapiId</value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Name">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">SOAPI-</value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_orderno__c">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_ssysdiv__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="SalesDivision"/>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_socust__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="Customer"/>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_async__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="AsynchronousProcessing"/>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_syusr__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="ManufacturingUser"/>
+                  </value>
+                </argument>
+                <argument id="rstk__soapi_mode__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="APIMode"/>
+                  </value>
+                </argument>
+                <argument id="assignmentRuleId"/>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="rstk__soapi_isysdiv__c">
+                  <value class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="InventoryDivision"/>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">Devqaff</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__soapi__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=Name" name="Name" title="Name"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_isysdiv__c" name="rstk__soapi_isysdiv__c" title="rstk__soapi_isysdiv__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_orderno__c" name="rstk__soapi_orderno__c" title="rstk__soapi_orderno__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_ssysdiv__c" name="rstk__soapi_ssysdiv__c" title="rstk__soapi_ssysdiv__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_socust__c" name="rstk__soapi_socust__c" title="rstk__soapi_socust__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_async__c" name="rstk__soapi_async__c" title="rstk__soapi_async__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_syusr__c" name="rstk__soapi_syusr__c" title="rstk__soapi_syusr__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_mode__c" name="rstk__soapi_mode__c" title="rstk__soapi_mode__c"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="31" title="SOQL Query: select Id,rstk__soapi_orderno__c,rstk__soapi_processed__c from rstk__soapi__c where rstk__soapi_orderno__c='{OrderNumber}'=&gt;rstkRows_AddHeader">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__soapi_orderno__c,rstk__soapi_processed__c from rstk__soapi__c where rstk__soapi_orderno__c='</value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_AddHeader</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="100" title="While: {rstkRows_AddHeader.rstk__soapi_processed__c = &quot;false&quot;}">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="rstkRows_AddHeader"/>
+                      <path element="rstk__soapi_processed__c"/>
+                    </lhs>
+                    <rhs class="value" valueClass="string">false</rhs>
+                  </value>
+                </argument>
+                <argument id="counterName">
+                  <value class="value" valueClass="string">LoopCounter</value>
+                </argument>
+                <argument id="counterStart">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="counterEnd"/>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="99">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="74" title="SOQL Query: select Id,rstk__soapi_orderno__c,rstk__soapi_processed__c from rstk__soapi__c where rstk__soapi_orderno__c='{OrderNumber}'=&gt;rstkRows_AddHeader">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select Id,rstk__soapi_orderno__c,rstk__soapi_processed__c from rstk__soapi__c where rstk__soapi_orderno__c='</value>
+                              <variable>
+                                <path element="OrderNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">rstkRows_AddHeader</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="64" title="SOQL Query: select Id,rstk__sohdr_order__c from rstk__sohdr__c where rstk__sohdr_order__c='{OrderNumber}'=&gt;rstkRows_SOHeader">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__sohdr_order__c from rstk__sohdr__c where rstk__sohdr_order__c='</value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_SOHeader</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="33" title="Read Object: rstk__soapi__c = {rstkRows_AddHeader.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soapi__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows_AddHeader"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__soapi_orderno__c">
+                  <value class="value" valueClass="string">134</value>
+                </argument>
+                <argument id="rstk__soapi_sohdr__c">
+                  <value class="value" valueClass="string">a4k0W000001YnYlQAK</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__soapi_orderno__c" title="Check rstk__soapi_orderno__c">
+                  <expected class="variable">
+                    <path element="OrderNumber"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soapi_processed__c" title="Check rstk__soapi_processed__c">
+                  <expected class="variable">
+                    <path element="Row_AddHeader"/>
+                    <path element="RecordProcessed"/>
+                  </expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">Devqaff</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__soapi__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_orderno__c" name="rstk__soapi_orderno__c" title="Order Number"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_sohdr__c" name="rstk__soapi_sohdr__c" title="Sales Order Header"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soapi__c&amp;field=rstk__soapi_processed__c" name="rstk__soapi_processed__c" title="Record Processed"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="101" title="SOQL Query: select Id,rstk__sohdr_order__c from rstk__sohdr__c where rstk__sohdr_order__c='{OrderNumber}'=&gt;rstkRows_SOHDR">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__sohdr_order__c from rstk__sohdr__c where rstk__sohdr_order__c='</value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_SOHDR</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="68" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="69">
+          <steps/>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:63e4d1f4-b6e1-4156-b0b2-4fd225d040c8" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="SourceData_SOHeader" title="SourceData_SOHeader">
+      <summary>SourceData_SOHeader</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="rstkRows_SOHeader" title="rstkRows_SOHeader">
+      <summary>The name under which the returned rows will be stored.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="rstkRows_SOHeader"/>
+      </sourceValue>
+    </param>
+    <param name="OrderNumber" title="OrderNumber">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="OrderNumber"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="SourceData_SOHeader">
+      <value class="variable">
+        <path element="SourceData_SOHeader"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="rstkRows_SOHeader">
+      <name class="value" valueClass="string">rstkRows_SOHeader</name>
+    </outputArgument>
+    <outputArgument id="OrderNumber">
+      <name class="value" valueClass="string">OrderNumber</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

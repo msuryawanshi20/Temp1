@@ -1,0 +1,1546 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="7">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="210" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName">
+          <value class="value"/>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="211" title="Read Excel Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="op_excelData" variableScope="Test">
+          <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/QARSF/Temp.xlsx;1634149007764</cacheToken>
+          <cachedParameters>
+            <apiParam name="RowNumber"/>
+            <apiParam name="Site"/>
+            <apiParam name="ItemNumber"/>
+            <apiParam name="QtyRequired"/>
+            <apiParam name="DueDate"/>
+            <apiParam name="Project"/>
+            <apiParam name="ProjectChargeCode"/>
+            <apiParam name="ExtractOperationsAndComponent"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="value" valueClass="string">templates/QARSF/Temp.xlsx</workbookPath>
+            <worksheetName class="value" valueClass="string">Create WO</worksheetName>
+            <valuesRange class="value" valueClass="string">A:G</valuesRange>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="154">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="161" title="On SF rstk__Stocklocadd page with pageobject Rstk__ Stocklocadd">
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?pageObject=pageobjects.rstk__Stocklocadd&amp;page=rstk__Stocklocadd"/>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">Always</value>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF rstk__Stocklocadd page with pageobject Rstk__ Stocklocadd</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetVfIndex">
+                  <value class="value" valueClass="string">1</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="162">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="163" title="Read Inventory Division name">
+                      <arguments>
+                        <argument id="resultName">
+                          <value class="value" valueClass="string">op_currentInventoryDivision</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Global</value>
+                        </argument>
+                        <argument id="fieldAssertions">
+                          <value class="valueList" mutable="Mutable">
+                            <uiFieldAssertion resultName="division">
+                              <fieldLocator uri="ui:locator?name=division"/>
+                              <attributeAssertions>
+                                <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                              </attributeAssertions>
+                            </uiFieldAssertion>
+                          </value>
+                        </argument>
+                        <argument id="captureAfter">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="columnAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="pageAssertions">
+                          <value class="valueList" mutable="Mutable"/>
+                        </argument>
+                        <argument id="beforeWait"/>
+                        <argument id="autoRetry"/>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="164" title="Set Values: op_currentInventoryDivision">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">op_currentInventoryDivision</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="variable">
+                                  <path element="op_currentInventoryDivision"/>
+                                  <path element="fields"/>
+                                  <path element="division"/>
+                                  <path element="value"/>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+                  <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+                  <type>
+                    <numericType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="212" title="Process excel Data">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="op_excelData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">op_excelDataRow</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="156">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="39" title="Create Work Order">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Create Work Order</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="40">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="41" title="Check Serial status of item">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select Name,rstk__icitem_srlcontrol__c,rstk__icitem_lotcontrol__c from rstk__icitem__c where name like '</value>
+                              <variable>
+                                <path element="op_excelDataRow"/>
+                                <path element="ItemNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_IsSerialTrack</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="42" title="Check Order Auto order number active flag on Division">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select ID,rstk__sydiv_autonumbwo__c from rstk__sydiv__c where name='</value>
+                              <variable>
+                                <path element="op_currentInventoryDivision"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_isWOAutoNumActive</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="9" title="If: {op_isWOAutoNumActive.rstk__sydiv_autonumbwo__c = false}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_isWOAutoNumActive"/>
+                              <path element="rstk__sydiv_autonumbwo__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="boolean">false</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="10">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="11" title="Set Values: ip_orderNumber">
+                              <arguments>
+                                <argument id="values">
+                                  <value class="valueList" mutable="Mutable">
+                                    <namedValues mutable="Mutable">
+                                      <namedValue name="valuePath">
+                                        <value class="value" valueClass="string">ip_orderNumber</value>
+                                      </namedValue>
+                                      <namedValue name="value">
+                                        <value class="compound">
+                                          <parts>
+                                            <value valueClass="string">Pro-Reg_</value>
+                                            <funcCall id="UniqueId">
+                                              <argument id="length">
+                                                <value class="value" valueClass="decimal">5</value>
+                                              </argument>
+                                            </funcCall>
+                                          </parts>
+                                        </value>
+                                      </namedValue>
+                                      <namedValue name="valueScope">
+                                        <value class="value" valueClass="string">Test</value>
+                                      </namedValue>
+                                    </namedValues>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <caseCall testCaseId="77b534bc-0823-462a-aedb-59f401dde9b6" testCasePath="tests/Work Order/Callable/Create Work Order.testcase" testItemId="6">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="ip_site">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="Site"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_OrderNumber">
+                          <value class="variable">
+                            <path element="ip_orderNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_InventoryItemName">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="ItemNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_Qty">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="QtyRequired"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_ProjectName">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="Project"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_ProjectChargeCode">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="ProjectChargeCode"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_dueDate">
+                          <value class="variable">
+                            <path element="op_excelDataRow"/>
+                            <path element="DueDate"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_refurbFlagTrue">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="ip_reworkFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="ip_refurbFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                        <argument id="ip_consignedFlag">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                      </arguments>
+                      <outputArguments>
+                        <outputArgument id="op_OrderNumber">
+                          <name class="value" valueClass="string">op_OrderNumber</name>
+                        </outputArgument>
+                        <outputArgument id="op_orderStatus">
+                          <name class="value" valueClass="string">op_orderStatus</name>
+                        </outputArgument>
+                      </outputArguments>
+                    </caseCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="14" title="REad order number ID">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select ID,Name from rstk__wocst__c where Name='</value>
+                              <variable>
+                                <path element="op_OrderNumber"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_WORecID</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="21" title="Set LOT Details for LOT track item">
+              <tags/>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="op_IsSerialTrack"/>
+                      <path element="rstk__icitem_lotcontrol__c"/>
+                    </lhs>
+                    <rhs class="value" valueClass="boolean">true</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="22">
+                  <steps>
+                    <caseCall testCaseId="73d915a8-5080-41fd-af4b-6a1d96e08d4c" testCasePath="tests/Work Order/Callable/Set Lot details.testcase" testItemId="25">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="ip_RecordID"/>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="115" title="Set Serial Details">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Set Serial Details</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="116">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="117" title="If: {op_IsSerialTrack.rstk__icitem_srlcontrol__c = true}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_IsSerialTrack"/>
+                              <path element="rstk__icitem_srlcontrol__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="boolean">true</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="118">
+                          <steps>
+                            <caseCall testCaseId="e8b7f5b4-0b8b-4063-ad58-7d7536da6e16" testCasePath="tests/Work Order/Callable/Generate and Assign Serials.testcase" testItemId="119">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="ip_RecordID">
+                                  <value class="variable">
+                                    <path element="op_WORecID"/>
+                                    <path element="ID"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_assignSerialsFlag">
+                                  <value class="value" valueClass="string">true</value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="48" title="Allocate Component and &quot;Extract Components And operation&quot;">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Allocate Component and "Extract Components And operation"</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="49">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="96" title="Extract Both">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="or">
+                            <lhs class="eq">
+                              <lhs class="variable">
+                                <path element="op_excelDataRow"/>
+                                <path element="ExtractOperationsAndComponent"/>
+                              </lhs>
+                              <rhs class="value" valueClass="boolean">true</rhs>
+                            </lhs>
+                            <rhs class="ne">
+                              <lhs class="variable">
+                                <path element="op_excelDataRow"/>
+                                <path element="ExtractOperationsAndComponent"/>
+                              </lhs>
+                              <rhs class="value" valueClass="boolean">false</rhs>
+                            </rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="97">
+                          <steps>
+                            <caseCall testCaseId="032242fc-0b13-4e36-9c25-b70ef3c2f6e1" testCasePath="tests/Work Order/Callable/Extract Operations &amp; Components.testcase" testItemId="98">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="ip_RecordID">
+                                  <value class="variable">
+                                    <path element="op_WORecID"/>
+                                    <path element="ID"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_extractBoth">
+                                  <value class="value" valueClass="string">true</value>
+                                </argument>
+                                <argument id="ip_extractOperation">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                                <argument id="ip_extractComponents">
+                                  <value class="value" valueClass="string">false</value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="op_orderStatus">
+                                  <name class="value" valueClass="string">op_orderStatus</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="120">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="123" title="Read Componet and Operation Data">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Read Componet and Operation Data</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="op_componentExcelData" variableScope="Test">
+                                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/Work Order.xlsx;1629905609740</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="RowNumber"/>
+                                    <apiParam name="ItemNumber"/>
+                                    <apiParam name="ComponentItem"/>
+                                    <apiParam name="EnterQtyPerFlag"/>
+                                    <apiParam name="EnterComponentQtyFlag"/>
+                                    <apiParam name="FixedComponentQtyFlag"/>
+                                    <apiParam name="ComponentQty"/>
+                                    <apiParam name="ScrapFactor"/>
+                                    <apiParam name="SetupQty"/>
+                                    <apiParam name="Comments"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="StartsWith" whereName="ItemNumber" whereValue="{op_excelDataRow.ItemNumber}">
+                                    <workbookPath class="value" valueClass="string">templates/QARSF/Temp.xlsx</workbookPath>
+                                    <worksheetName class="value" valueClass="string">Add Component</worksheetName>
+                                    <valuesRange class="value" valueClass="string">A:I</valuesRange>
+                                  </sourceValue>
+                                </parameterValueSource>
+                                <parameterValueSource variableName="op_operationExcelData" variableScope="Test">
+                                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/QARSF/RSTK-9517-Work Order complete Flow.xlsx;1633080995115</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="RowNumber"/>
+                                    <apiParam name="ItemNumber"/>
+                                    <apiParam name="OperationType"/>
+                                    <apiParam name="OperationNumber"/>
+                                    <apiParam name="Description"/>
+                                    <apiParam name="Process"/>
+                                    <apiParam name="WorkCenter"/>
+                                    <apiParam name="AssignedTo"/>
+                                    <apiParam name="ConcurrentSeq"/>
+                                    <apiParam name="SetupType"/>
+                                    <apiParam name="SetupLaborGrade"/>
+                                    <apiParam name="SetupStandardHours"/>
+                                    <apiParam name="RunType"/>
+                                    <apiParam name="RunLaborGrade"/>
+                                    <apiParam name="RunStandardHours"/>
+                                    <apiParam name="MachineType"/>
+                                    <apiParam name="MachineNumber"/>
+                                    <apiParam name="StandardMachineHours"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="StartsWith" whereName="ItemNumber" whereValue="{op_excelDataRow.ItemNumber}">
+                                    <workbookPath class="value" valueClass="string">templates/QARSF/Temp.xlsx</workbookPath>
+                                    <worksheetName class="value" valueClass="string">Add Operation</worksheetName>
+                                    <valuesRange class="value" valueClass="string">A:S</valuesRange>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="hidden" testItemId="124">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="129" title="For Each: {op_componentExcelData}=&gt;op_componentExcelDataRow">
+                                      <arguments>
+                                        <argument id="list">
+                                          <value class="variable">
+                                            <path element="op_componentExcelData"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="fromItem">
+                                          <value class="value" valueClass="decimal">1</value>
+                                        </argument>
+                                        <argument id="valueName">
+                                          <value class="value" valueClass="string">op_componentExcelDataRow</value>
+                                        </argument>
+                                        <argument id="continueOnFailure">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="130">
+                                          <steps>
+                                            <caseCall testCaseId="0183980e-6527-46e5-928a-273cf63e83b1" testCasePath="tests/Work Order/Callable/Add Component.testcase" testItemId="133">
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SFConnection</value>
+                                                </argument>
+                                                <argument id="ip_RecordID"/>
+                                                <argument id="ip_componentItem">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="ComponentItem"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_enterQtyPerFlag">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="EnterQtyPerFlag"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_enterComponentQtyFlag">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="EnterComponentQtyFlag"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_fixedComponentQtyFlag">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="FixedComponentQtyFlag"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_qtyPer">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="ComponentQty"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_componentQty">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="ComponentQty"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_scrapFactor">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="ScrapFactor"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_setupQty">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="SetupQty"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_Comments">
+                                                  <value class="variable">
+                                                    <path element="op_componentExcelDataRow"/>
+                                                    <path element="Comments"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_isDisassemblyWO">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                              </arguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="125" title="For Each: {op_operationExcelData}=&gt;op_operationExcelDataRow">
+                                      <arguments>
+                                        <argument id="list">
+                                          <value class="variable">
+                                            <path element="op_operationExcelData"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="fromItem">
+                                          <value class="value" valueClass="decimal">1</value>
+                                        </argument>
+                                        <argument id="valueName">
+                                          <value class="value" valueClass="string">op_operationExcelDataRow</value>
+                                        </argument>
+                                        <argument id="continueOnFailure">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="126">
+                                          <steps>
+                                            <caseCall testCaseId="28efb160-42d3-40d0-9250-1aaf3d61fe70" testCasePath="tests/Work Order/Callable/Add Operations from WO.testcase" testItemId="132">
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SFConnection</value>
+                                                </argument>
+                                                <argument id="ip_RecordID"/>
+                                                <argument id="ip_operationType">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="OperationType"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_operationNumber">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="OperationNumber"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_description">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="Description"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_process">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="Process"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_workCenter">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="WorkCenter"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_assignedTo">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="AssignedTo"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_setupType">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="SetupType"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_setupLaborGrade">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="SetupLaborGrade"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_setupStandardHours">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="SetupStandardHours"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_runType">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="RunType"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_runLaborGrade">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="RunLaborGrade"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_runStandardHours">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="RunStandardHours"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_machineType">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="MachineType"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_machineNumber">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="MachineNumber"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_standardMachineHours">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="StandardMachineHours"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_allowAcceptFlagStatus">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="AllowAcceptFlag"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_concurrentSeq">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="ConcurrentSeq"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="op_fromScreen">
+                                                  <value class="value" valueClass="string">Work Order</value>
+                                                </argument>
+                                                <argument id="ip_subConLeadTime">
+                                                  <value class="variable">
+                                                    <path element="op_operationExcelDataRow"/>
+                                                    <path element="SubcontractLeadTime"/>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="67d0bf5a-7454-4613-8787-81cdcd1b4c8d" testCasePath="tests/Work Order -RSTKLUI/Work Order/Callable/Allocate Qty.testcase" testItemId="108">
+              <tags/>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="ip_RecordID">
+                  <value class="variable">
+                    <path element="op_WORecID"/>
+                    <path element="ID"/>
+                  </value>
+                </argument>
+                <argument id="ip_isDisassemblyWO">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="op_orderStatus">
+                  <name class="value" valueClass="string">op_orderStatus</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="103" title="Generate Picklist">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Generate Picklist</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="104">
+                  <steps>
+                    <caseCall testCaseId="300548ab-18f6-41ce-a0ce-d43fdbc774e5" testCasePath="tests/Work Order/Callable/Generate Picklist.testcase" testItemId="105">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="ip_RecordID">
+                          <value class="variable">
+                            <path element="op_WORecID"/>
+                            <path element="ID"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_isDisassemblyWO">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="109" title="Issue Components">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Issue Components</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="110">
+                  <steps>
+                    <caseCall testCaseId="25013522-514e-4511-b2ef-d975d77c12d8" testCasePath="tests/Work Order/Callable/Issue Components.testcase" testItemId="111">
+                      <arguments>
+                        <argument id="reuseConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="ipWONumber">
+                          <value class="variable">
+                            <path element="op_OrderNumber"/>
+                          </value>
+                        </argument>
+                        <argument id="ip_isDisassemblyWO">
+                          <value class="value" valueClass="string">false</value>
+                        </argument>
+                      </arguments>
+                    </caseCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="215" title="Set Values: op_WORecID.ID">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">op_WORecID.ID</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">a8F1K000000PNgP</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="221" title="Set Values: op_OrderNumber">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">op_OrderNumber</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">CO-16627</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="57" title="Perform Time and Qty Booking">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Perform Time and Qty Booking</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="58">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="51" title="Engg item Master details">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select rstk__icitem_item__r.rstk__peitem_item__c, rstk__icitem_item__r.rstk__peitem_descr__c from rstk__icitem__c where ID in (select rstk__wocst_item__c from rstk__wocst__c where name='</value>
+                              <variable>
+                                <path element="op_OrderNumber"/>
+                              </variable>
+                              <value valueClass="string">')</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_peitemDetails</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="52" title="Read excel-Time and Qty Booking">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read excel-Time and Qty Booking</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="op_timeQtyBookingExcelData" variableScope="Test">
+                          <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/Work Order.xlsx;1629905609740</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="RowNumber"/>
+                            <apiParam name="ItemNumber"/>
+                            <apiParam name="OverrideEmployeeRate"/>
+                            <apiParam name="BookingType"/>
+                            <apiParam name="TransactionDate"/>
+                            <apiParam name="Hours"/>
+                            <apiParam name="WorkOrder"/>
+                            <apiParam name="Operation"/>
+                            <apiParam name="SetupLabor"/>
+                            <apiParam name="Complete"/>
+                            <apiParam name="MoveOnly"/>
+                            <apiParam name="Ship"/>
+                            <apiParam name="Quantity"/>
+                            <apiParam name="LaborPayType"/>
+                            <apiParam name="OPComments"/>
+                            <apiParam name="TxnComments"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="StartsWith" whereName="ItemNumber" whereValue="{op_excelDataRow.ItemNumber}">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/Temp.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">Time and Qty Booking</worksheetName>
+                            <valuesRange class="value" valueClass="string">A:O</valuesRange>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="53">
+                          <steps/>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="18" title="Perform Time and Qty Booking">
+                      <tags/>
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="op_timeQtyBookingExcelData"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">op_timeQtyBookingExcelDataRow</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="19">
+                          <steps>
+                            <caseCall testCaseId="d778b8b1-6e3b-4c0c-87ab-d0be732fdb52" testCasePath="tests/Work Order/Callable/Time and Quantity Booking.testcase" testItemId="62">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="ip_overrideEmpRate">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="OverrideEmployeeRate"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_workOrderNumber">
+                                  <value class="variable">
+                                    <path element="op_OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_orderType">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="BookingType"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_trasactionDate">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="TransactionDate"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_hours">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Hours"/>
+                                  </value>
+                                </argument>
+                                <argument id="op_operation">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Operation"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_quantity">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Quantity"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_laborPayType">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="LaborPayType"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_setupLabor">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="SetupLabor"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_setCompleteFlag">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Complete"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_moveOnly">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="MoveOnly"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_setShipFlag">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Ship"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_OPComments">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="OPComments"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_txnComments">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="TxnComments"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_bookingType">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="BookingType"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="op_peitemDetails">
+                                  <name class="value" valueClass="string">op_peitemDetails</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.string.Split" name="Split" testItemId="222" title="Split: {op_timeQtyBookingExcelDataRow.Operation}=&gt;\\ =&gt;op_num">
+                              <arguments>
+                                <argument id="input">
+                                  <value class="variable">
+                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                    <path element="Operation"/>
+                                  </value>
+                                </argument>
+                                <argument id="separator">
+                                  <value class="value" valueClass="string">\\ </value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">op_num</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="223" title="For Each: {op_num}=&gt;op_OPnumber">
+                              <arguments>
+                                <argument id="list">
+                                  <value class="variable">
+                                    <path element="op_num"/>
+                                  </value>
+                                </argument>
+                                <argument id="fromItem">
+                                  <value class="value" valueClass="decimal">1</value>
+                                </argument>
+                                <argument id="valueName">
+                                  <value class="value" valueClass="string">op_OPnumber</value>
+                                </argument>
+                                <argument id="continueOnFailure">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="224">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="216" title="Read Operation Details">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select ID, Name, rstk__woordop_oper__c,\nrstk__woordop_wctr__r.rstk__rtwctr_dept__r.rstk__rtdept_ohdlabrate__c,\nrstk__woordop_wctr__r.rstk__rtwctr_dept__r.rstk__rtdept_ohdfrngrate__c\t from rstk__woordop__c where rstk__woordop_ordno__c='</value>
+                                              <variable>
+                                                <path element="op_WORecID"/>
+                                                <path element="ID"/>
+                                              </variable>
+                                              <value valueClass="string">' and rstk__woordop_oper__c=</value>
+                                              <variable>
+                                                <path element="op_OPnumber"/>
+                                              </variable>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_woordopDetails</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="226" title="Break"/>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="217" title="If: {op_timeQtyBookingExcelDataRow.LaborPayType != null}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="ne">
+                                    <lhs class="variable">
+                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                      <path element="LaborPayType"/>
+                                    </lhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="218">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="219" title="Read Labor Pay Type Details">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">select ID,rstk__tapaytype_paycode__c,rstk__tapaytype_addamount__c from rstk__tapaytype__c where name='</value>
+                                              <variable>
+                                                <path element="op_timeQtyBookingExcelDataRow"/>
+                                                <path element="LaborPayType"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_labPayTypeDetails</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="220" title="Set Values: op_OperationCostLabor">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostLabor</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="add">
+                                                  <lhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="OverrideEmployeeRate"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="Hours"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_labPayTypeDetails"/>
+                                                      <path element="rstk__tapaytype_addamount__c"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="Hours"/>
+                                                    </rhs>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="231" title="Set Values: op_OperationCostLaborOhd">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostLaborOhd</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="mult">
+                                                  <lhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="OverrideEmployeeRate"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_woordopDetails"/>
+                                                      <path element="rstk__woordop_wctr__r"/>
+                                                      <path element="rstk__rtwctr_dept__r"/>
+                                                      <path element="rstk__rtdept_ohdlabrate__c"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="Hours"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="233" title="Set Values: op_OperationCostFringeOhd">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostFringeOhd</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="mult">
+                                                  <lhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="OverrideEmployeeRate"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_woordopDetails"/>
+                                                      <path element="rstk__woordop_wctr__r"/>
+                                                      <path element="rstk__rtwctr_dept__r"/>
+                                                      <path element="rstk__rtdept_ohdfrngrate__c"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="Hours"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                                <clause name="else" testItemId="227">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="230" title="Set Values: op_OperationCostLabor">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostLabor</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="mult">
+                                                  <lhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="OverrideEmployeeRate"/>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="Hours"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="234" title="Set Values: op_OperationCostLaborOhd">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostLaborOhd</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="mult">
+                                                  <lhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="OverrideEmployeeRate"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_woordopDetails"/>
+                                                      <path element="rstk__woordop_wctr__r"/>
+                                                      <path element="rstk__rtwctr_dept__r"/>
+                                                      <path element="rstk__rtdept_ohdlabrate__c"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="Hours"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="235" title="Set Values: op_OperationCostFringeOhd">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_OperationCostFringeOhd</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="mult">
+                                                  <lhs class="mult">
+                                                    <lhs class="variable">
+                                                      <path element="op_timeQtyBookingExcelDataRow"/>
+                                                      <path element="OverrideEmployeeRate"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_woordopDetails"/>
+                                                      <path element="rstk__woordop_wctr__r"/>
+                                                      <path element="rstk__rtwctr_dept__r"/>
+                                                      <path element="rstk__rtdept_ohdfrngrate__c"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_timeQtyBookingExcelDataRow"/>
+                                                    <path element="Hours"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="236" title="Set Values: op_total">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_total</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="add">
+                                                  <lhs class="add">
+                                                    <lhs class="variable">
+                                                      <path element="op_OperationCostLabor"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_OperationCostLaborOhd"/>
+                                                    </rhs>
+                                                  </lhs>
+                                                  <rhs class="variable">
+                                                    <path element="op_OperationCostFringeOhd"/>
+                                                  </rhs>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="2" registryId="431fed4f-fadf-4753-9d5f-83fe5b588e4e" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="cbb6405f-c57b-42ea-97dc-a0ae2ba4d9db" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="31" title="SOQL Query: SELECT Id,Name FROM rstk__povend__c where Name =  '{APtxndata.Vendor}'=&gt;povend">
+      <tags/>
+      <arguments>
+        <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">SELECT Id,Name FROM rstk__povend__c where Name =  '</value>
+              <variable>
+                <path element="APtxndata"/>
+                <path element="Vendor"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">povend</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="32" title="Set Values: vendno">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">vendno</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="povend"/>
+                  <path element="Id"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="2" title="Create Object: rstkf__apato__c=&gt;apatoId">
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstkf__apato__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">apatoId</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="Name">
+          <value class="value" valueClass="string">NPAutoTest</value>
+        </argument>
+        <argument argId="e95d584d-c3a5-44a4-8d73-36db5ea07dbf" id="rstkf__apato_cmpno__c">
+          <value class="variable">
+            <path element="glcmpid"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_docno__c">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">NPAuto_</value>
+              <funcCall id="UniqueId">
+                <argument id="length">
+                  <value class="value" valueClass="decimal">2</value>
+                </argument>
+              </funcCall>
+              <value valueClass="decimal">26</value>
+            </parts>
+          </value>
+        </argument>
+        <argument argId="0bb326fe-2125-4c4a-8662-502471ca1309" id="rstkf__apato_glacct__c">
+          <value class="variable">
+            <path element="glacctid"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_paytype__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="PayType"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_period__c">
+          <value class="funcCall" id="DateFormat">
+            <argument id="date">
+              <value class="funcCall" id="DateAdd">
+                <argument id="date">
+                  <value class="variable">
+                    <path element="TODAY"/>
+                  </value>
+                </argument>
+              </value>
+            </argument>
+            <argument id="outputFormat">
+              <value class="value" valueClass="string">M</value>
+            </argument>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_quantity__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Quantity"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_trandate__c">
+          <value class="funcCall" id="DateFormat">
+            <argument id="date">
+              <value class="funcCall" id="DateAdd">
+                <argument id="date">
+                  <value class="variable">
+                    <path element="TODAY"/>
+                  </value>
+                </argument>
+              </value>
+            </argument>
+            <argument id="outputFormat">
+              <value class="value" valueClass="string">yyyy-MM-dd</value>
+            </argument>
+          </value>
+        </argument>
+        <argument argId="b1027964-d6ff-4299-a263-2f446fa20e04" id="rstkf__apato_vendno__c">
+          <value class="variable">
+            <path element="vendno"/>
+          </value>
+        </argument>
+        <argument argId="d3dab0b6-e7b6-494e-a351-d850997bec0d" id="rstkf__apato_year__c">
+          <value class="variable">
+            <path element="yearid"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_status__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Status"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_terms__c"/>
+        <argument id="rstkf__apato_distmaintamt__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Amount"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_linemaintamt__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Amount"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_txnmaintamt__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Amount"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_trantype__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="TransactionType"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_posttxn__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="PostPayTrans"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_dimval1__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Dim1"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_dimval2__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Dim2"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_dimval3__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Dim3"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_dimval4__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="Dim4"/>
+          </value>
+        </argument>
+        <argument id="rstkf__apato_loadasposted__c">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="LoadPosted"/>
+          </value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstkf__apato__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=Name" name="Name" title="Name"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_cmpno__c" name="rstkf__apato_cmpno__c" title="rstkf__apato_cmpno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_docno__c" name="rstkf__apato_docno__c" title="rstkf__apato_docno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_glacct__c" name="rstkf__apato_glacct__c" title="rstkf__apato_glacct__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_paytype__c" name="rstkf__apato_paytype__c" title="rstkf__apato_paytype__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_period__c" name="rstkf__apato_period__c" title="rstkf__apato_period__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_quantity__c" name="rstkf__apato_quantity__c" title="rstkf__apato_quantity__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_trandate__c" name="rstkf__apato_trandate__c" title="rstkf__apato_trandate__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_vendno__c" name="rstkf__apato_vendno__c" title="rstkf__apato_vendno__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_year__c" name="rstkf__apato_year__c" title="rstkf__apato_year__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_status__c" name="rstkf__apato_status__c" title="rstkf__apato_status__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_terms__c" name="rstkf__apato_terms__c" title="rstkf__apato_terms__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_distmaintamt__c" name="rstkf__apato_distmaintamt__c" title="rstkf__apato_distmaintamt__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_linemaintamt__c" name="rstkf__apato_linemaintamt__c" title="rstkf__apato_linemaintamt__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_txnmaintamt__c" name="rstkf__apato_txnmaintamt__c" title="rstkf__apato_txnmaintamt__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_trantype__c" name="rstkf__apato_trantype__c" title="rstkf__apato_trantype__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_posttxn__c" name="rstkf__apato_posttxn__c" title="rstkf__apato_posttxn__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_dimval1__c" name="rstkf__apato_dimval1__c" title="rstkf__apato_dimval1__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_dimval2__c" name="rstkf__apato_dimval2__c" title="rstkf__apato_dimval2__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_dimval3__c" name="rstkf__apato_dimval3__c" title="rstkf__apato_dimval3__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_dimval4__c" name="rstkf__apato_dimval4__c" title="rstkf__apato_dimval4__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_loadasposted__c" name="rstkf__apato_loadasposted__c" title="rstkf__apato_loadasposted__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="4" title="SOQL Query: select Id,Name,rstkf__apato_docno__c,\trstkf__apato_apinvh__c from rstkf__apato__c where Id = '{apatoId}'=&gt;soqlapato">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,Name,rstkf__apato_docno__c,\trstkf__apato_apinvh__c from rstkf__apato__c where Id = '</value>
+              <variable>
+                <path element="apatoId"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">soqlapato</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="3" title="SOQL Query: select Id,Name,rstkf__apinvtxn_docno__c,rstkf__apinvtxn_apinvh__c,rstkf__apinvtxn_trantype__c,\trstkf__apinvtxn_dimvals__c from rstkf__apinvtxn__c where rstkf__apinvtxn_docno__c = '{soqlapato.rstkf__apato_docno__c}'=&gt;apinvtxn">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,Name,rstkf__apinvtxn_docno__c,rstkf__apinvtxn_apinvh__c,rstkf__apinvtxn_trantype__c,\trstkf__apinvtxn_dimvals__c from rstkf__apinvtxn__c where rstkf__apinvtxn_docno__c = '</value>
+              <variable>
+                <path element="soqlapato"/>
+                <path element="rstkf__apato_docno__c"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">apinvtxn</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="22" title="Set Values: txnid">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">txnid</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="apinvtxn"/>
+                  <path element="Id"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="23" title="Set Values: aptxnname">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">aptxnname</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="apinvtxn"/>
+                  <path element="Name"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.Sleep" name="Sleep" testItemId="16" title="Sleep for {10} seconds">
+      <tags>
+        <string>disabled</string>
+      </tags>
+      <arguments>
+        <argument id="sleepSecs">
+          <value class="value" valueClass="decimal">10</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="5" title="SOQL Query: select Id,Name,rstkf__apinvh_status__c from rstkf__apinvh__c where Id = '{apinvtxn.rstkf__apinvtxn_apinvh__c}'=&gt;apinvh">
+      <tags/>
+      <arguments>
+        <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,Name,rstkf__apinvh_status__c from rstkf__apinvh__c where Id = '</value>
+              <variable>
+                <path element="apinvtxn"/>
+                <path element="rstkf__apinvtxn_apinvh__c"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">apinvh</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="11" title="Assert: {APtxndata.TransactionType} EqualTo {apinvtxn.rstkf__apinvtxn_trantype__c}">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="TransactionType"/>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="variable">
+            <path element="apinvtxn"/>
+            <path element="rstkf__apinvtxn_trantype__c"/>
+          </value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">EqualTo</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage">
+          <value class="value" valueClass="string">Transaction Type is incorrect</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="26" title="If: {APtxndata.Dim1 != null}">
+      <arguments>
+        <argument id="condition">
+          <value class="ne">
+            <lhs class="variable">
+              <path element="APtxndata"/>
+              <path element="Dim1"/>
+            </lhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="27">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="30" title="SOQL Query: SELECT Id,Name FROM rstk__dimvals__c where Id = '{apinvtxn.rstkf__apinvtxn_dimvals__c}'=&gt;dimensionval">
+              <tags/>
+              <arguments>
+                <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">SELECT Id,Name FROM rstk__dimvals__c where Id = '</value>
+                      <variable>
+                        <path element="apinvtxn"/>
+                        <path element="rstkf__apinvtxn_dimvals__c"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">dimensionval</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="25" title="Assert: {APtxndata.DimVal} EqualTo {dimensionval.Name}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="variable">
+                    <path element="APtxndata"/>
+                    <path element="DimVal"/>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="dimensionval"/>
+                    <path element="Name"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage">
+                  <value class="value" valueClass="string">Dimension Values are note correct</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="13" title="If: {APtxndata.PostPayTrans}">
+      <arguments>
+        <argument id="condition">
+          <value class="variable">
+            <path element="APtxndata"/>
+            <path element="PostPayTrans"/>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="14">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.Sleep" name="Sleep" testItemId="20" title="Sleep for {10} seconds">
+              <tags/>
+              <arguments>
+                <argument id="sleepSecs">
+                  <value class="value" valueClass="decimal">10</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="19" title="SOQL Query: select Id,Name,rstkf__apinvh_status__c from rstkf__apinvh__c where Id = '{apinvtxn.rstkf__apinvtxn_apinvh__c}'=&gt;apinvh">
+              <tags/>
+              <arguments>
+                <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,Name,rstkf__apinvh_status__c from rstkf__apinvh__c where Id = '</value>
+                      <variable>
+                        <path element="apinvtxn"/>
+                        <path element="rstkf__apinvtxn_apinvh__c"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">apinvh</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="15" title="Assert: Posted EqualTo {apinvh.rstkf__apinvh_status__c}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="value" valueClass="string">Posted</value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="apinvh"/>
+                    <path element="rstkf__apinvh_status__c"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage">
+                  <value class="value" valueClass="string">Status is not correct</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+        <clause name="else" testItemId="17">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="12" title="Assert: {APtxndata.Status} EqualTo {apinvh.rstkf__apinvh_status__c}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="variable">
+                    <path element="APtxndata"/>
+                    <path element="Status"/>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="apinvh"/>
+                    <path element="rstkf__apinvh_status__c"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage">
+                  <value class="value" valueClass="string">Status is not correct</value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:cbb6405f-c57b-42ea-97dc-a0ae2ba4d9db" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="APtxndata" title="APtxndata">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:e95d584d-c3a5-44a4-8d73-36db5ea07dbf" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_cmpno__c" name="glcmpid" title="glcmpid">
+      <summary/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:0bb326fe-2125-4c4a-8662-502471ca1309" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_glacct__c" name="glacctid" title="glacctid">
+      <summary/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:d3dab0b6-e7b6-494e-a351-d850997bec0d" modelBinding="sf:ui:binding:object?object=rstkf__apato__c&amp;field=rstkf__apato_year__c" name="yearid" title="yearid">
+      <summary/>
+    </param>
+  </params>
+  <outputParams>
+    <param name="txnid" title="txnid">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="txnid"/>
+      </sourceValue>
+    </param>
+    <param defaultScope="Test" name="aptxnname" title="aptxnname">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="aptxnname"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="APtxndata">
+      <value class="value" valueClass="string">APtxndata</value>
+    </argument>
+    <argument id="glcmpid">
+      <value class="variable">
+        <path element="glcmpid"/>
+      </value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="glacctid">
+      <value class="value" valueClass="string">a9S1K000000CfCy</value>
+    </argument>
+    <argument id="yearid">
+      <value class="variable">
+        <path element="yearid"/>
+      </value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="txnid">
+      <name class="value" valueClass="string">txnid</name>
+    </outputArgument>
+    <outputArgument id="aptxnname">
+      <name class="value" valueClass="string">aptxnname</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="1" registryId="60ae13e1-bdeb-47ff-b5de-a70264ee96e0" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: QARSF_Admin (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName"/>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument argId="cdd6b1b9-9881-4e09-963b-7e373cce335c" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument argId="9f967331-fa87-45a7-a79c-6f4f87ec2340" id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="4" title="Read Object: rstk__iclocitem__c = {recId}">
+      <arguments>
+        <argument argId="918a7695-ccf1-44c6-afc5-b9ea6750f703" id="objectType">
+          <value class="value" valueClass="string">rstk__iclocitem__c</value>
+        </argument>
+        <argument argId="87633972-6f99-4f57-8284-7986d1699f84" id="resultName">
+          <value class="value" valueClass="string">opICLOCITEM</value>
+        </argument>
+        <argument argId="8df71987-333b-4cd5-b9db-7f637fcc2508" id="objectId">
+          <value class="variable">
+            <path element="recId"/>
+          </value>
+        </argument>
+        <argument argId="cf40bf42-d855-4001-bf58-6c34b1989007" id="apexConnectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument argId="8e5b777d-3578-4e57-8617-5caaa46ade3d" id="Id">
+          <value class="value" valueClass="string">a1Y1K000001mWzKUAU</value>
+        </argument>
+        <argument argId="780ab49f-d311-434f-b1d1-a1c86a071de7" id="Name">
+          <value class="value" valueClass="string">Child -1 (Test child 1) (RM)</value>
+        </argument>
+        <argument argId="34df6cd3-ba82-4fcc-825a-b460cd193769" id="rstk__iclocitem_site__c">
+          <value class="value" valueClass="string">a7q410000008aSQAAY</value>
+        </argument>
+        <argument argId="684aa34e-587e-4185-9f8a-b16dbf8f59b4" id="rstk__iclocitem_icitem__c">
+          <value class="value" valueClass="string">a1E41000007fTKAEA2</value>
+        </argument>
+        <argument argId="947b2aea-8d17-4f8f-84e9-5be313607829" id="rstk__iclocitem_proj__c">
+          <value class="variable">
+            <path element="ipProject"/>
+          </value>
+        </argument>
+        <argument argId="27439eac-155b-4116-97d8-be9e9ecbcbba" id="rstk__iclocitem_locqty__c">
+          <value class="value" valueClass="decimal">1.0</value>
+        </argument>
+        <argument argId="f90408f5-b62e-49c2-9296-7e44e7209eb3" id="rstk__iclocitem_loctype_pl__c">
+          <value class="value" valueClass="string">On Hand</value>
+        </argument>
+        <argument argId="9e944a24-407b-45fe-8506-0387f2aef2b5" id="rstk__iclocitem_locid__c">
+          <value class="value" valueClass="string">a7Z41000000PBG7EAO</value>
+        </argument>
+        <argument argId="d4e5b268-7061-4036-9418-8d2fde43c9e8" id="rstk__iclocitem_locnum__c">
+          <value class="value" valueClass="string">RM-001</value>
+        </argument>
+        <argument argId="e474dbaa-90c0-4519-8047-d6b5ac91208e" id="rstk__iclocitem_locsec__c">
+          <value class="value" valueClass="string">78</value>
+        </argument>
+        <argument argId="931a1efe-1874-4ee9-b7b2-f69aadf1b1a7" id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+      <resultAssertions>
+        <resultAssertion resultName="rstk__iclocitem_site__c" title="Verify Site">
+          <expected class="variable">
+            <path element="ipSite"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_icitem__c" title="Verify Item Number">
+          <expected class="variable">
+            <path element="ipItemNumber"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_proj__c" title="Verify Project">
+          <expected class="variable">
+            <path element="ipProject"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_locqty__c" title="Verify Qty">
+          <expected class="variable">
+            <path element="ipQty"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_locid__c" title="Verify Location ID">
+          <expected class="variable">
+            <path element="ipLocID"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_locnum__c" title="Verify Location Number">
+          <expected class="variable">
+            <path element="ipLocNumber"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_locsec__c" title="Verify Lot_Serial Number">
+          <expected class="variable">
+            <path element="ipLotSerial"/>
+          </expected>
+        </resultAssertion>
+        <resultAssertion resultName="rstk__iclocitem_div__c" title="Verify Division">
+          <expected class="variable">
+            <path element="ip_Division"/>
+          </expected>
+        </resultAssertion>
+      </resultAssertions>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__iclocitem__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=Id" name="Id" title="Inventory By Location ID"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=Name" name="Name" title="Name"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_site__c" name="rstk__iclocitem_site__c" title="Site"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_icitem__c" name="rstk__iclocitem_icitem__c" title="Item Number"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_proj__c" name="rstk__iclocitem_proj__c" title="Project"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locqty__c" name="rstk__iclocitem_locqty__c" title="Quantity"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_loctype_pl__c" name="rstk__iclocitem_loctype_pl__c" title="Loc Type"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locid__c" name="rstk__iclocitem_locid__c" title="Location ID"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locnum__c" name="rstk__iclocitem_locnum__c" title="Location Number"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locsec__c" name="rstk__iclocitem_locsec__c" title="Lot / Serial Number"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_div__c" name="rstk__iclocitem_div__c" title="Division"/>
+      </generatedParameters>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:cdd6b1b9-9881-4e09-963b-7e373cce335c" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="recId" title="Record Id">
+      <summary>The Id of Object to be updated.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_site__c" name="ipSite" title="Site">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_icitem__c" name="ipItemNumber" title="Item Number">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:947b2aea-8d17-4f8f-84e9-5be313607829" modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_proj__c" name="ipProject" title="Project">
+      <summary/>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locqty__c" name="ipQty" title="Quantity">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locid__c" name="ipLocID" title="Location ID">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locnum__c" name="ipLocNumber" title="Location Number">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param modelBinding="sf:ui:binding:object?object=rstk__iclocitem__c&amp;field=rstk__iclocitem_locsec__c" name="ipLotSerial" title="Lot / Serial Number">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_Division" title="Division">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="opToLocationType" title="opICLOCITEM">
+      <summary>The name under which the resulting values will be stored.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="opICLOCITEM"/>
+        <path element="rstk__iclocitem_loctype_pl__c"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="recId">
+      <value class="value" valueClass="string">a1Y1K000003lHlC</value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="ipSite">
+      <value class="value" valueClass="string">a7q410000008aSQAAY</value>
+    </argument>
+    <argument id="ipItemNumber">
+      <value class="value" valueClass="string">a1E41000007fTKAEA2</value>
+    </argument>
+    <argument id="ipProject">
+      <value class="value" valueClass="string">a2W410000025yJuEAI</value>
+    </argument>
+    <argument id="ipQty">
+      <value class="value" valueClass="decimal">1.0</value>
+    </argument>
+    <argument id="ipLocID">
+      <value class="value" valueClass="string">a7Z41000000PBG7EAO</value>
+    </argument>
+    <argument id="ipLocNumber">
+      <value class="value" valueClass="string">RM-001</value>
+    </argument>
+    <argument id="ipLotSerial">
+      <value class="value" valueClass="string">78</value>
+    </argument>
+    <argument id="ip_Division"/>
+  </args>
+  <outputArgs>
+    <outputArgument id="opToLocationType">
+      <name class="value" valueClass="string">opToLocationType</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

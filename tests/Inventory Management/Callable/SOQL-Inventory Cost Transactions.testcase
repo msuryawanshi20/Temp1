@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" registryId="0877df36-27ce-4ba4-a981-85371c5e94b4" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: QARSF_Admin (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="d93c66f7-06b2-4201-bd52-f9b859ce1074" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="3" title="If: {ip_TransactionID = &quot;INVDOLADJ&quot;}">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="variable">
+              <path element="ip_TransactionID"/>
+            </lhs>
+            <rhs class="value" valueClass="string">INVDOLADJ</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="4">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="2" title="Read Object: rstk__sytxncst__c = {ip_ID}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__sytxncst__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">op_SOQL_SYTXNCST</value>
+                </argument>
+                <argument argId="a8d5a4e8-b70f-4a4a-868a-537dd36688c4" id="objectId">
+                  <value class="variable">
+                    <path element="ip_ID"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">QARSF_Admin</value>
+                </argument>
+                <argument argId="1bb3c795-adde-4a50-849c-64556915ecec" id="rstk__sytxncst_icitem__c">
+                  <value class="variable">
+                    <path element="ip_ItemName"/>
+                  </value>
+                </argument>
+                <argument argId="028a0ca5-d89f-4a8b-8b6f-d109e9307fbc" id="rstk__sytxncst_txnid__c">
+                  <value class="variable">
+                    <path element="ip_TransactionID"/>
+                  </value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__sytxncst_icitem__c" title="Check rstk__sytxncst_icitem__c">
+                  <expected class="variable">
+                    <path element="ip_ItemName"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_txnid__c" title="Check rstk__sytxncst_txnid__c">
+                  <expected class="variable">
+                    <path element="ip_TransactionID"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_proj__c" title="Check rstk__sytxncst_proj__c">
+                  <expected class="variable">
+                    <path element="ip_Project"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_acctind__c" title="Check rstk__sytxncst_acctind__c">
+                  <expected class="variable">
+                    <path element="ip_updatGL"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_ucstmtl__c" title="Check rstk__sytxncst_ucstmtl__c">
+                  <expected class="variable">
+                    <path element="ip_UnitCostMtl"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_ucsttot__c" title="Check rstk__sytxncst_ucsttot__c">
+                  <expected class="variable">
+                    <path element="ip_UnitCostTotal"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__sytxncst_ucsttotext__c" title="Check rstk__sytxncst_ucsttotext__c">
+                  <expected class="variable">
+                    <path element="ip_UnitCostTotalExt"/>
+                  </expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__sytxncst__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_icitem__c" name="rstk__sytxncst_icitem__c" title="Inventory Item Master"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_txnid__c" name="rstk__sytxncst_txnid__c" title="Transaction ID"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_proj__c" name="rstk__sytxncst_proj__c" title="Project"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_acctind__c" name="rstk__sytxncst_acctind__c" title="Update GL"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_ucstmtl__c" name="rstk__sytxncst_ucstmtl__c" title="Unit Cost, Mtl"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_ucsttot__c" name="rstk__sytxncst_ucsttot__c" title="Unit Cost, Total"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_ucsttotext__c" name="rstk__sytxncst_ucsttotext__c" title="Unit Cost, Total Ext"/>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param linkedToUrl="provar:hasvalue:d93c66f7-06b2-4201-bd52-f9b859ce1074" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:a8d5a4e8-b70f-4a4a-868a-537dd36688c4" name="ip_ID" title="Object Id">
+      <summary>The Id of Object to be updated.</summary>
+      <type>
+        <textType/>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:1bb3c795-adde-4a50-849c-64556915ecec" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_icitem__c" name="ip_ItemName" title="Inventory Item Master">
+      <summary/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:028a0ca5-d89f-4a8b-8b6f-d109e9307fbc" modelBinding="sf:ui:binding:object?object=rstk__sytxncst__c&amp;field=rstk__sytxncst_txnid__c" name="ip_TransactionID" title="Transaction ID">
+      <summary/>
+    </param>
+    <param name="ip_Project" title="Project">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_updatGL" title="Update GL">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_UnitCostMtl" title="Unit Cost, Mtl">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_UnitCostTotal" title="Unit Cost, Total">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="ip_UnitCostTotalExt" title="Unit Cost, Total Ext">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="ip_ID">
+      <value class="value" valueClass="string">a7w1K00000003FWQAY</value>
+    </argument>
+    <argument id="ip_ItemName">
+      <value class="value" valueClass="string">a1E41000001FDlHEAW</value>
+    </argument>
+    <argument id="ip_TransactionID">
+      <value class="value" valueClass="string">SOISSR</value>
+    </argument>
+    <argument id="ip_Project"/>
+    <argument id="ip_updatGL"/>
+    <argument id="ip_UnitCostMtl"/>
+    <argument id="ip_UnitCostTotal"/>
+    <argument id="ip_UnitCostTotalExt"/>
+    <argument id="reuseConnectionName"/>
+  </args>
+</testCase>

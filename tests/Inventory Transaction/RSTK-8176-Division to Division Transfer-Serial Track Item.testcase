@@ -1,0 +1,1706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="36">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName">
+          <value class="value"/>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reuse</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="920" title="If: {GetSelectedEnvironment() = &quot;PDE5&quot;}">
+      <arguments>
+        <argument id="condition">
+          <value class="eq">
+            <lhs class="funcCall" id="GetSelectedEnvironment"/>
+            <rhs class="value" valueClass="string">PDE5</rhs>
+          </value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="then" testItemId="921">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="936" title="Read Excel Data">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Read Excel Data</value>
+                </argument>
+              </arguments>
+              <expectedExceptions/>
+              <parameterValueSources>
+                <parameterValueSource variableName="op_ExcelData" variableScope="Test">
+                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/Division To division Transfer.xlsx;1624226407427</cacheToken>
+                  <cachedParameters>
+                    <apiParam name="RowNumber"/>
+                    <apiParam name="Site"/>
+                    <apiParam name="ItemName"/>
+                    <apiParam name="FromLocID"/>
+                    <apiParam name="FromLocationNumber"/>
+                    <apiParam name="FromLotNo"/>
+                    <apiParam name="FromProject"/>
+                    <apiParam name="QuantityToTransfer"/>
+                    <apiParam name="ToDivision"/>
+                    <apiParam name="ToSite"/>
+                    <apiParam name="ToLocID"/>
+                    <apiParam name="ToLocNo"/>
+                    <apiParam name="ToProject"/>
+                  </cachedParameters>
+                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                    <workbookPath class="value" valueClass="string">templates/PDE5/Division To division Transfer.xlsx</workbookPath>
+                    <worksheetName class="value" valueClass="string">8176-Serial</worksheetName>
+                    <valuesRange class="value" valueClass="string">A:L</valuesRange>
+                  </sourceValue>
+                </parameterValueSource>
+              </parameterValueSources>
+              <clauses>
+                <clause name="hidden" testItemId="6">
+                  <steps/>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+        <clause name="else" testItemId="924">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="925" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="926">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="938" title="Read Excel Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Excel Data</value>
+                        </argument>
+                      </arguments>
+                      <expectedExceptions/>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="op_ExcelData" variableScope="Test">
+                          <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/Division To division Transfer.xlsx;1624226407427</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="RowNumber"/>
+                            <apiParam name="Site"/>
+                            <apiParam name="ItemName"/>
+                            <apiParam name="FromLocID"/>
+                            <apiParam name="FromLocationNumber"/>
+                            <apiParam name="FromLotNo"/>
+                            <apiParam name="FromProject"/>
+                            <apiParam name="QuantityToTransfer"/>
+                            <apiParam name="ToDivision"/>
+                            <apiParam name="ToSite"/>
+                            <apiParam name="ToLocID"/>
+                            <apiParam name="ToLocNo"/>
+                            <apiParam name="ToProject"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/Division To division Transfer.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">8176-Serial</worksheetName>
+                            <valuesRange class="value" valueClass="string">A:L</valuesRange>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="939">
+                          <steps/>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+                <clause name="else" testItemId="929">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="940" title="Read Excel Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Excel Data</value>
+                        </argument>
+                      </arguments>
+                      <expectedExceptions/>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="op_ExcelData" variableScope="Test">
+                          <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/Division To division Transfer.xlsx;1624226407427</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="RowNumber"/>
+                            <apiParam name="Site"/>
+                            <apiParam name="ItemName"/>
+                            <apiParam name="FromLocID"/>
+                            <apiParam name="FromLocationNumber"/>
+                            <apiParam name="FromLotNo"/>
+                            <apiParam name="FromProject"/>
+                            <apiParam name="QuantityToTransfer"/>
+                            <apiParam name="ToDivision"/>
+                            <apiParam name="ToSite"/>
+                            <apiParam name="ToLocID"/>
+                            <apiParam name="ToLocNo"/>
+                            <apiParam name="ToProject"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/Division To division Transfer.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">8176-Serial</worksheetName>
+                            <valuesRange class="value" valueClass="string">A:L</valuesRange>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="941">
+                          <steps/>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="906" title="On SF rstk__Stocklocadd page with pageobject Rstk__ Stocklocadd">
+      <arguments>
+        <argument id="uiConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="target">
+          <value class="uiTarget" uri="sf:ui:target?pageObject=pageobjects.rstk__Stocklocadd&amp;page=rstk__Stocklocadd"/>
+        </argument>
+        <argument id="navigate">
+          <value class="value" valueClass="string">Always</value>
+        </argument>
+        <argument id="targetDescription">
+          <value class="value" valueClass="string">On SF rstk__Stocklocadd page with pageobject Rstk__ Stocklocadd</value>
+        </argument>
+        <argument id="windowSelection">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="windowSize">
+          <value class="value" valueClass="string">Default</value>
+        </argument>
+        <argument id="closeWindow"/>
+        <argument id="captureBefore">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="captureAfter">
+          <value class="value" valueClass="string">false</value>
+        </argument>
+        <argument id="sfUiTargetVfIndex">
+          <value class="value" valueClass="string">1</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="158">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiAssert" isTitleUpdated="true" name="UiAssert" testItemId="159" title="Read Inventory Division name">
+              <arguments>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">op_currentInventoryDivision</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Global</value>
+                </argument>
+                <argument id="fieldAssertions">
+                  <value class="valueList" mutable="Mutable">
+                    <uiFieldAssertion resultName="division">
+                      <fieldLocator uri="ui:locator?name=division"/>
+                      <attributeAssertions>
+                        <uiAttributeAssertion attributeName="value" comparisonType="None"/>
+                      </attributeAssertions>
+                    </uiFieldAssertion>
+                  </value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="columnAssertions">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+                <argument id="pageAssertions">
+                  <value class="valueList" mutable="Mutable"/>
+                </argument>
+                <argument id="beforeWait"/>
+                <argument id="autoRetry"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="160" title="Set Values: op_currentInventoryDivision">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">op_currentInventoryDivision</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="op_currentInventoryDivision"/>
+                          <path element="fields"/>
+                          <path element="division"/>
+                          <path element="value"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+      <generatedParameters>
+        <apiParam group="target" name="sfUiTargetVfIndex" title="Page Index">
+          <summary>The VF page index. This is by default 1 and is used when there is same VF embedded multiple times</summary>
+          <type>
+            <numericType/>
+          </type>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="3" title="For Each: {op_ExcelData}=&gt;op_ExcelDataRow">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="op_ExcelData"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">op_ExcelDataRow</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="4">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="8" title="Read/Store Qty available before Transaction">
+              <tags/>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Read/Store Qty available before Transaction</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="360">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="901" title="Store To division Record ID">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select Id, Name from rstk__sydiv__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToDivision"/>
+                              </variable>
+                              <value valueClass="string">%' </value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_ToDivRecID</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="857" title="Before qty To division">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select name,id,rstk__rollsumm_totalqty__c,rstk__icitem_div__r.name from rstk__icitem__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitem_div__c='</value>
+                              <variable>
+                                <path element="op_ToDivRecID"/>
+                                <path element="Id"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeQtyToDiv</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="905" title="Read Lot track status">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">select rstk__peitem_tracklot_pl__c from rstk__peitem__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_lotstatus</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="864" title="If: {op_lotstatus.rstk__peitem_tracklot_pl__c = &quot;Yes&quot;}">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_lotstatus"/>
+                              <path element="rstk__peitem_tracklot_pl__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Yes</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="865">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="868" title="Read Qty available on TO location--inventory by lot record before transaction">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">Select Id, Name,\nrstk__iclocitem_div__c,\nrstk__iclocitem_div__r.name,\nrstk__iclocitem_site__c, \nrstk__iclocitem_icitem__c, \nrstk__iclocitem_proj__c, \nrstk__iclocitem_locqty__c, \nrstk__iclocitem_loctype_pl__c, \nrstk__iclocitem_locid__c, \nrstk__iclocitem_locnum__c, \nrstk__iclocitem_locsec__c, \nLastModifiedDate\nfrom rstk__iclocitem__c where \nrstk__iclocitem_div__c ='</value>
+                                      <variable>
+                                        <path element="op_ToDivRecID"/>
+                                        <path element="Id"/>
+                                      </variable>
+                                      <value valueClass="string">' and \nname like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ItemName"/>
+                                      </variable>
+                                      <value valueClass="string">%' and rstk__iclocitem_locid__r.name like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ToLocID"/>
+                                      </variable>
+                                      <value valueClass="string">%' and rstk__iclocitem_locnum__c='</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ToLocNo"/>
+                                      </variable>
+                                      <value valueClass="string">' and rstk__iclocitem_icitemlot__r.rstk__icitemlot_lotno__c='</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="FromLotNo"/>
+                                      </variable>
+                                      <value valueClass="string">' order by LastModifiedDate desc limit 1</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_BeforeTransaction_ToLocation</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                        <clause name="else" testItemId="866">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="413" title="Read Qty available on TO location--inventory by lot record before transaction">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">Select Id, Name,\nrstk__iclocitem_div__c,\nrstk__iclocitem_div__r.name,\nrstk__iclocitem_site__c, \nrstk__iclocitem_icitem__c, \nrstk__iclocitem_proj__c, \nrstk__iclocitem_locqty__c, \nrstk__iclocitem_loctype_pl__c, \nrstk__iclocitem_locid__c, \nrstk__iclocitem_locnum__c, \nrstk__iclocitem_locsec__c, \nLastModifiedDate\nfrom rstk__iclocitem__c where \nrstk__iclocitem_div__c ='</value>
+                                      <variable>
+                                        <path element="op_ToDivRecID"/>
+                                        <path element="Id"/>
+                                      </variable>
+                                      <value valueClass="string">' and \nname like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ItemName"/>
+                                      </variable>
+                                      <value valueClass="string">%' and rstk__iclocitem_locid__r.name like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ToLocID"/>
+                                      </variable>
+                                      <value valueClass="string">%' and rstk__iclocitem_locnum__c='</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ToLocNo"/>
+                                      </variable>
+                                      <value valueClass="string">' order by LastModifiedDate desc</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_BeforeTransaction_ToLocation</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="414" title="Read inventory by lot record before transaction">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_lotstatus"/>
+                              <path element="rstk__peitem_tracklot_pl__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Yes</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="415">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="900" title="Read inventory by lot record before transaction">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select ID,\nrstk__icitemlot_item__c,\nrstk__icitemlot_lotno__c\n,rstk__icitemlot_qtycons__c,\nrstk__icitemlot_qtyoh__c,\nrstk__icitemlot_qtyohnn__c\t\nfrom rstk__icitemlot__c\n where rstk__icitemlot_lotno__c='</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="FromLotNo"/>
+                                      </variable>
+                                      <value valueClass="string">' and rstk__icitemlot_item__r.name like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ItemName"/>
+                                      </variable>
+                                      <value valueClass="string">%'\t</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_BeforeTransaction_icitemlot</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="869" title="Read inventory by site record before transaction-From Site">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemsite_div__c,\nrstk__icitemsite_site__c,\nrstk__icitemsite_icitem__c,\nrstk__icitemsite_qtyoh__c,\nrstk__icitemsite_qtycons__c,\nrstk__icitemsite_qtyohnn__c,\nrstk__icitemsite_qtyvmi__c \nfrom rstk__icitemsite__c\t\nwhere rstk__icitemsite_icitem__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsite_site__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="Site"/>
+                              </variable>
+                              <value valueClass="string">%' \norder by LastModifiedDate desc</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransactionFromSite_icitemSite</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="546" title="Read inventory by site record before transaction-To Site">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemsite_div__c,\nrstk__icitemsite_site__c,\nrstk__icitemsite_icitem__c,\nrstk__icitemsite_qtyoh__c,\nrstk__icitemsite_qtycons__c,\nrstk__icitemsite_qtyohnn__c,\nrstk__icitemsite_qtyvmi__c \nfrom rstk__icitemsite__c\t\nwhere rstk__icitemsite_icitem__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsite_site__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToSite"/>
+                              </variable>
+                              <value valueClass="string">%' \norder by LastModifiedDate desc</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransactionToSite_icitemSite</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="846" title="Read Inventory by Item/Site/Project record before transaction-From Proj">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemsiteproj_item__c,\nrstk__icitemsiteproj_site__c,\nrstk__icitemsiteproj_proj__c,\nrstk__icitemsiteproj_qtyoh__c,\nrstk__icitemsiteproj_qtyalloc__c\t,\nrstk__icitemsiteproj_qtyavail__c\t,\nrstk__icitemsiteproj_qtycons__c,\nrstk__icitemsiteproj_qtyohnn__c,\nrstk__formula_netqtyavail__c \nfrom rstk__icitemsiteproj__c \nwhere rstk__icitemsiteproj_item__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsiteproj_site__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="Site"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsiteproj_proj__r.name like '%</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="FromProject"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransaction_FromProj_icitemsiteproj</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="636" title="Read Inventory by Item/Site/Project record before transaction-To Proj">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemsiteproj_item__c,\nrstk__icitemsiteproj_site__c,\nrstk__icitemsiteproj_proj__c,\nrstk__icitemsiteproj_qtyoh__c,\nrstk__icitemsiteproj_qtyalloc__c\t,\nrstk__icitemsiteproj_qtyavail__c\t,\nrstk__icitemsiteproj_qtycons__c,\nrstk__icitemsiteproj_qtyohnn__c,\nrstk__formula_netqtyavail__c \nfrom rstk__icitemsiteproj__c \nwhere rstk__icitemsiteproj_item__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsiteproj_site__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToSite"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemsiteproj_proj__r.name like '%</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToProject"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransaction_ToProj_icitemsiteproj</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="847" title="Read Inventory by Item/Project record before transaction-From Proj">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemproj_proj__c,\nrstk__icitemproj_item__c,\nrstk__icitemproj_qtyoh__c,\nrstk__icitemproj_qtyohnn__c\t,\nrstk__icitemproj_qtycons__c,\nrstk__icitemproj_qtyvmi__c\nfrom rstk__icitemproj__c\nwhere rstk__icitemproj_item__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemproj_proj__r.name like '%</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="FromProject"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransaction_FromProj_icitemproj</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="508" title="Read Inventory by Item/Project record before transaction-To Proj">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,\nrstk__icitemproj_proj__c,\nrstk__icitemproj_item__c,\nrstk__icitemproj_qtyoh__c,\nrstk__icitemproj_qtyohnn__c\t,\nrstk__icitemproj_qtycons__c,\nrstk__icitemproj_qtyvmi__c\nfrom rstk__icitemproj__c\nwhere rstk__icitemproj_item__r.name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and rstk__icitemproj_proj__r.name like '%</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToProject"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_BeforeTransaction_ToProj_icitemproj</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="670" title="Read Location ID Flags-From Location">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,name,rstk__sylocid_loctype_pl__c,rstk__sylocid_inspection__c,rstk__sylocid_vendlocind__c,rstk__sylocid_dfltavailind__c from rstk__sylocid__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="FromLocID"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_FromLoc_Icitemproj_flags</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="671" title="Read Location ID Flags-To Location">
+                      <tags/>
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select ID,name,rstk__sylocid_loctype_pl__c,rstk__sylocid_inspection__c,rstk__sylocid_vendlocind__c,rstk__sylocid_dfltavailind__c from rstk__sylocid__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ToLocID"/>
+                              </variable>
+                              <value valueClass="string">%'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_Icitemproj_flags</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="636bead0-9c25-4aba-9f3c-f866bb4fde03" testCasePath="tests/Inventory Transaction/Callable/Division to Division transfer.testcase" testItemId="2">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="ip_Site">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="Site"/>
+                  </value>
+                </argument>
+                <argument id="ip_ItemName">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ItemName"/>
+                  </value>
+                </argument>
+                <argument id="ip_locationID">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="FromLocID"/>
+                  </value>
+                </argument>
+                <argument id="ip_locationNo">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="FromLocationNumber"/>
+                  </value>
+                </argument>
+                <argument id="ip_lotNumber">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="FromLotNo"/>
+                  </value>
+                </argument>
+                <argument id="ip_project">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="FromProject"/>
+                  </value>
+                </argument>
+                <argument id="ip_ToDivision">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ToDivision"/>
+                  </value>
+                </argument>
+                <argument id="ip_ToSite">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ToSite"/>
+                  </value>
+                </argument>
+                <argument id="ip_ToProject">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ToProject"/>
+                  </value>
+                </argument>
+                <argument id="ip_MoveOption">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="MoveOption"/>
+                  </value>
+                </argument>
+                <argument id="ip_ToLocId">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ToLocID"/>
+                  </value>
+                </argument>
+                <argument id="ip_ToLocNum">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="ToLocNo"/>
+                  </value>
+                </argument>
+                <argument id="ip_Quantity">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="QuantityToTransfer"/>
+                  </value>
+                </argument>
+                <argument id="ip_TxnComment">
+                  <value class="variable">
+                    <path element="op_ExcelDataRow"/>
+                    <path element="TxnComment"/>
+                  </value>
+                </argument>
+                <argument id="ip_IsSerial">
+                  <value class="value" valueClass="string">true</value>
+                </argument>
+                <argument id="ip_SerialNum"/>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="op_SerialCount">
+                  <name class="value" valueClass="string">op_SerialCount</name>
+                </outputArgument>
+                <outputArgument id="op_SelectedSerialNumbers">
+                  <name class="value" valueClass="string">op_SelectedSerialNumbers</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="903" title="After qty To division">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select name,id,rstk__rollsumm_totalqty__c,rstk__icitem_div__r.name from rstk__icitem__c where name like '</value>
+                      <variable>
+                        <path element="op_ExcelDataRow"/>
+                        <path element="ItemName"/>
+                      </variable>
+                      <value valueClass="string">%' and rstk__icitem_div__c='</value>
+                      <variable>
+                        <path element="op_ToDivRecID"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">op_AfterQtyToDiv</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="904" title="Assert: {op_BeforeQtyToDiv.rstk__rollsumm_totalqty__c + op_ExcelDataRow.QuantityToTransfer} EqualTo {op_AfterQtyToDiv.rstk__rollsumm_totalqty__c}">
+              <arguments>
+                <argument id="expectedValue">
+                  <value class="add">
+                    <lhs class="variable">
+                      <path element="op_BeforeQtyToDiv"/>
+                      <path element="rstk__rollsumm_totalqty__c"/>
+                    </lhs>
+                    <rhs class="variable">
+                      <path element="op_ExcelDataRow"/>
+                      <path element="QuantityToTransfer"/>
+                    </rhs>
+                  </value>
+                </argument>
+                <argument id="actualValue">
+                  <value class="variable">
+                    <path element="op_AfterQtyToDiv"/>
+                    <path element="rstk__rollsumm_totalqty__c"/>
+                  </value>
+                </argument>
+                <argument id="comparisonType">
+                  <value class="value" valueClass="string">EqualTo</value>
+                </argument>
+                <argument id="caseSensitive">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="numeric">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="retainDecimals">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="nullGreater">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchMultiLine">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="matchDotAll">
+                  <value class="value" valueClass="boolean">false</value>
+                </argument>
+                <argument id="failureMessage"/>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="672" title="Verify Inventory by Location records">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Verify Inventory by Location records</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="394">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="502" title="Fetch Inventory by Location Records after update- Non Serial Track Item">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">Select Id,\nName,\nrstk__iclocitem_site__c,\nrstk__iclocitem_icitem__c,\nrstk__iclocitem_proj__c,\nrstk__iclocitem_locqty__c,\nrstk__iclocitem_loctype_pl__c,\nrstk__iclocitem_locid__c,\nrstk__iclocitem_locid__r.name,\nrstk__iclocitem_locnum__c,\nrstk__iclocitem_locsec__c\nfrom rstk__iclocitem__c where name like '</value>
+                              <variable>
+                                <path element="op_ExcelDataRow"/>
+                                <path element="ItemName"/>
+                              </variable>
+                              <value valueClass="string">%' and LastModifiedDate &gt;=yesterday order by LastModifiedDate desc Limit 2</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">op_ICLOCITEMResult</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="361" title="For Each: {op_ICLOCITEMResult}=&gt;op_ICLOCITEMRecord">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="op_ICLOCITEMResult"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">op_ICLOCITEMRecord</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="362">
+                          <steps>
+                            <apiCall apiId="customapis.StringContains" name="StringContains" testItemId="370" title="String Contains: ⇒ op_StringContainsResult">
+                              <arguments>
+                                <argument id="param1">
+                                  <value class="variable">
+                                    <path element="op_ICLOCITEMRecord"/>
+                                    <path element="Name"/>
+                                  </value>
+                                </argument>
+                                <argument id="param2">
+                                  <value class="variable">
+                                    <path element="op_ExcelDataRow"/>
+                                    <path element="FromLocID"/>
+                                  </value>
+                                </argument>
+                                <argument id="resultName">
+                                  <value class="value" valueClass="string">op_StringContainsResult</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="363" title="If: {op_StringContainsResult = true}">
+                              <arguments>
+                                <argument id="condition">
+                                  <value class="eq">
+                                    <lhs class="variable">
+                                      <path element="op_StringContainsResult"/>
+                                    </lhs>
+                                    <rhs class="value" valueClass="boolean">true</rhs>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="then" testItemId="364">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="810" title="If: {op_ICLOCITEMRecord.rstk__iclocitem_locnum__c = op_ExcelDataRow.ToLocNo}">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="eq">
+                                            <lhs class="variable">
+                                              <path element="op_ICLOCITEMRecord"/>
+                                              <path element="rstk__iclocitem_locnum__c"/>
+                                            </lhs>
+                                            <rhs class="variable">
+                                              <path element="op_ExcelDataRow"/>
+                                              <path element="ToLocNo"/>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="then" testItemId="811">
+                                          <steps>
+                                            <caseCall testCaseId="60ae13e1-bdeb-47ff-b5de-a70264ee96e0" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by Location-ICLOCITEM.testcase" testItemId="854">
+                                              <tags/>
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SFConnection</value>
+                                                </argument>
+                                                <argument id="recId">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="Id"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipSite">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_site__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipItemNumber">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_icitem__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipProject">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_proj__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipQty">
+                                                  <value class="add">
+                                                    <lhs class="variable">
+                                                      <path element="op_BeforeTransaction_ToLocation"/>
+                                                      <path element="rstk__iclocitem_locqty__c"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_ExcelDataRow"/>
+                                                      <path element="QuantityToTransfer"/>
+                                                    </rhs>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLocID">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locid__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLocNumber">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locnum__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLotSerial">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locsec__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_Division">
+                                                  <value class="variable">
+                                                    <path element="op_ToDivRecID"/>
+                                                    <path element="Id"/>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                              <outputArguments>
+                                                <outputArgument id="opToLocationType">
+                                                  <name class="value" valueClass="string">opToLocationType</name>
+                                                </outputArgument>
+                                              </outputArguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                        <clause name="else" testItemId="815">
+                                          <steps>
+                                            <caseCall testCaseId="60ae13e1-bdeb-47ff-b5de-a70264ee96e0" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by Location-ICLOCITEM.testcase" testItemId="855">
+                                              <tags/>
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SFConnection</value>
+                                                </argument>
+                                                <argument id="recId">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="Id"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipSite">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_site__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipItemNumber">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_icitem__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipProject">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_proj__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipQty">
+                                                  <value class="sub">
+                                                    <lhs class="variable">
+                                                      <path element="op_BeforeTransaction_FromLocation"/>
+                                                      <path element="rstk__iclocitem_locqty__c"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_ExcelDataRow"/>
+                                                      <path element="QuantityToTransfer"/>
+                                                    </rhs>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLocID">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locid__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLocNumber">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locnum__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLotSerial">
+                                                  <value class="variable">
+                                                    <path element="op_ICLOCITEMRecord"/>
+                                                    <path element="rstk__iclocitem_locsec__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ip_Division">
+                                                  <value class="variable">
+                                                    <path element="op_BeforeTransaction_FromLocation"/>
+                                                    <path element="rstk__iclocitem_div__c"/>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                              <outputArguments>
+                                                <outputArgument id="opToLocationType">
+                                                  <name class="value" valueClass="string">opToLocationType</name>
+                                                </outputArgument>
+                                              </outputArguments>
+                                            </caseCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="817" title="Set Values: op_ToLocationType">
+                                              <arguments>
+                                                <argument id="values">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <namedValues mutable="Mutable">
+                                                      <namedValue name="valuePath">
+                                                        <value class="value" valueClass="string">op_ToLocationType</value>
+                                                      </namedValue>
+                                                      <namedValue name="value">
+                                                        <value class="variable">
+                                                          <path element="op_ToLocationType"/>
+                                                        </value>
+                                                      </namedValue>
+                                                      <namedValue name="valueScope">
+                                                        <value class="value" valueClass="string">Test</value>
+                                                      </namedValue>
+                                                    </namedValues>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                                <clause name="else" testItemId="366">
+                                  <steps>
+                                    <caseCall testCaseId="60ae13e1-bdeb-47ff-b5de-a70264ee96e0" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by Location-ICLOCITEM.testcase" testItemId="849">
+                                      <tags/>
+                                      <arguments>
+                                        <argument id="reuseConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="recId">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="Id"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipSite">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_site__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipItemNumber">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_icitem__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipProject">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_proj__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipQty">
+                                          <value class="add">
+                                            <lhs class="variable">
+                                              <path element="op_BeforeTransaction_ToLocation"/>
+                                              <path element="rstk__iclocitem_locqty__c"/>
+                                            </lhs>
+                                            <rhs class="variable">
+                                              <path element="op_ExcelDataRow"/>
+                                              <path element="QuantityToTransfer"/>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipLocID">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_locid__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipLocNumber">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_locnum__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ipLotSerial">
+                                          <value class="variable">
+                                            <path element="op_ICLOCITEMRecord"/>
+                                            <path element="rstk__iclocitem_locsec__c"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="ip_Division">
+                                          <value class="variable">
+                                            <path element="op_ToDivRecID"/>
+                                            <path element="Id"/>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <outputArguments>
+                                        <outputArgument id="opToLocationType">
+                                          <name class="value" valueClass="string">opToLocationType</name>
+                                        </outputArgument>
+                                      </outputArguments>
+                                    </caseCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="859" title="Set Values: op_ToLocationType">
+                                      <arguments>
+                                        <argument id="values">
+                                          <value class="valueList" mutable="Mutable">
+                                            <namedValues mutable="Mutable">
+                                              <namedValue name="valuePath">
+                                                <value class="value" valueClass="string">op_ToLocationType</value>
+                                              </namedValue>
+                                              <namedValue name="value">
+                                                <value class="variable">
+                                                  <path element="op_ToLocationType"/>
+                                                </value>
+                                              </namedValue>
+                                              <namedValue name="valueScope">
+                                                <value class="value" valueClass="string">Test</value>
+                                              </namedValue>
+                                            </namedValues>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                  <tags/>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="673" title="Verify Inventory By Lot">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Verify Inventory By Lot</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="410">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="411" title="Is LOT track item?">
+                      <arguments>
+                        <argument id="condition">
+                          <value class="eq">
+                            <lhs class="variable">
+                              <path element="op_lotstatus"/>
+                              <path element="rstk__peitem_tracklot_pl__c"/>
+                            </lhs>
+                            <rhs class="value" valueClass="string">Yes</rhs>
+                          </value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="then" testItemId="412">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" isTitleUpdated="true" name="ApexSoqlQuery" testItemId="423" title="Read inventory by lot record after transaction">
+                              <arguments>
+                                <argument id="soqlQuery">
+                                  <value class="compound">
+                                    <parts>
+                                      <value valueClass="string">select ID,\nrstk__icitemlot_item__r.name,\nrstk__icitemlot_lotno__c,\nrstk__icitemlot_qtycons__c,\nrstk__icitemlot_qtyoh__c,\nrstk__icitemlot_qtyohnn__c\t\nfrom rstk__icitemlot__c where rstk__icitemlot_lotno__c='</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="FromLotNo"/>
+                                      </variable>
+                                      <value valueClass="string">' and rstk__icitemlot_item__r.name like '</value>
+                                      <variable>
+                                        <path element="op_ExcelDataRow"/>
+                                        <path element="ItemName"/>
+                                      </variable>
+                                      <value valueClass="string">%'\t</value>
+                                    </parts>
+                                  </value>
+                                </argument>
+                                <argument id="apexConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="resultListName">
+                                  <value class="value" valueClass="string">op_AfterTransaction_icitemlot</value>
+                                </argument>
+                                <argument id="resultScope">
+                                  <value class="value" valueClass="string">Test</value>
+                                </argument>
+                              </arguments>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="888" title="For Each: {op_AfterTransaction_icitemlot}=&gt;op_AfterTransaction_icitemlot_record">
+                              <arguments>
+                                <argument id="list">
+                                  <value class="variable">
+                                    <path element="op_AfterTransaction_icitemlot"/>
+                                  </value>
+                                </argument>
+                                <argument id="fromItem">
+                                  <value class="value" valueClass="decimal">1</value>
+                                </argument>
+                                <argument id="valueName">
+                                  <value class="value" valueClass="string">op_AfterTransaction_icitemlot_record</value>
+                                </argument>
+                                <argument id="continueOnFailure">
+                                  <value class="value" valueClass="boolean">true</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="substeps" testItemId="889">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="427" title="OH to NN">
+                                      <arguments>
+                                        <argument id="condition">
+                                          <value class="and">
+                                            <lhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="op_BeforeTransaction_FromLocation"/>
+                                                <path element="rstk__iclocitem_loctype_pl__c"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">On Hand</rhs>
+                                            </lhs>
+                                            <rhs class="eq">
+                                              <lhs class="variable">
+                                                <path element="op_ToLocationType"/>
+                                              </lhs>
+                                              <rhs class="value" valueClass="string">Non-nettable</rhs>
+                                            </rhs>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="then" testItemId="428">
+                                          <steps>
+                                            <caseCall testCaseId="9cba11c3-d644-4dfc-ba57-5c9370175e84" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by LOT-ICITEMLOT.testcase" testItemId="674">
+                                              <arguments>
+                                                <argument id="reuseConnectionName">
+                                                  <value class="value" valueClass="string">SFConnection</value>
+                                                </argument>
+                                                <argument id="ipRecID">
+                                                  <value class="variable">
+                                                    <path element="op_AfterTransaction_icitemlot_record"/>
+                                                    <path element="ID"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipItemNumber">
+                                                  <value class="variable">
+                                                    <path element="op_BeforeTransaction_icitemlot"/>
+                                                    <path element="rstk__icitemlot_item__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipLotNumber">
+                                                  <value class="variable">
+                                                    <path element="op_ExcelDataRow"/>
+                                                    <path element="FromLotNo"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipQtyConsigned">
+                                                  <value class="variable">
+                                                    <path element="op_BeforeTransaction_icitemlot"/>
+                                                    <path element="rstk__icitemlot_qtycons__c"/>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipQtyOnHand">
+                                                  <value class="sub">
+                                                    <lhs class="variable">
+                                                      <path element="op_BeforeTransaction_icitemlot"/>
+                                                      <path element="rstk__icitemlot_qtyoh__c"/>
+                                                    </lhs>
+                                                    <rhs class="variable">
+                                                      <path element="op_ExcelDataRow"/>
+                                                      <path element="QuantityToTransfer"/>
+                                                    </rhs>
+                                                  </value>
+                                                </argument>
+                                                <argument id="ipQtyNonNettable">
+                                                  <value class="compound">
+                                                    <parts>
+                                                      <add>
+                                                        <lhs class="variable">
+                                                          <path element="op_BeforeTransaction_icitemlot"/>
+                                                          <path element="rstk__icitemlot_qtyohnn__c"/>
+                                                        </lhs>
+                                                        <rhs class="variable">
+                                                          <path element="op_ExcelDataRow"/>
+                                                          <path element="QuantityToTransfer"/>
+                                                        </rhs>
+                                                      </add>
+                                                      <value valueClass="string">\n</value>
+                                                    </parts>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                            </caseCall>
+                                          </steps>
+                                        </clause>
+                                        <clause name="else" testItemId="430">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.If" isTitleUpdated="true" name="If" testItemId="870" title="NN to OH">
+                                              <arguments>
+                                                <argument id="condition">
+                                                  <value class="and">
+                                                    <lhs class="eq">
+                                                      <lhs class="variable">
+                                                        <path element="op_BeforeTransaction_FromLocation"/>
+                                                        <path element="rstk__iclocitem_loctype_pl__c"/>
+                                                      </lhs>
+                                                      <rhs class="value" valueClass="string">Non-nettable</rhs>
+                                                    </lhs>
+                                                    <rhs class="eq">
+                                                      <lhs class="variable">
+                                                        <path element="op_ToLocationType"/>
+                                                      </lhs>
+                                                      <rhs class="value" valueClass="string">On Hand</rhs>
+                                                    </rhs>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                              <clauses>
+                                                <clause name="then" testItemId="871">
+                                                  <steps>
+                                                    <caseCall testCaseId="9cba11c3-d644-4dfc-ba57-5c9370175e84" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by LOT-ICITEMLOT.testcase" testItemId="872">
+                                                      <arguments>
+                                                        <argument id="reuseConnectionName">
+                                                          <value class="value" valueClass="string">SFConnection</value>
+                                                        </argument>
+                                                        <argument id="ipRecID">
+                                                          <value class="variable">
+                                                            <path element="op_AfterTransaction_icitemlot_record"/>
+                                                            <path element="ID"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipItemNumber">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_item__c"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipLotNumber">
+                                                          <value class="variable">
+                                                            <path element="op_ExcelDataRow"/>
+                                                            <path element="FromLotNo"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyConsigned">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_qtycons__c"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyOnHand">
+                                                          <value class="add">
+                                                            <lhs class="variable">
+                                                              <path element="op_BeforeTransaction_icitemlot"/>
+                                                              <path element="rstk__icitemlot_qtyoh__c"/>
+                                                            </lhs>
+                                                            <rhs class="variable">
+                                                              <path element="op_ExcelDataRow"/>
+                                                              <path element="QuantityToTransfer"/>
+                                                            </rhs>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyNonNettable">
+                                                          <value class="sub">
+                                                            <lhs class="variable">
+                                                              <path element="op_BeforeTransaction_icitemlot"/>
+                                                              <path element="rstk__icitemlot_qtyohnn__c"/>
+                                                            </lhs>
+                                                            <rhs class="variable">
+                                                              <path element="op_ExcelDataRow"/>
+                                                              <path element="QuantityToTransfer"/>
+                                                            </rhs>
+                                                          </value>
+                                                        </argument>
+                                                      </arguments>
+                                                    </caseCall>
+                                                  </steps>
+                                                </clause>
+                                                <clause name="else" testItemId="873">
+                                                  <steps>
+                                                    <caseCall testCaseId="9cba11c3-d644-4dfc-ba57-5c9370175e84" testCasePath="tests/Inventory Management/Callable/SOQL-Inventory by LOT-ICITEMLOT.testcase" testItemId="887">
+                                                      <arguments>
+                                                        <argument id="reuseConnectionName">
+                                                          <value class="value" valueClass="string">SFConnection</value>
+                                                        </argument>
+                                                        <argument id="ipRecID">
+                                                          <value class="variable">
+                                                            <path element="op_AfterTransaction_icitemlot_record"/>
+                                                            <path element="ID"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipItemNumber">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_item__c"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipLotNumber">
+                                                          <value class="variable">
+                                                            <path element="op_ExcelDataRow"/>
+                                                            <path element="FromLotNo"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyConsigned">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_qtycons__c"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyOnHand">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_qtyoh__c"/>
+                                                          </value>
+                                                        </argument>
+                                                        <argument id="ipQtyNonNettable">
+                                                          <value class="variable">
+                                                            <path element="op_BeforeTransaction_icitemlot"/>
+                                                            <path element="rstk__icitemlot_qtyohnn__c"/>
+                                                          </value>
+                                                        </argument>
+                                                      </arguments>
+                                                    </caseCall>
+                                                  </steps>
+                                                </clause>
+                                              </clauses>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <parameterValueSources/>
+</testCase>

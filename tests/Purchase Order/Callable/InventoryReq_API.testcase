@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="1" registryId="79a4ff8b-3b7a-4945-a6b5-d8a952661a8d" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Rootstock_Financials</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="15" title="SOQL Query: SELECT Id,Name FROM rstk__icitem__c where Name = '{reqtestdata.Item}'=&gt;icitem">
+      <tags/>
+      <arguments>
+        <argument argId="fb44ef2b-0676-46e8-b17c-97e564e7ba9b" id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">SELECT Id,Name FROM rstk__icitem__c where Name = '</value>
+              <variable>
+                <path element="reqtestdata"/>
+                <path element="Item"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">icitem</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="16" title="Set Values: icitemid">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">icitemid</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="icitem"/>
+                  <path element="Id"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="2" title="Create Object: rstk__icreq__c=&gt;icreqId">
+      <tags/>
+      <arguments>
+        <argument argId="b6de45d8-4573-47f0-8789-e6ef0b7f1549" id="objectType">
+          <value class="value" valueClass="string">rstk__icreq__c</value>
+        </argument>
+        <argument argId="32b32373-8943-4bbc-b405-073084e49ac5" id="resultIdName">
+          <value class="value" valueClass="string">icreqId</value>
+        </argument>
+        <argument argId="799ba6a3-4f25-4365-b27a-f4e3520384dd" id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument argId="c979cd4b-bbf5-4cb4-bc8e-0e0e82a573b3" id="assignmentRuleId"/>
+        <argument argId="063bfe1f-15cc-430a-a9c2-817ca450b3e5" id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument argId="de4a111d-a4c9-4629-ab08-80e18d44dedb" id="rstk__icreq_item__c">
+          <value class="variable">
+            <path element="icitemid"/>
+          </value>
+        </argument>
+        <argument argId="0f1be698-e1fe-4599-b6d8-e98e0747ad0a" id="rstk__icreq_proj__c">
+          <value class="variable">
+            <path element="projid"/>
+          </value>
+        </argument>
+        <argument id="rstk__icreq_qtyreq__c">
+          <value class="variable">
+            <path element="reqtestdata"/>
+            <path element="Quantity"/>
+          </value>
+        </argument>
+        <argument argId="70d4b59c-0d8d-490d-8b31-54cd430f71a1" id="rstk__icreq_div__c">
+          <value class="variable">
+            <path element="DivID"/>
+          </value>
+        </argument>
+        <argument id="rstk__icreq_duedte__c">
+          <value class="funcCall" id="DateFormat">
+            <argument id="date">
+              <value class="funcCall" id="DateAdd">
+                <argument id="date">
+                  <value class="variable">
+                    <path element="TODAY"/>
+                  </value>
+                </argument>
+              </value>
+            </argument>
+            <argument id="outputFormat">
+              <value class="value" valueClass="string">yyyy-MM-dd</value>
+            </argument>
+          </value>
+        </argument>
+        <argument id="rstk__icreq_ordno__c">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">NPAuto_</value>
+              <funcCall id="UniqueId">
+                <argument id="length">
+                  <value class="value" valueClass="decimal">3</value>
+                </argument>
+              </funcCall>
+              <value valueClass="string">1</value>
+            </parts>
+          </value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__icreq__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_item__c" name="rstk__icreq_item__c" title="rstk__icreq_item__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_proj__c" name="rstk__icreq_proj__c" title="rstk__icreq_proj__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_qtyreq__c" name="rstk__icreq_qtyreq__c" title="rstk__icreq_qtyreq__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_div__c" name="rstk__icreq_div__c" title="rstk__icreq_div__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_duedte__c" name="rstk__icreq_duedte__c" title="rstk__icreq_duedte__c"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_ordno__c" name="rstk__icreq_ordno__c" title="rstk__icreq_ordno__c"/>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="5" title="Create Object: rstk__poloader__c=&gt;icreq_po">
+      <tags/>
+      <arguments>
+        <argument id="objectType">
+          <value class="value" valueClass="string">rstk__poloader__c</value>
+        </argument>
+        <argument id="resultIdName">
+          <value class="value" valueClass="string">icreq_po</value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="assignmentRuleId"/>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="Name">
+          <value class="value" valueClass="string">NPAutoTest</value>
+        </argument>
+        <argument id="rstk__poloader_div__c">
+          <value class="variable">
+            <path element="DivID"/>
+          </value>
+        </argument>
+        <argument id="rstk__poloader_process__c">
+          <value class="value" valueClass="string">Ready</value>
+        </argument>
+        <argument id="rstk__poloader_mode__c">
+          <value class="value" valueClass="string">Add Both</value>
+        </argument>
+        <argument id="rstk__poloader_icreq__c">
+          <value class="variable">
+            <path element="icreqId"/>
+          </value>
+        </argument>
+        <argument id="rstk__poloader_useicreq__c">
+          <value class="value" valueClass="string">True</value>
+        </argument>
+      </arguments>
+      <parameterGeneratorProperties>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+        <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__poloader__c</propertyValue>
+      </parameterGeneratorProperties>
+      <generatedParameters>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=Name" name="Name" title="Name"/>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_div__c" name="rstk__poloader_div__c" title="rstk__poloader_div__c">
+          <summary>Not Applicable</summary>
+        </apiParam>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_process__c" name="rstk__poloader_process__c" title="rstk__poloader_process__c">
+          <summary>This is an indicator for the status of the Load  process.</summary>
+        </apiParam>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_mode__c" name="rstk__poloader_mode__c" title="rstk__poloader_mode__c">
+          <summary>Mode/function for this transaction.  Options are\n\nAdd Header\nAdd Line\nAdd Both\nChange Header\nChange Line\nChange Both\nClose Line Short\nSubmit to Vendor</summary>
+        </apiParam>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_icreq__c" name="rstk__poloader_icreq__c" title="rstk__poloader_icreq__c">
+          <summary>Valid Inventory Requisition that is the source (basis) for the given PO Line.</summary>
+        </apiParam>
+        <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__poloader__c&amp;field=rstk__poloader_useicreq__c" name="rstk__poloader_useicreq__c" title="rstk__poloader_useicreq__c">
+          <summary>When checked, PO Line detail will be derived from the source requisition referenced in the 'Inventory Requisition' field.</summary>
+        </apiParam>
+      </generatedParameters>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="10" title="SOQL Query: select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c from rstk__poloader__c where id = '{icreq_po}'=&gt;poloaderhdrapi">
+      <tags/>
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,Name,rstk__poloader_pohdr__c,rstk__poloader_process__c from rstk__poloader__c where id = '</value>
+              <variable>
+                <path element="icreq_po"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">poloaderhdrapi</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="7" title="Set Values: POHDRID">
+      <tags/>
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">POHDRID</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="poloaderhdrapi"/>
+                  <path element="rstk__poloader_pohdr__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="19" title="SOQL Query: select Id,rstk__pohdr_ordsts__c,rstk__pohdr_totamt__c,rstk__pohdr_ordno__c,CreatedDate from rstk__pohdr__c where Id ='{POHDRID}'=&gt;pohdr">
+      <arguments>
+        <argument id="soqlQuery">
+          <value class="compound">
+            <parts>
+              <value valueClass="string">select Id,rstk__pohdr_ordsts__c,rstk__pohdr_totamt__c,rstk__pohdr_ordno__c,CreatedDate from rstk__pohdr__c where Id ='</value>
+              <variable>
+                <path element="POHDRID"/>
+              </variable>
+              <value valueClass="string">'</value>
+            </parts>
+          </value>
+        </argument>
+        <argument id="apexConnectionName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultListName">
+          <value class="value" valueClass="string">pohdr</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="21" title="Set Values: POOrderNum">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">POOrderNum</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="pohdr"/>
+                  <path element="rstk__pohdr_ordno__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="20" title="Set Values: POTotal">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">POTotal</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="pohdr"/>
+                  <path element="rstk__pohdr_totamt__c"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+  </steps>
+  <params>
+    <param modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_item__c" name="reqtestdata" title="reqtestdata">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:70d4b59c-0d8d-490d-8b31-54cd430f71a1" name="DivID" title="DivID">
+      <summary/>
+      <type/>
+    </param>
+    <param linkedToUrl="provar:hasvalue:0f1be698-e1fe-4599-b6d8-e98e0747ad0a" modelBinding="sf:ui:binding:object?object=rstk__icreq__c&amp;field=rstk__icreq_proj__c" name="projid" title="projid">
+      <summary/>
+    </param>
+  </params>
+  <outputParams>
+    <param name="POHDRID" title="POHDRID">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POHDRID"/>
+      </sourceValue>
+    </param>
+    <param name="POTotal" title="POTotal">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POTotal"/>
+      </sourceValue>
+    </param>
+    <param name="POOrderNum" title="POOrderNum">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="POOrderNum"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="reqtestdata">
+      <value class="value" valueClass="string">Test</value>
+    </argument>
+    <argument id="DivID">
+      <value class="variable">
+        <path element="DivisionID"/>
+      </value>
+    </argument>
+    <argument id="projid">
+      <value class="value" valueClass="string">a3A5f000000xGXA</value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="POHDRID">
+      <name class="value" valueClass="string">POHDRID</name>
+    </outputArgument>
+    <outputArgument id="POTotal">
+      <name class="value" valueClass="string">POTotal</name>
+    </outputArgument>
+    <outputArgument id="POOrderNum">
+      <name class="value" valueClass="string">POOrderNum</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

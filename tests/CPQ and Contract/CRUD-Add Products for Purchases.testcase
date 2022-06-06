@@ -1,0 +1,969 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="67">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">rstk__Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Reopen</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="817" title="Read excel data based on selected environment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read excel data based on selected environment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="590">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.Switch" name="Switch" testItemId="591" title="Switch: {GetSelectedEnvironment()}">
+              <arguments>
+                <argument id="value">
+                  <value class="funcCall" id="GetSelectedEnvironment"/>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="case" testItemId="595">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchCase" name="SwitchCase" testItemId="596" title="Case: AutomationOrg">
+                      <arguments>
+                        <argument id="value">
+                          <value class="value" valueClass="string">AutomationOrg</value>
+                        </argument>
+                        <argument id="caseSensitive">
+                          <value class="value" valueClass="string">No</value>
+                        </argument>
+                        <argument id="alreadyMatched"/>
+                        <argument id="switchValue"/>
+                      </arguments>
+                      <clauses>
+                        <clause name="steps" testItemId="597">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="598" title="Read Exel Data">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Read Exel Data</value>
+                                </argument>
+                              </arguments>
+                              <parameterValueSources>
+                                <parameterValueSource variableName="op_SOCONTRACT" variableScope="Test">
+                                  <cacheToken>D:/provar/rsqasampleproj/rsqasampleproj/templates/AutomationOrg/Contract Miscellaneous Charges.xlsx;1643775916882</cacheToken>
+                                  <cachedParameters>
+                                    <apiParam name="RowNumber"/>
+                                    <apiParam name="ContractID"/>
+                                    <apiParam name="Description"/>
+                                    <apiParam name="ContractCustomer"/>
+                                    <apiParam name="MasterServicesAgreement"/>
+                                    <apiParam name="ContractTermsTemplate"/>
+                                    <apiParam name="ContractType"/>
+                                    <apiParam name="ContractTerm"/>
+                                    <apiParam name="RecurringBillingStartDate"/>
+                                    <apiParam name="FirstFullRBPeriodStartDate"/>
+                                    <apiParam name="ContractTermUOMBillingFrequency"/>
+                                    <apiParam name="SalesDivision"/>
+                                  </cachedParameters>
+                                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                    <workbookPath class="value" valueClass="string">templates/AutomationOrg/Products for Purchases.xlsx</workbookPath>
+                                    <worksheetName class="value" valueClass="string">Create</worksheetName>
+                                    <valuesRange class="value" valueClass="string">A:K</valuesRange>
+                                  </sourceValue>
+                                </parameterValueSource>
+                              </parameterValueSources>
+                              <clauses>
+                                <clause name="hidden" testItemId="599">
+                                  <steps/>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="816" title="Break"/>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+                <clause name="default" testItemId="600">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchDefault" name="SwitchDefault" testItemId="601" title="Default">
+                      <clauses>
+                        <clause name="steps" testItemId="602">
+                          <steps/>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="818" title="For Each: {op_SOCONTRACT}=&gt;op_soContractRow">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="op_SOCONTRACT"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">op_soContractRow</value>
+        </argument>
+        <argument id="continueOnFailure">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="819">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="838" title="If: {op_soContractRow.ContractID = null}">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="op_soContractRow"/>
+                      <path element="ContractID"/>
+                    </lhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="839">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="840" title="Set Values: op_soContractRow.ContractID">
+                      <arguments>
+                        <argument id="values">
+                          <value class="valueList" mutable="Mutable">
+                            <namedValues mutable="Mutable">
+                              <namedValue name="valuePath">
+                                <value class="value" valueClass="string">op_soContractRow.ContractID</value>
+                              </namedValue>
+                              <namedValue name="value">
+                                <value class="compound">
+                                  <parts>
+                                    <value valueClass="string">Pro-Contract</value>
+                                    <funcCall id="UniqueId">
+                                      <argument id="length">
+                                        <value class="value" valueClass="decimal">4</value>
+                                      </argument>
+                                    </funcCall>
+                                  </parts>
+                                </value>
+                              </namedValue>
+                              <namedValue name="valueScope">
+                                <value class="value" valueClass="string">Test</value>
+                              </namedValue>
+                            </namedValues>
+                          </value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="821" title="Create Object: rstk__socontract__c=&gt;op_socontractID">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__socontract__c</value>
+                </argument>
+                <argument id="resultIdName">
+                  <value class="value" valueClass="string">op_socontractID</value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="assignmentRuleId"/>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="rstk__socontract_contractid__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractID"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_desc__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="Description"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_socust__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractCustomer"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_socustmsa__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="MasterServicesAgreement"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_soctt__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractTermsTemplate"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_type__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractType"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_term__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractTerm"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_rcbstart__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="RecurringBillingStartDate"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_rcbfirstfull__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="FirstFullRBPeriodStartDate"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_rcbfreq__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="ContractTermUOMBillingFrequency"/>
+                  </value>
+                </argument>
+                <argument id="rstk__socontract_div__c">
+                  <value class="variable">
+                    <path element="op_soContractRow"/>
+                    <path element="SalesDivision"/>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__socontract__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_contractid__c" name="rstk__socontract_contractid__c" title="rstk__socontract_contractid__c">
+                  <summary>When checked , the Contract will be automatically assigned upon Save.  When unchecked, can be a user-defined  alpha-numeric unique identifier up to 30 characters in length.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_desc__c" name="rstk__socontract_desc__c" title="rstk__socontract_desc__c">
+                  <summary>Optional user-defined description up to 50 characters in length.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_socust__c" name="rstk__socontract_socust__c" title="rstk__socontract_socust__c">
+                  <summary>The Customer for which this Contract applies.  Must be a valid active Rootstock Customer.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_socustmsa__c" name="rstk__socontract_socustmsa__c" title="rstk__socontract_socustmsa__c">
+                  <summary>If Contract is to be tied to a Master Services Agreement, select any applicable Customer MSA for the Contract Customer from dropdown.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_soctt__c" name="rstk__socontract_soctt__c" title="rstk__socontract_soctt__c">
+                  <summary>If Contract Terms are to be associated with a given Contract, set to an active Contract Terms Template from dropdown. When a Contract Terms Template is selected, Contract Term Clauses are added to the Contract from Contract Terms Template selected.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_type__c" name="rstk__socontract_type__c" title="rstk__socontract_type__c">
+                  <summary>Can be used to define different types of contracts that may be used, &amp; is used to select which Contract Types desired to bill in a billing run. Current picklist values are ‘Purchase’, ‘Flexi’, ‘Value Plan’ &amp; ‘Lease’.  See page help for more detail.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_term__c" name="rstk__socontract_term__c" title="rstk__socontract_term__c">
+                  <summary>The number of "periods" in months that this Contract is in force. The default is 0, but this field must be set to a value &gt; 0 in order to save the record.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_rcbstart__c" name="rstk__socontract_rcbstart__c" title="rstk__socontract_rcbstart__c">
+                  <summary>The date on which billing commences.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_rcbfirstfull__c" name="rstk__socontract_rcbfirstfull__c" title="rstk__socontract_rcbfirstfull__c">
+                  <summary>The Start Date of the first "full period" billed.  For example, a Recurring Billing may be monthly, yet the first Billing was for a partial month.  This reflects the first full-month Billing.</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_rcbfreq__c" name="rstk__socontract_rcbfreq__c" title="rstk__socontract_rcbfreq__c">
+                  <summary>This defines the frequency for which billing activity will occur.  Valid values are \n\nMonthly\nQuarterly\nSemi-Annual\nAnnual\n\nThe default is 'Monthly'</summary>
+                </apiParam>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__socontract__c&amp;field=rstk__socontract_div__c" name="rstk__socontract_div__c" title="rstk__socontract_div__c">
+                  <summary>The Sales Division associated with the Contract.</summary>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="842" title="Add Product for Purchase">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Add Product for Purchase</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="843">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="823" title="Read excel data based on selected environment">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read excel data based on selected environment</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="824">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.Switch" name="Switch" testItemId="825" title="Switch: {GetSelectedEnvironment()}">
+                              <arguments>
+                                <argument id="value">
+                                  <value class="funcCall" id="GetSelectedEnvironment"/>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="case" testItemId="826">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchCase" name="SwitchCase" testItemId="827" title="Case: AutomationOrg">
+                                      <arguments>
+                                        <argument id="value">
+                                          <value class="value" valueClass="string">AutomationOrg</value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="string">No</value>
+                                        </argument>
+                                        <argument id="alreadyMatched"/>
+                                        <argument id="switchValue"/>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="steps" testItemId="828">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="829" title="Read Exel Data-Products for Purchases">
+                                              <arguments>
+                                                <argument id="description">
+                                                  <value class="value" valueClass="string">Read Exel Data-Products for Purchases</value>
+                                                </argument>
+                                              </arguments>
+                                              <parameterValueSources>
+                                                <parameterValueSource variableName="op_soconpp" variableScope="Test">
+                                                  <cacheToken>D:\\provar\\rsqasampleproj\\rsqasampleproj\\templates\\AutomationOrg\\Products for Purchases.xlsx;1644353737365</cacheToken>
+                                                  <cachedParameters>
+                                                    <apiParam name="RowNumber"/>
+                                                    <apiParam name="Product"/>
+                                                    <apiParam name="CommitmentQuantity"/>
+                                                    <apiParam name="UnitPrice"/>
+                                                    <apiParam name="DiscountPct"/>
+                                                    <apiParam name="RevenueAccount"/>
+                                                    <apiParam name="ActivationGracePeriodDays"/>
+                                                    <apiParam name="AssociatedRecurringChargeProduct"/>
+                                                    <apiParam name="WarrantyType"/>
+                                                  </cachedParameters>
+                                                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                                    <workbookPath class="value" valueClass="string">templates/AutomationOrg/Products for Purchases.xlsx</workbookPath>
+                                                    <worksheetName class="value" valueClass="string">Create Product for Purchase</worksheetName>
+                                                    <valuesRange class="value" valueClass="string">A:H</valuesRange>
+                                                  </sourceValue>
+                                                </parameterValueSource>
+                                              </parameterValueSources>
+                                              <clauses>
+                                                <clause name="hidden" testItemId="830">
+                                                  <steps/>
+                                                </clause>
+                                              </clauses>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="831" title="Break"/>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                                <clause name="default" testItemId="832">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchDefault" name="SwitchDefault" testItemId="833" title="Default">
+                                      <clauses>
+                                        <clause name="steps" testItemId="834">
+                                          <steps/>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="835" title="Add new contract product for purchase">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="op_soconpp"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">op_soconppRow</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="836">
+                          <steps>
+                            <caseCall testCaseId="367e4aaf-036a-4a3c-bb8f-665544a7f37e" testCasePath="tests/CPQ and Contract/Callable/Add Contract Products for Purchases.testcase" testItemId="841">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="ip_recordID">
+                                  <value class="variable">
+                                    <path element="op_socontractID"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_Product">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="Product"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_commitmentQuantity">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="CommitmentQuantity"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_unitPrice">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="UnitPrice"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_discountPct">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="DiscountPct"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_revenueAccount">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="RevenueAccount"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_activationGracePeriod">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="ActivationGracePeriod"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_associatedRecurringChargeProduct">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="AssociatedRecurringChargeProduct"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_warrantyType">
+                                  <value class="variable">
+                                    <path element="op_soconppRow"/>
+                                    <path element="WarrantyType"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="859" title="Update Record and Delete Recordd">
+              <arguments>
+                <argument id="description">
+                  <value class="value" valueClass="string">Update Record and Delete Recordd</value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="hidden" testItemId="860">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="921" title="Read excel data based on selected environment">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read excel data based on selected environment</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="hidden" testItemId="922">
+                          <steps>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.Switch" name="Switch" testItemId="923" title="Switch: {GetSelectedEnvironment()}">
+                              <arguments>
+                                <argument id="value">
+                                  <value class="funcCall" id="GetSelectedEnvironment"/>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="case" testItemId="924">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchCase" name="SwitchCase" testItemId="925" title="Case: AutomationOrg">
+                                      <arguments>
+                                        <argument id="value">
+                                          <value class="value" valueClass="string">AutomationOrg</value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="string">No</value>
+                                        </argument>
+                                        <argument id="alreadyMatched"/>
+                                        <argument id="switchValue"/>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="steps" testItemId="926">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="927" title="Read Exel Data-Products for Purchases">
+                                              <arguments>
+                                                <argument id="description">
+                                                  <value class="value" valueClass="string">Read Exel Data-Products for Purchases</value>
+                                                </argument>
+                                              </arguments>
+                                              <parameterValueSources>
+                                                <parameterValueSource variableName="op_soconppUpdate" variableScope="Test">
+                                                  <cacheToken>D:\\provar\\rsqasampleproj\\rsqasampleproj\\templates\\AutomationOrg\\Products for Purchases.xlsx;1644353737365</cacheToken>
+                                                  <cachedParameters>
+                                                    <apiParam name="RowNumber"/>
+                                                    <apiParam name="Product"/>
+                                                    <apiParam name="CommitmentQuantity"/>
+                                                    <apiParam name="UnitPrice"/>
+                                                    <apiParam name="DiscountPct"/>
+                                                    <apiParam name="RevenueAccount"/>
+                                                    <apiParam name="ActivationGracePeriodDays"/>
+                                                    <apiParam name="AssociatedRecurringChargeProduct"/>
+                                                    <apiParam name="WarrantyType"/>
+                                                  </cachedParameters>
+                                                  <sourceValue class="excelTarget" debug="true" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                                                    <workbookPath class="value" valueClass="string">templates/AutomationOrg/Products for Purchases.xlsx</workbookPath>
+                                                    <worksheetName class="value" valueClass="string">Update</worksheetName>
+                                                    <valuesRange class="value" valueClass="string">A:H</valuesRange>
+                                                  </sourceValue>
+                                                </parameterValueSource>
+                                              </parameterValueSources>
+                                              <clauses>
+                                                <clause name="hidden" testItemId="928">
+                                                  <steps/>
+                                                </clause>
+                                              </clauses>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.bundled.apis.control.Break" name="Break" testItemId="929" title="Break"/>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                                <clause name="default" testItemId="930">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.SwitchDefault" name="SwitchDefault" testItemId="931" title="Default">
+                                      <clauses>
+                                        <clause name="steps" testItemId="932">
+                                          <steps/>
+                                        </clause>
+                                      </clauses>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" isTitleUpdated="true" name="ForEach" testItemId="933" title="Process Records">
+                      <arguments>
+                        <argument id="list">
+                          <value class="variable">
+                            <path element="op_soconppUpdate"/>
+                          </value>
+                        </argument>
+                        <argument id="fromItem">
+                          <value class="value" valueClass="decimal">1</value>
+                        </argument>
+                        <argument id="valueName">
+                          <value class="value" valueClass="string">op_soconppUpdateRow</value>
+                        </argument>
+                        <argument id="continueOnFailure">
+                          <value class="value" valueClass="boolean">true</value>
+                        </argument>
+                      </arguments>
+                      <clauses>
+                        <clause name="substeps" testItemId="934">
+                          <steps>
+                            <caseCall testCaseId="6479130d-8c8b-4dd5-8d22-df45cd0e6a8a" testCasePath="tests/CPQ and Contract/Callable/Update Product for Purchase.testcase" testItemId="935">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="ip_recordID">
+                                  <value class="variable">
+                                    <path element="op_socontractID"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_ProductName">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="Product"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_commitmentQuantity">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="CommitmentQuantity"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_unitPrice">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="UnitPrice"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_discountPct">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="DiscountPct"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_revenueAccount">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="RevenueAccount"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_activationGracePeriod">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="ActivationGracePeriodDays"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_associatedRecurringChargeProduct">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="AssociatedRecurringChargeProduct"/>
+                                  </value>
+                                </argument>
+                                <argument id="ip_warrantyType">
+                                  <value class="variable">
+                                    <path element="op_soconppUpdateRow"/>
+                                    <path element="WarrantyType"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                            <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="936" title="Delete Record">
+                              <arguments>
+                                <argument id="description">
+                                  <value class="value" valueClass="string">Delete Record</value>
+                                </argument>
+                              </arguments>
+                              <clauses>
+                                <clause name="hidden" testItemId="937">
+                                  <steps>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="938" title="SOQL Query: Select count() from rstk__soconpp__C where rstk__soconpp_socontract__c='{op_socontractID}'=&gt;op_soconppCountBefore">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">Select count() from rstk__soconpp__C where rstk__soconpp_socontract__c='</value>
+                                              <variable>
+                                                <path element="op_socontractID"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_soconppCountBefore</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="939" title="On SF Contract Master View screen">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="target">
+                                          <value class="uiTarget" uri="sf:ui:target?object=rstk__socontract__c&amp;action=View&amp;noOverride=true"/>
+                                        </argument>
+                                        <argument id="navigate">
+                                          <value class="value" valueClass="string">Always</value>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">On SF Contract Master View screen</value>
+                                        </argument>
+                                        <argument id="windowSelection">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="windowSize">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="closeWindow"/>
+                                        <argument id="captureBefore">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="sfUiTargetObjectId">
+                                          <value class="variable">
+                                            <path element="op_socontractID"/>
+                                          </value>
+                                        </argument>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="940">
+                                          <steps/>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                                          <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                                          <type>
+                                            <textType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="941" title="On Rstk__ Socontract View page">
+                                      <arguments>
+                                        <argument id="uiConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="target">
+                                          <value class="uiTarget" uri="ui:pageobject:target?pageId=pageobjects.rstk__SocontractView"/>
+                                        </argument>
+                                        <argument id="targetDescription">
+                                          <value class="value" valueClass="string">On Rstk__ Socontract View page</value>
+                                        </argument>
+                                        <argument id="navigate">
+                                          <value class="value" valueClass="string">IfNeccessary</value>
+                                        </argument>
+                                        <argument id="windowSelection">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="windowSize">
+                                          <value class="value" valueClass="string">Default</value>
+                                        </argument>
+                                        <argument id="closeWindow"/>
+                                        <argument id="captureBefore">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="captureAfter">
+                                          <value class="value" valueClass="string">false</value>
+                                        </argument>
+                                        <argument id="uiTargetUrl"/>
+                                      </arguments>
+                                      <clauses>
+                                        <clause name="substeps" testItemId="942">
+                                          <steps>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiDoAction" name="UiDoAction" testItemId="943" title="Call the clickOnDeleteProductForPurchase method">
+                                              <arguments>
+                                                <argument id="locator">
+                                                  <value class="uiLocator" uri="ui:pageobject:method?pageId=pageobjects.rstk__SocontractView&amp;operation=clickOnDeleteProductForPurchase"/>
+                                                </argument>
+                                                <argument id="interaction">
+                                                  <value class="uiInteraction" uri="ui:interaction?name=invoke"/>
+                                                </argument>
+                                                <argument id="interactionDescription">
+                                                  <value class="value" valueClass="string">Call the clickOnDeleteProductForPurchase method</value>
+                                                </argument>
+                                                <argument id="beforeWait"/>
+                                                <argument id="afterWait"/>
+                                                <argument id="autoRetry"/>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="param_ProductName">
+                                                  <value class="variable">
+                                                    <path element="op_soconppUpdateRow"/>
+                                                    <path element="Product"/>
+                                                  </value>
+                                                </argument>
+                                              </arguments>
+                                              <generatedParameters>
+                                                <apiParam group="value" name="param_ProductName" title="Product Name">
+                                                  <type>
+                                                    <textType/>
+                                                  </type>
+                                                </apiParam>
+                                              </generatedParameters>
+                                            </apiCall>
+                                            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiHandleAlert" name="UiHandleAlert" testItemId="944" title="Handle UI Alerts">
+                                              <arguments>
+                                                <argument id="alerts">
+                                                  <value class="valueList" mutable="Mutable">
+                                                    <namedValues mutable="Mutable">
+                                                      <namedValue name="expectedMessage">
+                                                        <value class="value" valueClass="string">Are you sure?</value>
+                                                      </namedValue>
+                                                      <namedValue name="comparisonType">
+                                                        <value class="value" valueClass="string">EqualTo</value>
+                                                      </namedValue>
+                                                      <namedValue name="caseSensitive">
+                                                        <value class="value" valueClass="boolean">false</value>
+                                                      </namedValue>
+                                                      <namedValue name="isNormalise">
+                                                        <value class="value" valueClass="boolean">true</value>
+                                                      </namedValue>
+                                                      <namedValue name="isRegex">
+                                                        <value class="value" valueClass="boolean">false</value>
+                                                      </namedValue>
+                                                      <namedValue name="response">
+                                                        <value class="value" valueClass="string">OK</value>
+                                                      </namedValue>
+                                                      <namedValue name="beforeWait"/>
+                                                      <namedValue name="afterWait">
+                                                        <value class="uiWait" uri="ui:wait:pageload?timeout=60"/>
+                                                      </namedValue>
+                                                      <namedValue name="autoRetry"/>
+                                                    </namedValues>
+                                                  </value>
+                                                </argument>
+                                                <argument id="captureBefore">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                                <argument id="captureAfter">
+                                                  <value class="value" valueClass="string">false</value>
+                                                </argument>
+                                              </arguments>
+                                            </apiCall>
+                                          </steps>
+                                        </clause>
+                                      </clauses>
+                                      <generatedParameters>
+                                        <apiParam group="target" name="uiTargetUrl" title="Web Page">
+                                          <type>
+                                            <textType/>
+                                          </type>
+                                        </apiParam>
+                                      </generatedParameters>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="945" title="SOQL Query: Select count() from rstk__soconpp__C where rstk__soconpp_socontract__c='{op_socontractID}'=&gt;op_soconppCountAfter">
+                                      <arguments>
+                                        <argument id="soqlQuery">
+                                          <value class="compound">
+                                            <parts>
+                                              <value valueClass="string">Select count() from rstk__soconpp__C where rstk__soconpp_socontract__c='</value>
+                                              <variable>
+                                                <path element="op_socontractID"/>
+                                              </variable>
+                                              <value valueClass="string">'</value>
+                                            </parts>
+                                          </value>
+                                        </argument>
+                                        <argument id="apexConnectionName">
+                                          <value class="value" valueClass="string">SFConnection</value>
+                                        </argument>
+                                        <argument id="resultListName">
+                                          <value class="value" valueClass="string">op_soconppCountAfter</value>
+                                        </argument>
+                                        <argument id="resultScope">
+                                          <value class="value" valueClass="string">Test</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="946" title="Assert: {op_soconppCountAfter} EqualTo {op_soconppCountBefore - 1}">
+                                      <arguments>
+                                        <argument id="expectedValue">
+                                          <value class="variable">
+                                            <path element="op_soconppCountAfter"/>
+                                          </value>
+                                        </argument>
+                                        <argument id="comparisonType">
+                                          <value class="value" valueClass="string">EqualTo</value>
+                                        </argument>
+                                        <argument id="actualValue">
+                                          <value class="sub">
+                                            <lhs class="variable">
+                                              <path element="op_soconppCountBefore"/>
+                                            </lhs>
+                                            <rhs class="value" valueClass="decimal">1</rhs>
+                                          </value>
+                                        </argument>
+                                        <argument id="caseSensitive">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="numeric">
+                                          <value class="value" valueClass="boolean">true</value>
+                                        </argument>
+                                        <argument id="retainDecimals">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="nullGreater">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchMultiLine">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="matchDotAll">
+                                          <value class="value" valueClass="boolean">false</value>
+                                        </argument>
+                                        <argument id="failureMessage">
+                                          <value class="value" valueClass="string">Issue WIth delete</value>
+                                        </argument>
+                                      </arguments>
+                                    </apiCall>
+                                  </steps>
+                                </clause>
+                              </clauses>
+                            </apiCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+</testCase>

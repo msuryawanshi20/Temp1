@@ -1,0 +1,1777 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="3">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="140" title="Read Excel Path">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Path</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="141">
+          <steps>
+            <caseCall testCaseId="45166f67-6482-468a-9d8a-64329d6e898c" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Read Excel Data.testcase" testItemId="153">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_CustomerMaster">
+                  <name class="value" valueClass="string">ExcelPath_CustomerMaster</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SYDATA">
+                  <name class="value" valueClass="string">ExcelPath_SYDATA</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_AR">
+                  <name class="value" valueClass="string">ExcelPath_AR</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="142" title="Read Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData_SOHeader" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddHeader</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOLine" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddLine</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Firm" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">FirmAllLines</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Allocate" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">Allocate</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_PickPackShip" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">PickPackShip</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_CreateInvoice" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">CreateInvoice</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_AR" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_CashReceipt" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_AR"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="143"/>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="44" title="Create Sales Order Header">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Sales Order Header</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="45">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="46" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="47">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_SOHeader" variableScope="Test">
+                          <cacheToken>C:\\Users\\Ashok\\Automation_1Updated\\rsqasampleproj\\templates\\SYDATA.xlsx;1625829288674</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="APIMode"/>
+                            <apiParam name="AsynchronousProcessing"/>
+                            <apiParam name="InventoryDivision"/>
+                            <apiParam name="SalesDivision"/>
+                            <apiParam name="Customer"/>
+                            <apiParam name="ManufacturingUser"/>
+                            <apiParam name="RecordProcessed"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">AddHeader</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="3">
+                          <steps>
+                            <caseCall testCaseId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Sales Order Header - SOAPI.testcase" testItemId="15">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_SOHeader">
+                                  <value class="variable">
+                                    <path element="SourceData_SOHeader"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkRows_SOHeader">
+                                  <name class="value" valueClass="string">rstkRows_SOHeader</name>
+                                </outputArgument>
+                                <outputArgument id="OrderNumber">
+                                  <name class="value" valueClass="string">OrderNumber</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="51" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="52">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="53" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_SOHeader" variableScope="Test">
+                          <cacheToken>C:\\Users\\Ashok\\Automation_1Updated\\rsqasampleproj\\templates\\SYDATA.xlsx;1625829288674</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="APIMode"/>
+                            <apiParam name="AsynchronousProcessing"/>
+                            <apiParam name="InventoryDivision"/>
+                            <apiParam name="SalesDivision"/>
+                            <apiParam name="Customer"/>
+                            <apiParam name="ManufacturingUser"/>
+                            <apiParam name="RecordProcessed"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">AddHeader</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="54">
+                          <steps>
+                            <caseCall testCaseId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Sales Order Header - SOAPI.testcase" testItemId="55">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_SOHeader">
+                                  <value class="variable">
+                                    <path element="SourceData_SOHeader"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkRows_SOHeader">
+                                  <name class="value" valueClass="string">rstkRows_SOHeader</name>
+                                </outputArgument>
+                                <outputArgument id="OrderNumber">
+                                  <name class="value" valueClass="string">OrderNumber</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Sales Order Header - SOAPI.testcase" testItemId="145">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOHeader">
+                  <value class="variable">
+                    <path element="SourceData_SOHeader"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="rstkRows_SOHeader">
+                  <name class="value" valueClass="string">rstkRows_SOHeader</name>
+                </outputArgument>
+                <outputArgument id="OrderNumber">
+                  <name class="value" valueClass="string">OrderNumber</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="56" title="Add SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add SO Lines</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="57">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="58" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="59">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="6" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_SOLine" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">AddLine</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="7">
+                          <steps>
+                            <caseCall testCaseId="2045d3ed-782f-4b58-afa5-bc89ec24265b" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Add SO Lines for SYDATA.testcase" testItemId="18">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_SOLine">
+                                  <value class="variable">
+                                    <path element="SourceData_SOLine"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="63" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="64">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="65" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_SOLine" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">AddLine</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="66">
+                          <steps>
+                            <caseCall testCaseId="2045d3ed-782f-4b58-afa5-bc89ec24265b" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Add SO Lines for SYDATA.testcase" testItemId="67">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_SOLine">
+                                  <value class="variable">
+                                    <path element="SourceData_SOLine"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="2045d3ed-782f-4b58-afa5-bc89ec24265b" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Add SO Lines for SYDATA.testcase" testItemId="146">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOLine">
+                  <value class="variable">
+                    <path element="SourceData_SOLine"/>
+                  </value>
+                </argument>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="68" title="Firm All SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Firm All SO Lines</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="69">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="70" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="71">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="10" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_Firm" variableScope="Test">
+                          <cacheToken>C:\\Users\\Ashok\\Automation_1Updated\\rsqasampleproj\\templates\\SYDATA.xlsx;1625840615755</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="ProcessingIndicator"/>
+                            <apiParam name="BackgroundProcessing"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">FirmAllLines</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="11">
+                          <steps>
+                            <caseCall testCaseId="85b5dbbd-458d-4123-8349-92fea88265a7" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Firm All Sales Order Lines.testcase" testItemId="12">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Firm">
+                                  <value class="variable">
+                                    <path element="SourceData_Firm"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="75" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="76">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="77" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_Firm" variableScope="Test">
+                          <cacheToken>C:\\Users\\Ashok\\Automation_1Updated\\rsqasampleproj\\templates\\SYDATA.xlsx;1625840615755</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="ProcessingIndicator"/>
+                            <apiParam name="BackgroundProcessing"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">FirmAllLines</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="78">
+                          <steps>
+                            <caseCall testCaseId="85b5dbbd-458d-4123-8349-92fea88265a7" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Firm All Sales Order Lines.testcase" testItemId="79">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Firm">
+                                  <value class="variable">
+                                    <path element="SourceData_Firm"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="85b5dbbd-458d-4123-8349-92fea88265a7" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Firm All Sales Order Lines.testcase" testItemId="147">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Firm">
+                  <value class="variable">
+                    <path element="SourceData_Firm"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="80" title="Allocate SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Allocate SO Lines</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="81">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="82" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="83">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="19" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_Allocate" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">Allocate</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="20">
+                          <steps>
+                            <caseCall testCaseId="0228c441-4d65-48fc-a5cf-feb7282152e0" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Allocate Sales Order Lines.testcase" testItemId="22">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Firm">
+                                  <value class="variable">
+                                    <path element="SourceData_Firm"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="87" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="88">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="89" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_Allocate" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">Allocate</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="90">
+                          <steps>
+                            <caseCall testCaseId="0228c441-4d65-48fc-a5cf-feb7282152e0" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Allocate Sales Order Lines.testcase" testItemId="91">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Firm">
+                                  <value class="variable">
+                                    <path element="SourceData_Firm"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="0228c441-4d65-48fc-a5cf-feb7282152e0" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Allocate Sales Order Lines.testcase" testItemId="148">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Firm">
+                  <value class="variable">
+                    <path element="SourceData_Firm"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="92" title="Pick-Pack-Ship SO Lines">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Pick-Pack-Ship SO Lines</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="93">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="94" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="95">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="23" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_PickPackShip" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Automation_1Updated/rsqasampleproj/templates/SYDATA.xlsx;1626082606652</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="BackgroundProcessing"/>
+                            <apiParam name="TransactionQuantity"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">PickPackShip</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="24">
+                          <steps>
+                            <caseCall testCaseId="4275be32-6028-485b-a6f6-b75d8ffbc0ad" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Pick-Pack-Ship Sales Order Lines.testcase" testItemId="27">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pick">
+                                  <value class="variable">
+                                    <path element="SourceData_Pick"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPack">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPack"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPackShip">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPackShip"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="99" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="100">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="101" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_PickPackShip" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Automation_1Updated/rsqasampleproj/templates/SYDATA.xlsx;1626082606652</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="BackgroundProcessing"/>
+                            <apiParam name="TransactionQuantity"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">PickPackShip</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="102">
+                          <steps>
+                            <caseCall testCaseId="4275be32-6028-485b-a6f6-b75d8ffbc0ad" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Pick-Pack-Ship Sales Order Lines.testcase" testItemId="103">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pick">
+                                  <value class="variable">
+                                    <path element="SourceData_Pick"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPack">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPack"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPackShip">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPackShip"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="4275be32-6028-485b-a6f6-b75d8ffbc0ad" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Pick-Pack-Ship Sales Order Lines.testcase" testItemId="149">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pick">
+                  <value class="variable">
+                    <path element="SourceData_Pick"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPack">
+                  <value class="variable">
+                    <path element="SourceData_PickPack"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPackShip">
+                  <value class="variable">
+                    <path element="SourceData_PickPackShip"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="104" title="Create SO Invoice">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create SO Invoice</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="105">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="106" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="107">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="28" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_CreateInvoice" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Automation_1Updated/rsqasampleproj/templates/SYDATA.xlsx;1626154092383</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="BackgroundProcessing"/>
+                            <apiParam name="ProcessAllLines"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CreateInvoice</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="29">
+                          <steps>
+                            <caseCall testCaseId="b22fe2b8-4548-41a3-b6b5-bd339b9781a2" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Create Sales Order Invoice.testcase" testItemId="30">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pick">
+                                  <value class="variable">
+                                    <path element="SourceData_Pick"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pack">
+                                  <value class="variable">
+                                    <path element="SourceData_Pack"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Ship">
+                                  <value class="variable">
+                                    <path element="SourceData_Ship"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPackShip">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPackShip"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_CreateInvoice">
+                                  <value class="variable">
+                                    <path element="SourceData_CreateInvoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkRows_Invoice">
+                                  <name class="value" valueClass="string">rstkRows_Invoice</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="111" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="112">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="113" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_CreateInvoice" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Automation_1Updated/rsqasampleproj/templates/SYDATA.xlsx;1626154092383</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="TransactionType"/>
+                            <apiParam name="BackgroundProcessing"/>
+                            <apiParam name="ProcessAllLines"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CreateInvoice</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="114">
+                          <steps>
+                            <caseCall testCaseId="b22fe2b8-4548-41a3-b6b5-bd339b9781a2" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Create Sales Order Invoice.testcase" testItemId="115">
+                              <arguments>
+                                <argument id="rstkRows_SOHeader">
+                                  <value class="variable">
+                                    <path element="rstkRows_SOHeader"/>
+                                  </value>
+                                </argument>
+                                <argument id="OrderNumber">
+                                  <value class="variable">
+                                    <path element="OrderNumber"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_Allocate">
+                                  <value class="variable">
+                                    <path element="SourceData_Allocate"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pick">
+                                  <value class="variable">
+                                    <path element="SourceData_Pick"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Pack">
+                                  <value class="variable">
+                                    <path element="SourceData_Pack"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_Ship">
+                                  <value class="variable">
+                                    <path element="SourceData_Ship"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_PickPackShip">
+                                  <value class="variable">
+                                    <path element="SourceData_PickPackShip"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_CreateInvoice">
+                                  <value class="variable">
+                                    <path element="SourceData_CreateInvoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkRows_Invoice">
+                                  <name class="value" valueClass="string">rstkRows_Invoice</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="b22fe2b8-4548-41a3-b6b5-bd339b9781a2" testCasePath="tests/SYDATA - Sales Orders/SYDATA - Callables/Create Sales Order Invoice.testcase" testItemId="150">
+              <arguments>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Allocate">
+                  <value class="variable">
+                    <path element="SourceData_Allocate"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pick">
+                  <value class="variable">
+                    <path element="SourceData_Pick"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Pack">
+                  <value class="variable">
+                    <path element="SourceData_Pack"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Ship">
+                  <value class="variable">
+                    <path element="SourceData_Ship"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_PickPackShip">
+                  <value class="variable">
+                    <path element="SourceData_PickPackShip"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_CreateInvoice">
+                  <value class="variable">
+                    <path element="SourceData_CreateInvoice"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="rstkRows_Invoice">
+                  <name class="value" valueClass="string">rstkRows_Invoice</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="116" title="Perform Transfer to AR operation">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Perform Transfer to AR operation</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="117">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="118" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="119">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="34" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_AR" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="35">
+                          <steps>
+                            <caseCall testCaseId="a61eb222-f409-4215-b7ec-2f4138a9fa44" testCasePath="tests/Accounts Receivable/AR-Callables/Transfer To AR.testcase" testItemId="40">
+                              <arguments>
+                                <argument id="CreditMemoNumberID">
+                                  <value class="variable">
+                                    <path element="CreditMemoNumberID"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_CreditMemo">
+                                  <value class="variable">
+                                    <path element="SourceData_CreditMemo"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_AR">
+                                  <value class="variable">
+                                    <path element="SourceData_AR"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_Invoice">
+                                  <value class="variable">
+                                    <path element="rstkRows_Invoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkfRows_ReceivableTxn" scope="Folder">
+                                  <name class="value" valueClass="string">rstkfRows_ReceivableTxn</name>
+                                </outputArgument>
+                                <outputArgument id="rstkfRows_ForeignExchRateSchedule_ExchRate" scope="Folder">
+                                  <name class="value" valueClass="string">rstkfRows_ForeignExchRateSchedule_ExchRate</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="123" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="124">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="125" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_AR" variableScope="Test">
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="126">
+                          <steps>
+                            <caseCall testCaseId="a61eb222-f409-4215-b7ec-2f4138a9fa44" testCasePath="tests/Accounts Receivable/AR-Callables/Transfer To AR.testcase" testItemId="127">
+                              <arguments>
+                                <argument id="CreditMemoNumberID">
+                                  <value class="variable">
+                                    <path element="CreditMemoNumberID"/>
+                                  </value>
+                                </argument>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_CreditMemo">
+                                  <value class="variable">
+                                    <path element="SourceData_CreditMemo"/>
+                                  </value>
+                                </argument>
+                                <argument id="SourceData_AR">
+                                  <value class="variable">
+                                    <path element="SourceData_AR"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_Invoice">
+                                  <value class="variable">
+                                    <path element="rstkRows_Invoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                              <outputArguments>
+                                <outputArgument id="rstkfRows_ReceivableTxn" scope="Folder">
+                                  <name class="value" valueClass="string">rstkfRows_ReceivableTxn</name>
+                                </outputArgument>
+                                <outputArgument id="rstkfRows_ForeignExchRateSchedule_ExchRate" scope="Folder">
+                                  <name class="value" valueClass="string">rstkfRows_ForeignExchRateSchedule_ExchRate</name>
+                                </outputArgument>
+                              </outputArguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="a61eb222-f409-4215-b7ec-2f4138a9fa44" testCasePath="tests/Accounts Receivable/AR-Callables/Transfer To AR.testcase" testItemId="151">
+              <arguments>
+                <argument id="CreditMemoNumberID">
+                  <value class="variable">
+                    <path element="CreditMemoNumberID"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_CreditMemo">
+                  <value class="variable">
+                    <path element="SourceData_CreditMemo"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_AR">
+                  <value class="variable">
+                    <path element="SourceData_AR"/>
+                  </value>
+                </argument>
+                <argument id="rstkRows_Invoice">
+                  <value class="variable">
+                    <path element="rstkRows_Invoice"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="128" title="Create Cash Receipt">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Cash Receipt</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="129">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="130" title="If: {GetSelectedEnvironment() = &quot;AutomationOrg&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">AutomationOrg</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="131">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="41" title="Read Data">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Read Data</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_CashReceipt" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Provar/WS_RSAutomation/rsqasampleproj/templates/QARSF/AR.xlsx;1631022009434</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="APIMode"/>
+                            <apiParam name="AsynchronousProcessing"/>
+                            <apiParam name="InventoryDivision"/>
+                            <apiParam name="SalesDivision"/>
+                            <apiParam name="Customer"/>
+                            <apiParam name="ManufacturingUser"/>
+                            <apiParam name="RecordProcessed"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/AutomationOrg/AR.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="42">
+                          <steps>
+                            <caseCall testCaseId="b362c27b-92ad-48cb-b45b-4b400f79c3cd" testCasePath="tests/Accounts Receivable/AR-Callables/Create Cash Receipt.testcase" testItemId="43">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_CashReceipt">
+                                  <value class="variable">
+                                    <path element="SourceData_CashReceipt"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_Invoice">
+                                  <value class="variable">
+                                    <path element="rstkRows_Invoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.If" name="If" testItemId="135" title="If: {GetSelectedEnvironment() = &quot;QARSF&quot;}">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="funcCall" id="GetSelectedEnvironment"/>
+                    <rhs class="value" valueClass="string">QARSF</rhs>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="then" testItemId="136">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="137" title="Create Cash Receipt">
+                      <arguments>
+                        <argument id="description">
+                          <value class="value" valueClass="string">Create Cash Receipt</value>
+                        </argument>
+                      </arguments>
+                      <parameterValueSources>
+                        <parameterValueSource variableName="SourceData_CashReceipt" variableScope="Test">
+                          <cacheToken>C:/Users/Ashok/Provar/WS_RSAutomation/rsqasampleproj/templates/QARSF/AR.xlsx;1631022009434</cacheToken>
+                          <cachedParameters>
+                            <apiParam name="APIMode"/>
+                            <apiParam name="AsynchronousProcessing"/>
+                            <apiParam name="InventoryDivision"/>
+                            <apiParam name="SalesDivision"/>
+                            <apiParam name="Customer"/>
+                            <apiParam name="ManufacturingUser"/>
+                            <apiParam name="RecordProcessed"/>
+                          </cachedParameters>
+                          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+                            <workbookPath class="value" valueClass="string">templates/QARSF/AR_ForeignCurrency.xlsx</workbookPath>
+                            <worksheetName class="value" valueClass="string">CashReceipt</worksheetName>
+                            <valuesRange class="value"/>
+                          </sourceValue>
+                        </parameterValueSource>
+                      </parameterValueSources>
+                      <clauses>
+                        <clause name="hidden" testItemId="138">
+                          <steps>
+                            <caseCall testCaseId="b362c27b-92ad-48cb-b45b-4b400f79c3cd" testCasePath="tests/Accounts Receivable/AR-Callables/Create Cash Receipt.testcase" testItemId="139">
+                              <arguments>
+                                <argument id="reuseConnectionName">
+                                  <value class="value" valueClass="string">SFConnection</value>
+                                </argument>
+                                <argument id="SourceData_CashReceipt">
+                                  <value class="variable">
+                                    <path element="SourceData_CashReceipt"/>
+                                  </value>
+                                </argument>
+                                <argument id="rstkRows_Invoice">
+                                  <value class="variable">
+                                    <path element="rstkRows_Invoice"/>
+                                  </value>
+                                </argument>
+                              </arguments>
+                            </caseCall>
+                          </steps>
+                        </clause>
+                      </clauses>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <caseCall testCaseId="b362c27b-92ad-48cb-b45b-4b400f79c3cd" testCasePath="tests/Accounts Receivable/AR-Callables/Create Cash Receipt.testcase" testItemId="152">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_CashReceipt">
+                  <value class="variable">
+                    <path element="SourceData_CashReceipt"/>
+                  </value>
+                </argument>
+                <argument id="rstkRows_Invoice">
+                  <value class="variable">
+                    <path element="rstkRows_Invoice"/>
+                  </value>
+                </argument>
+                <argument id="rstkfRows_ReceivableTxn">
+                  <value class="variable">
+                    <path element="rstkfRows_ReceivableTxn"/>
+                  </value>
+                </argument>
+                <argument id="rstkfRows_ForeignExchRateSchedule_ExchRate">
+                  <value class="variable">
+                    <path element="rstkfRows_ForeignExchRateSchedule_ExchRate"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="38" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="39"/>
+      </clauses>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param name="SourceData_Firm" title="SourceData_Firm">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_Firm</sourceValue>
+    </param>
+    <param name="SourceData_Allocate" title="SourceData_Allocate">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_Allocate"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_PickPackShip" title="SourceData_PickPackShip">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_PickPackShip</sourceValue>
+    </param>
+    <param name="SourceData_CreateInvoice" title="SourceData_CreateInvoice">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_CreateInvoice</sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="SourceData_Firm">
+      <name class="value" valueClass="string">SourceData_Firm</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Allocate">
+      <name class="value" valueClass="string">SourceData_Allocate</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Pick">
+      <name class="value" valueClass="string">SourceData_Pick</name>
+    </outputArgument>
+    <outputArgument id="SourceData_PickPackShip">
+      <name class="value" valueClass="string">SourceData_PickPackShip</name>
+    </outputArgument>
+    <outputArgument id="SourceData_CreateInvoice">
+      <name class="value" valueClass="string">SourceData_CreateInvoice</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

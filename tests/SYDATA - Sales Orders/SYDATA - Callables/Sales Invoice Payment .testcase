@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="5" registryId="a7f114ae-eaad-4f91-bef2-909530fa1c75" visibility="Internal">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument argId="3db5da51-2848-4a38-96aa-9e23a185f328" id="reuseConnectionName">
+          <value class="variable">
+            <path element="reuseConnectionName"/>
+          </value>
+        </argument>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.ForEach" name="ForEach" testItemId="26" title="For Each: {SourceData_SalesInvPayment}=&gt;varSalesInvPayment">
+      <arguments>
+        <argument id="list">
+          <value class="variable">
+            <path element="SourceData_SalesInvPayment"/>
+          </value>
+        </argument>
+        <argument id="fromItem">
+          <value class="value" valueClass="decimal">1</value>
+        </argument>
+        <argument id="valueName">
+          <value class="value" valueClass="string">varSalesInvPayment</value>
+        </argument>
+        <argument id="continueOnFailure"/>
+      </arguments>
+      <clauses>
+        <clause name="substeps" testItemId="27">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="104" title="SOQL Query: select Id\n    ,rstk__soinv_invoice__c\n    ,rstk__soinv_invoiceno__c,rstk__soinv_order__c,rstk__soinv_totalppya__c from rstk__soinv__c WHERE rstk__soinv_order__c='{rstkRows_SOHeader.Id}'=&gt;rstkRows_Invoice">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__soinv_invoice__c\n    ,rstk__soinv_invoiceno__c,rstk__soinv_order__c,rstk__soinv_totalppya__c from rstk__soinv__c WHERE rstk__soinv_order__c='</value>
+                      <variable>
+                        <path element="rstkRows_SOHeader"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_Invoice</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="112" title="SOQL Query: select Id,rstk__sogateway_gateway__c from rstk__sogateway__c where rstk__sogateway_gateway__c='{varSalesInvPayment.PaymentGateway}'=&gt;rstkRows_PayGateway">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id,rstk__sogateway_gateway__c from rstk__sogateway__c where rstk__sogateway_gateway__c='</value>
+                      <variable>
+                        <path element="varSalesInvPayment"/>
+                        <path element="PaymentGateway"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_PayGateway</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexCreateObject" name="ApexCreateObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand" testItemId="38" title="Create Object: rstk__sydata__c=&gt;sydataId">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__sydata__c</value>
+                </argument>
+                <argument id="resultIdName">
+                  <value class="value" valueClass="string">sydataId</value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Name">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">SYDATA - </value>
+                      <variable>
+                        <path element="OrderNumber"/>
+                      </variable>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_txntype__c">
+                  <value class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="TransactionType"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_backgroundprocessing__c">
+                  <value class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="BackgroundProcessing"/>
+                  </value>
+                </argument>
+                <argument id="assignmentRuleId"/>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="rstk__sydata_sohdr__c">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_alllines__c">
+                  <value class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="ProcessAllLines"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_ordpayamt__c">
+                  <value class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="OrderPaymentAmount"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_soinv__c">
+                  <value class="variable">
+                    <path element="rstkRows_Invoice"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_sogateway__c">
+                  <value class="variable">
+                    <path element="rstkRows_PayGateway"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="rstk__sydata_ordpayid__c">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.CreateCustomObjectTestStepCommand.CustomObjectName">rstk__sydata__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=Name" name="Name" title="Name"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_txntype__c" name="rstk__sydata_txntype__c" title="rstk__sydata_txntype__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_backgroundprocessing__c" name="rstk__sydata_backgroundprocessing__c" title="rstk__sydata_backgroundprocessing__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_sohdr__c" name="rstk__sydata_sohdr__c" title="rstk__sydata_sohdr__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_alllines__c" name="rstk__sydata_alllines__c" title="rstk__sydata_alllines__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_ordpayamt__c" name="rstk__sydata_ordpayamt__c" title="rstk__sydata_ordpayamt__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_soinv__c" name="rstk__sydata_soinv__c" title="rstk__sydata_soinv__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_sogateway__c" name="rstk__sydata_sogateway__c" title="rstk__sydata_sogateway__c"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_ordpayid__c" name="rstk__sydata_ordpayid__c" title="rstk__sydata_ordpayid__c"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="37" title="SOQL Query: SELECT Id,rstk__sydata_process__c FROM rstk__sydata__c WHERE rstk__sydata_sohdr__c = '{rstkRows_SOHeader.Id}' AND rstk__sydata_txntype__c='{varSalesInvPayment.TransactionType}'=&gt;rstkRows_SYDATA">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">SELECT Id,rstk__sydata_process__c FROM rstk__sydata__c WHERE rstk__sydata_sohdr__c = '</value>
+                      <variable>
+                        <path element="rstkRows_SOHeader"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">' AND rstk__sydata_txntype__c='</value>
+                      <variable>
+                        <path element="varSalesInvPayment"/>
+                        <path element="TransactionType"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_SYDATA</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.DoWhile" name="DoWhile" testItemId="35" title="While: {rstkRows_SYDATA.rstk__sydata_process__c = &quot;Ready&quot;}">
+              <arguments>
+                <argument id="condition">
+                  <value class="eq">
+                    <lhs class="variable">
+                      <path element="rstkRows_SYDATA"/>
+                      <path element="rstk__sydata_process__c"/>
+                    </lhs>
+                    <rhs class="value" valueClass="string">Ready</rhs>
+                  </value>
+                </argument>
+                <argument id="counterName">
+                  <value class="value" valueClass="string">LoopCounter</value>
+                </argument>
+                <argument id="counterStart">
+                  <value class="value" valueClass="decimal">1</value>
+                </argument>
+                <argument id="counterEnd"/>
+                <argument id="continueOnFailure"/>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="99">
+                  <steps>
+                    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="41" title="SOQL Query: SELECT Id,rstk__sydata_process__c FROM rstk__sydata__c WHERE rstk__sydata_sohdr__c = '{rstkRows_SOHeader.Id}' AND rstk__sydata_txntype__c='{varSalesInvPayment.TransactionType}'=&gt;rstkRows_SYDATA">
+                      <arguments>
+                        <argument id="soqlQuery">
+                          <value class="compound">
+                            <parts>
+                              <value valueClass="string">SELECT Id,rstk__sydata_process__c FROM rstk__sydata__c WHERE rstk__sydata_sohdr__c = '</value>
+                              <variable>
+                                <path element="rstkRows_SOHeader"/>
+                                <path element="Id"/>
+                              </variable>
+                              <value valueClass="string">' AND rstk__sydata_txntype__c='</value>
+                              <variable>
+                                <path element="varSalesInvPayment"/>
+                                <path element="TransactionType"/>
+                              </variable>
+                              <value valueClass="string">'</value>
+                            </parts>
+                          </value>
+                        </argument>
+                        <argument id="apexConnectionName">
+                          <value class="value" valueClass="string">SFConnection</value>
+                        </argument>
+                        <argument id="resultListName">
+                          <value class="value" valueClass="string">rstkRows_SYDATA</value>
+                        </argument>
+                        <argument id="resultScope">
+                          <value class="value" valueClass="string">Test</value>
+                        </argument>
+                      </arguments>
+                    </apiCall>
+                  </steps>
+                </clause>
+              </clauses>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.ui.UiWithScreen" name="UiWithScreen" testItemId="16" title="On SF SYDATA - System Transaction Object View screen">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="uiConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="target">
+                  <value class="uiTarget" uri="sf:ui:target?object=rstk__sydata__c&amp;action=View"/>
+                </argument>
+                <argument id="targetDescription">
+                  <value class="value" valueClass="string">On SF SYDATA - System Transaction Object View screen</value>
+                </argument>
+                <argument id="navigate">
+                  <value class="value" valueClass="string">IfNeccessary</value>
+                </argument>
+                <argument id="windowSelection">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="windowSize">
+                  <value class="value" valueClass="string">Default</value>
+                </argument>
+                <argument id="closeWindow"/>
+                <argument id="captureBefore">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="captureAfter">
+                  <value class="value" valueClass="string">false</value>
+                </argument>
+                <argument id="sfUiTargetObjectId">
+                  <value class="variable">
+                    <path element="rstkRows_SYDATA"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+              </arguments>
+              <clauses>
+                <clause name="substeps" testItemId="17"/>
+              </clauses>
+              <generatedParameters>
+                <apiParam group="target" name="sfUiTargetObjectId" title="Object Id">
+                  <summary>The Id of the SF Object to be Viewed or Edited.</summary>
+                  <type>
+                    <textType/>
+                  </type>
+                </apiParam>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="11" title="Read Object: rstk__sydata__c = {rstkRows_SYDATA.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__sydata__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows_SYDATA"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Id">
+                  <value class="value" valueClass="string">a7E0W000000oTSlUAM</value>
+                </argument>
+                <argument id="rstk__sydata_process__c">
+                  <value class="value" valueClass="string">Validation Failure</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion caseInsensitive="true" resultName="rstk__sydata_process__c" title="Check rstk__sydata_process__c">
+                  <expected class="value" valueClass="string">ProcessingComplete</expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__sydata__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=Id" name="Id" title="SYDATA - System Transaction Object ID"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__sydata__c&amp;field=rstk__sydata_process__c" name="rstk__sydata_process__c" title="Processing Indicator"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="102" title="SOQL Query: select Id\n    ,rstk__soinv_invoice__c\n    ,rstk__soinv_invoiceno__c,rstk__soinv_order__c,rstk__soinv_totalppya__c from rstk__soinv__c WHERE rstk__soinv_order__c='{rstkRows_SOHeader.Id}'=&gt;rstkRows_Invoice">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__soinv_invoice__c\n    ,rstk__soinv_invoiceno__c,rstk__soinv_order__c,rstk__soinv_totalppya__c from rstk__soinv__c WHERE rstk__soinv_order__c='</value>
+                      <variable>
+                        <path element="rstkRows_SOHeader"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_Invoice</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="103" title="Read Object: rstk__soinv__c = {rstkRows_Invoice.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soinv__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows_Invoice"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__soinv_order__c">
+                  <value class="value" valueClass="string">a4k0W000000oSoiQAE</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__soinv_order__c" title="Check rstk__soinv_order__c">
+                  <expected class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                    <path element="Id"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soinv_totalppya__c" title="Check rstk__soinv_totalppya__c">
+                  <expected class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="OrderPaymentAmount"/>
+                  </expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__soinv__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinv__c&amp;field=rstk__soinv_order__c" name="rstk__soinv_order__c" title="Sales Order Number"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinv__c&amp;field=rstk__soinv_totalppya__c" name="rstk__soinv_totalppya__c" title="Prepayments Applied"/>
+              </generatedParameters>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexSoqlQuery" name="ApexSoqlQuery" testItemId="106" title="SOQL Query: select Id\n    ,rstk__soinvpay_payamount__c\n    ,rstk__soinvpay_status__c\n    ,rstk__soinvpay_invpayid__c\n    ,rstk__soinvpay_soinv__c from rstk__soinvpay__c where rstk__soinvpay_soinv__c='{rstkRows_Invoice.Id}'=&gt;rstkRows_SOINVPAY">
+              <arguments>
+                <argument id="soqlQuery">
+                  <value class="compound">
+                    <parts>
+                      <value valueClass="string">select Id\n    ,rstk__soinvpay_payamount__c\n    ,rstk__soinvpay_status__c\n    ,rstk__soinvpay_invpayid__c\n    ,rstk__soinvpay_soinv__c from rstk__soinvpay__c where rstk__soinvpay_soinv__c='</value>
+                      <variable>
+                        <path element="rstkRows_Invoice"/>
+                        <path element="Id"/>
+                      </variable>
+                      <value valueClass="string">'</value>
+                    </parts>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultListName">
+                  <value class="value" valueClass="string">rstkRows_SOINVPAY</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexReadObject" name="ApexReadObject" parameterGeneratorUri="command:com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand" testItemId="109" title="Read Object: rstk__soinvpay__c = {rstkRows_SOINVPAY.Id}">
+              <arguments>
+                <argument id="objectType">
+                  <value class="value" valueClass="string">rstk__soinvpay__c</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">rstkRead</value>
+                </argument>
+                <argument id="objectId">
+                  <value class="variable">
+                    <path element="rstkRows_SOINVPAY"/>
+                    <path element="Id"/>
+                  </value>
+                </argument>
+                <argument id="apexConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="rstk__soinvpay_soinv__c">
+                  <value class="value" valueClass="string">a4n0W000001SWYZQA4</value>
+                </argument>
+                <argument id="rstk__soinvpay_payamount__c">
+                  <value class="value" valueClass="decimal">260.0</value>
+                </argument>
+                <argument id="rstk__soinvpay_sogateway__c">
+                  <value class="value" valueClass="string">aFd0W000000XZARSA4</value>
+                </argument>
+                <argument id="rstk__soinvpay_status__c">
+                  <value class="value" valueClass="string">Payment Completed</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+              </arguments>
+              <resultAssertions>
+                <resultAssertion resultName="rstk__soinvpay_soinv__c" title="Check rstk__soinvpay_soinv__c">
+                  <expected class="variable">
+                    <path element="rstkRows_Invoice"/>
+                    <path element="Id"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soinvpay_payamount__c" title="Check rstk__soinvpay_payamount__c">
+                  <expected class="variable">
+                    <path element="varSalesInvPayment"/>
+                    <path element="OrderPaymentAmount"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soinvpay_sogateway__c" title="Check rstk__soinvpay_sogateway__c">
+                  <expected class="variable">
+                    <path element="rstkRows_PayGateway"/>
+                    <path element="Id"/>
+                  </expected>
+                </resultAssertion>
+                <resultAssertion resultName="rstk__soinvpay_status__c" title="Check rstk__soinvpay_status__c">
+                  <expected class="value" valueClass="string">Payment Completed</expected>
+                </resultAssertion>
+              </resultAssertions>
+              <parameterGeneratorProperties>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.ConnectionName">QARSF_Admin</propertyValue>
+                <propertyValue name="com.provar.plugins.forcedotcom.ui.commands.ReadCustomObjectTestStepCommand.CustomObjectName">rstk__soinvpay__c</propertyValue>
+              </parameterGeneratorProperties>
+              <generatedParameters>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinvpay__c&amp;field=rstk__soinvpay_soinv__c" name="rstk__soinvpay_soinv__c" title="Sales Invoice / Memo"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinvpay__c&amp;field=rstk__soinvpay_payamount__c" name="rstk__soinvpay_payamount__c" title="Payment Amount"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinvpay__c&amp;field=rstk__soinvpay_sogateway__c" name="rstk__soinvpay_sogateway__c" title="Payment Gateway"/>
+                <apiParam group="fields" modelBinding="sf:ui:binding:object?object=rstk__soinvpay__c&amp;field=rstk__soinvpay_status__c" name="rstk__soinvpay_status__c" title="Payment Status"/>
+              </generatedParameters>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="rstkRows_SOHeader" title="rstkRows_SOHeader">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param name="OrderNumber" title="OrderNumber">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+    <param linkedToUrl="provar:hasvalue:3db5da51-2848-4a38-96aa-9e23a185f328" name="reuseConnectionName" title="Override Connection">
+      <summary>The name of an already opened connect to re-use.</summary>
+      <type>
+        <connectionType>
+          <constraints>
+            <valueConstraint name="variableName">true</valueConstraint>
+            <valueConstraint name="requiredCapabilities">sfSoapConnect</valueConstraint>
+          </constraints>
+        </connectionType>
+      </type>
+    </param>
+    <param name="SourceData_SalesInvPayment" title="SourceData_SalesInvPayment">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <args>
+    <argument id="rstkRows_SOHeader">
+      <value class="variable">
+        <path element="rstkRows_SOHeader"/>
+      </value>
+    </argument>
+    <argument id="OrderNumber">
+      <value class="variable">
+        <path element="OrderNumber"/>
+      </value>
+    </argument>
+    <argument id="reuseConnectionName">
+      <value class="variable">
+        <path element="reuseConnectionName"/>
+      </value>
+    </argument>
+    <argument id="SourceData_SalesInvPayment">
+      <value class="variable">
+        <path element="SourceData_SalesInvPayment"/>
+      </value>
+    </argument>
+  </args>
+</testCase>

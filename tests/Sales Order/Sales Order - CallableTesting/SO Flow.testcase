@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase failureBehaviour="Continue" id="6">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="17" title="Connection">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Connection</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="18">
+          <steps>
+            <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="19" title="Salesforce Connect: SFConnection (Test)">
+              <arguments>
+                <argument id="connectionName">
+                  <value class="value" valueClass="string">QARSF_Admin</value>
+                </argument>
+                <argument id="resultName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="resultScope">
+                  <value class="value" valueClass="string">Test</value>
+                </argument>
+                <argument id="uiApplicationName">
+                  <value class="value" valueClass="string">Force_com</value>
+                </argument>
+                <argument id="quickUiLogin">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="closeAllPrimaryTabs">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="reuseConnectionName"/>
+                <argument id="alreadyOpenBehaviour">
+                  <value class="value" valueClass="string">Fail</value>
+                </argument>
+                <argument id="privateBrowsingMode"/>
+                <argument id="enableObjectIdLogging">
+                  <value class="value" valueClass="boolean">true</value>
+                </argument>
+                <argument id="autoCleanup"/>
+                <argument id="cleanupConnectionName"/>
+                <argument id="logFileLocation"/>
+                <argument id="username"/>
+                <argument id="password"/>
+                <argument id="securityToken"/>
+                <argument id="environment"/>
+                <argument id="lightningMode">
+                  <value class="value" valueClass="string">default</value>
+                </argument>
+                <argument id="webBrowser"/>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="186" title="Read On Hand Qty Before SO Shipment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read On Hand Qty Before SO Shipment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="187">
+          <steps>
+            <caseCall testCaseId="31fccc5f-2d2d-4bf1-8b60-107601f01f2f" testCasePath="tests/Backup/Verify Inventory Quantity-Bak.testcase" testItemId="218">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Qty">
+                  <name class="value" valueClass="string">Qty</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="7910dea4-5b6e-49d5-b77e-ac661332be17" testCasePath="tests/Sales Order - CallableTesting/Verify Inventory Quantity.testcase" testItemId="194">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Qty">
+                  <name class="value" valueClass="string">Qty</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="193" title="Set Values: QtyBefore">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">QtyBefore</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="Qty"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="180" title="Create a new Sales Order Header">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create a new Sales Order Header</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="181">
+          <steps>
+            <caseCall testCaseId="0984cba3-426d-4801-9d11-9d0c5411befe" testCasePath="tests/Sales Order - CallableTesting/SO Header.testcase" testItemId="176">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Onum">
+                  <name class="value" valueClass="string">Onum</name>
+                </outputArgument>
+                <outputArgument id="Ordnum">
+                  <name class="value" valueClass="string">Onum</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="208" title="Set Values: QtyOrdered">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">QtyOrdered</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">2</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="182" title="Set Values: SONum">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">SONum</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="Onum"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Test</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="12" title="Add Sales Order Line">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add Sales Order Line</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="13">
+          <steps>
+            <caseCall testCaseId="645e718d-d1ff-40cf-a157-4cedf2c6c0c7" testCasePath="tests/Sales Order - CallableTesting/SO Line.testcase" testItemId="66">
+              <arguments>
+                <argument id="ONumber">
+                  <value class="variable">
+                    <path element="Onum"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="Onum">
+                  <value class="variable">
+                    <path element="Onum"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Row">
+                  <name class="value" valueClass="string">Row</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="15" title="Perform Sales Order Fulfillment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Perform Sales Order Fulfillment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="16">
+          <steps>
+            <caseCall testCaseId="e030adcc-8761-45fa-b9e7-56172248d32f" testCasePath="tests/Sales Order - CallableTesting/SO Fulfillment.testcase" testItemId="21">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Values_InvoiceNumber">
+                  <name class="value" valueClass="string">Values_InvoiceNumber</name>
+                </outputArgument>
+                <outputArgument id="Invoice">
+                  <name class="value" valueClass="string">Invoice</name>
+                </outputArgument>
+                <outputArgument id="Invoicenum">
+                  <name class="value" valueClass="string">Invoicenum</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="62" title="Set Values: Invoice2">
+      <arguments>
+        <argument id="values">
+          <value class="valueList" mutable="Mutable">
+            <namedValues mutable="Mutable">
+              <namedValue name="valuePath">
+                <value class="value" valueClass="string">Invoice2</value>
+              </namedValue>
+              <namedValue name="value">
+                <value class="variable">
+                  <path element="Invoice1"/>
+                </value>
+              </namedValue>
+              <namedValue name="valueScope">
+                <value class="value" valueClass="string">Folder</value>
+              </namedValue>
+            </namedValues>
+          </value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="76" title="Verify SO Invoice">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify SO Invoice</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="77">
+          <steps>
+            <caseCall testCaseId="d1c155d8-a563-40be-a3c6-1b3de242393e" testCasePath="tests/Backup/SO Invoice-Bak.testcase" testItemId="221">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+                <argument id="Invoice3">
+                  <value class="variable">
+                    <path element="Invoice2"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="edeaaaed-79e1-4b83-ab55-0c831a17af81" testCasePath="tests/Sales Order - CallableTesting/SO Invoice.testcase" testItemId="82">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="InvNumber_var">
+                  <value class="variable">
+                    <path element="InvNum"/>
+                  </value>
+                </argument>
+                <argument id="Invoice">
+                  <value class="variable">
+                    <path element="Invoice"/>
+                  </value>
+                </argument>
+                <argument id="Invoice3">
+                  <value class="variable">
+                    <path element="Invoice2"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="212" title="Verify Dimensions">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Dimensions</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="213">
+          <steps>
+            <caseCall testCaseId="5f084ad4-2da9-40fa-89cd-bc625a2a8216" testCasePath="tests/Backup/Verify Dimensions-Bak.testcase" testItemId="220">
+              <arguments>
+                <argument id="SONumber">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="01637071-531b-4ac5-9ef9-a06c305e258b" testCasePath="tests/Sales Order - CallableTesting/Verify Dimensions.testcase" testItemId="215">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SONumber">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="60" title="Verify Requirements">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Requirements</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="61">
+          <steps>
+            <caseCall testCaseId="12e738a7-e0bb-454c-b2ef-8d59dd6777da" testCasePath="tests/Backup/Requirements-Bak.testcase" testItemId="216">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+                <argument id="OrderNo">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="1fec0be7-f9cc-4a27-9e17-2604b7a03404" testCasePath="tests/Sales Order - CallableTesting/Requirements.testcase" testItemId="190">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNo">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="78" title="Verify Sales Order Demand">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Sales Order Demand</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="79">
+          <steps>
+            <caseCall testCaseId="25a733f5-0db0-412e-a1ca-afa2c4fb382e" testCasePath="tests/Backup/Sales Order DMD-Bak.testcase" testItemId="217">
+              <arguments>
+                <argument id="value">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+            <caseCall testCaseId="6e50202a-2bee-4076-9c54-131e12367b03" testCasePath="tests/Sales Order - CallableTesting/Sales Order DMD.testcase" testItemId="80">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="SONumber">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="value">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+                <argument id="OrderNum">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="204" title="Read On Hand Qty After SO Shipment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read On Hand Qty After SO Shipment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="205">
+          <steps>
+            <caseCall testCaseId="31fccc5f-2d2d-4bf1-8b60-107601f01f2f" testCasePath="tests/Backup/Verify Inventory Quantity-Bak.testcase" testItemId="219">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="variable">
+                    <path element="reuseConnectionName"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Qty">
+                  <name class="value" valueClass="string">Qty</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <caseCall testCaseId="7910dea4-5b6e-49d5-b77e-ac661332be17" testCasePath="tests/Sales Order - CallableTesting/Verify Inventory Quantity.testcase" testItemId="206">
+              <tags>
+                <string>disabled</string>
+              </tags>
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Qty">
+                  <name class="value" valueClass="string">Qty</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="207" title="Set Values: QtyAfter">
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">QtyAfter</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="Qty"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.AssertValues" name="AssertValues" testItemId="183" title="Assert: {QtyBefore - QtyOrdered} EqualTo {QtyAfter}">
+      <arguments>
+        <argument id="expectedValue">
+          <value class="sub">
+            <lhs class="variable">
+              <path element="QtyBefore"/>
+            </lhs>
+            <rhs class="variable">
+              <path element="QtyOrdered"/>
+            </rhs>
+          </value>
+        </argument>
+        <argument id="actualValue">
+          <value class="variable">
+            <path element="QtyAfter"/>
+          </value>
+        </argument>
+        <argument id="comparisonType">
+          <value class="value" valueClass="string">EqualTo</value>
+        </argument>
+        <argument id="caseSensitive">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="numeric">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="retainDecimals">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="nullGreater">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchMultiLine">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="matchDotAll">
+          <value class="value" valueClass="boolean">false</value>
+        </argument>
+        <argument id="failureMessage">
+          <value class="value" valueClass="string">Quantity On hand Not Updated</value>
+        </argument>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="209" title="Verify Cost Transactions details">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Cost Transactions details</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="210">
+          <steps>
+            <caseCall testCaseId="45108229-2a83-4c37-b97c-4a5547403749" testCasePath="tests/Sales Order - CallableTesting/Cost Transactions.testcase" testItemId="211">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrdNum">
+                  <value class="variable">
+                    <path element="SONum"/>
+                  </value>
+                </argument>
+                <argument id="QtyAfter">
+                  <value class="variable">
+                    <path element="QtyAfter"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+  </steps>
+  <params>
+    <param name="Begin" title="Begin">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+    </param>
+  </params>
+  <outputParams>
+    <param name="End" title="End">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">End</sourceValue>
+    </param>
+  </outputParams>
+  <args>
+    <argument id="Begin">
+      <value class="value" valueClass="string">Begin</value>
+    </argument>
+  </args>
+  <outputArgs>
+    <outputArgument id="End">
+      <name class="value" valueClass="string">End</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

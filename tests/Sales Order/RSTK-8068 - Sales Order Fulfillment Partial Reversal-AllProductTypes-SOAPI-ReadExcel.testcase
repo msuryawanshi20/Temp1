@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testCase id="9">
+  <summary/>
+  <steps>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="2" title="Connection Step">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Connection Step</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="3"/>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.forcedotcom.core.testapis.ApexConnect" name="ApexConnect" testItemId="1" title="Salesforce Connect: SFConnection (Test)">
+      <arguments>
+        <argument id="connectionName">
+          <value class="value" valueClass="string">QARSF_Admin</value>
+        </argument>
+        <argument id="resultName">
+          <value class="value" valueClass="string">SFConnection</value>
+        </argument>
+        <argument id="resultScope">
+          <value class="value" valueClass="string">Test</value>
+        </argument>
+        <argument id="uiApplicationName">
+          <value class="value" valueClass="string">Force_com</value>
+        </argument>
+        <argument id="quickUiLogin">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="closeAllPrimaryTabs">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="reuseConnectionName"/>
+        <argument id="alreadyOpenBehaviour">
+          <value class="value" valueClass="string">Fail</value>
+        </argument>
+        <argument id="privateBrowsingMode"/>
+        <argument id="enableObjectIdLogging">
+          <value class="value" valueClass="boolean">true</value>
+        </argument>
+        <argument id="autoCleanup"/>
+        <argument id="cleanupConnectionName"/>
+        <argument id="logFileLocation"/>
+        <argument id="username"/>
+        <argument id="password"/>
+        <argument id="securityToken"/>
+        <argument id="environment"/>
+        <argument id="lightningMode">
+          <value class="value" valueClass="string">default</value>
+        </argument>
+        <argument id="webBrowser"/>
+      </arguments>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="317" title="Read Excel Path">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Excel Path</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="94">
+          <steps>
+            <caseCall testCaseId="45166f67-6482-468a-9d8a-64329d6e898c" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Read Excel Data.testcase" testItemId="362">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="ExcelPath_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <name class="value" valueClass="string">ExcelPath_SalesOrder_BaseData_SOAPI</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_CustomerMaster">
+                  <name class="value" valueClass="string">ExcelPath_CustomerMaster</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_SYDATA">
+                  <name class="value" valueClass="string">ExcelPath_SYDATA</name>
+                </outputArgument>
+                <outputArgument id="ExcelPath_AR">
+                  <name class="value" valueClass="string">ExcelPath_AR</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="318" title="Read Data">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read Data</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SrcData_InvyQty" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">InventoryQuantity</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOHeader" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddHeader</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOLine" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">AddLine_Partial</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Requirements_Complete" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">Requirements_Complete</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOORDDMD_Complete" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">SOORDDMD_Complete</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_Dimensions" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">Dimensions</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_RequirementsAfterPartialReverse" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">RequirementsAfterPartialReverse</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOORDDMDAfterPartialReverse" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">SOORDDMDAfterPartialReverse</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOFulfillReverse" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">SOFulfillReverse</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+        <parameterValueSource variableName="SourceData_SOFulfillment" variableScope="Test">
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="variable">
+              <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+            </workbookPath>
+            <worksheetName class="value" valueClass="string">SOFulfillment</worksheetName>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="92"/>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="319" title="Read On Hand Qty Before SO Shipment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read On Hand Qty Before SO Shipment</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="277">
+          <steps>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="365" title="Set Values: ws_quantity">
+              <tags/>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">ws_quantity</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="value" valueClass="string">InventoryQuantity</value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <apiCall apiId="com.provar.plugins.bundled.apis.control.SetValues" name="SetValues" testItemId="366" title="Set Values: wb_Quantitypath">
+              <tags/>
+              <arguments>
+                <argument id="values">
+                  <value class="valueList" mutable="Mutable">
+                    <namedValues mutable="Mutable">
+                      <namedValue name="valuePath">
+                        <value class="value" valueClass="string">wb_Quantitypath</value>
+                      </namedValue>
+                      <namedValue name="value">
+                        <value class="variable">
+                          <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+                        </value>
+                      </namedValue>
+                      <namedValue name="valueScope">
+                        <value class="value" valueClass="string">Test</value>
+                      </namedValue>
+                    </namedValues>
+                  </value>
+                </argument>
+              </arguments>
+            </apiCall>
+            <caseCall testCaseId="fb25e9f2-c38a-44b3-90f8-52830d59d796" testCasePath="tests/PO_SYDATA/Callable/Inventory QuantityOnHand.testcase" testItemId="363">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SrcData_InvyQty">
+                  <value class="variable">
+                    <path element="SrcData_InvyQty"/>
+                  </value>
+                </argument>
+                <argument id="wb_Quantitypath">
+                  <value class="variable">
+                    <path element="wb_Quantitypath"/>
+                  </value>
+                </argument>
+                <argument id="ws_quantity">
+                  <value class="variable">
+                    <path element="ws_quantity"/>
+                  </value>
+                </argument>
+                <argument id="Quantity">
+                  <value class="value" valueClass="string">QuantityBefore</value>
+                </argument>
+                <argument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <value class="variable">
+                    <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="QtyOnHand">
+                  <name class="value" valueClass="string">QtyOnHand</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="4" title="Create Sales Order Header">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Create Sales Order Header</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="5">
+          <steps>
+            <caseCall testCaseId="a6c37f2e-69ff-4b6c-84bd-7701e2e8699d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Create Sales Order Header - SOAPI.testcase" testItemId="103">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOHeader">
+                  <value class="variable">
+                    <path element="SourceData_SOHeader"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="rstkRows_SOHeader">
+                  <name class="value" valueClass="string">rstkRows_SOHeader</name>
+                </outputArgument>
+                <outputArgument id="OrderNumber">
+                  <name class="value" valueClass="string">OrderNumber</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="8" title="Add Sales Order Line">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Add Sales Order Line</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="9">
+          <steps>
+            <caseCall testCaseId="e1878dd0-48f1-462a-a9df-9aa10a6ee54d" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Add SO Lines - SOAPI.testcase" testItemId="104">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOLine">
+                  <value class="variable">
+                    <path element="SourceData_SOLine"/>
+                  </value>
+                </argument>
+                <argument id="rstkRows_SOHeader">
+                  <value class="variable">
+                    <path element="rstkRows_SOHeader"/>
+                  </value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="13" title="Perform Sales Order Fulfillment">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Perform Sales Order Fulfillment</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="68">
+          <steps>
+            <caseCall testCaseId="f0a70b54-b587-4ce1-a820-943c455a5c3b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Non-Consolidated SO Fulfillment without Invoice-DefaultSelectionsOnSOFulfillmentpage-SOAPI.testcase" testItemId="114">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOFulfillment">
+                  <value class="variable">
+                    <path element="SourceData_SOFulfillment"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="Invoice">
+                  <name class="value" valueClass="string">Invoice</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="31" title="Verify Requirements">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Requirements</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="32">
+          <steps>
+            <caseCall testCaseId="cfe0bc71-5691-41cc-a9c8-9d16a0d23c15" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Requirements-SOAPI.testcase" testItemId="106">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Requirements">
+                  <value class="variable">
+                    <path element="SourceData_Requirements_Complete"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_RequirementsAfterPartialReverse">
+                  <value class="variable">
+                    <path element="SourceData_RequirementsAfterPartialReverse"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Requirements_Complete">
+                  <value class="variable">
+                    <path element="SourceData_Requirements_Complete"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="35" title="Verify Sales Order Demand">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Sales Order Demand</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="36">
+          <steps>
+            <caseCall testCaseId="223985d6-8aee-42af-b2eb-599259f1a11b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Sales Order DMD-SOAPI.testcase" testItemId="107">
+              <arguments>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOORDDMD">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMD_Complete"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOORDDMD_Complete">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMD_Complete"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOORDDMDAfterPartialReverse">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMDAfterPartialReverse"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="40" title="Verify Dimensions">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Dimensions</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="41">
+          <steps>
+            <caseCall testCaseId="5a769b43-be53-4f13-be12-6b0e0480855e" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Verify Dimensions-SOAPI.testcase" testItemId="108">
+              <arguments>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_Dimensions">
+                  <value class="variable">
+                    <path element="SourceData_Dimensions"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="340" title="Read On Hand Qty After SO Shipment">
+      <tags/>
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Read On Hand Qty Before SO Shipment</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="122">
+          <steps>
+            <caseCall testCaseId="fb25e9f2-c38a-44b3-90f8-52830d59d796" testCasePath="tests/PO_SYDATA/Callable/Inventory QuantityOnHand.testcase" testItemId="364">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SrcData_InvyQty">
+                  <value class="variable">
+                    <path element="SrcData_InvyQty"/>
+                  </value>
+                </argument>
+                <argument id="wb_Quantitypath">
+                  <value class="variable">
+                    <path element="wb_Quantitypath"/>
+                  </value>
+                </argument>
+                <argument id="ws_quantity">
+                  <value class="variable">
+                    <path element="ws_quantity"/>
+                  </value>
+                </argument>
+                <argument id="Quantity">
+                  <value class="value" valueClass="string">QuantityAfter</value>
+                </argument>
+                <argument id="ExcelPath_SalesOrder_BaseData_SOAPI">
+                  <value class="variable">
+                    <path element="ExcelPath_SalesOrder_BaseData_SOAPI"/>
+                  </value>
+                </argument>
+              </arguments>
+              <outputArguments>
+                <outputArgument id="QtyOnHand">
+                  <name class="value" valueClass="string">QtyOnHand</name>
+                </outputArgument>
+              </outputArguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="77" title="Perform Sales Order Fulfillment Reversal">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Perform Sales Order Fulfillment Reversal</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="78">
+          <steps>
+            <caseCall testCaseId="05f6eca1-29a7-4fa8-89eb-2c20d1b0fc14" testCasePath="tests/Sales Order/Sales Order - CallableTesting/SO Fulfillment Reversal (Set Process Qty)-DefaultSelectionsOnSOFulfillmentpage-SOAPI.testcase" testItemId="115">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOFulfillment">
+                  <value class="variable">
+                    <path element="SourceData_SOFulfillment"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOFulfillReverse">
+                  <value class="variable">
+                    <path element="SourceData_SOFulfillReverse"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="80" title="Verify Requirements After Reversal">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Requirements</value>
+        </argument>
+      </arguments>
+      <parameterValueSources/>
+      <clauses>
+        <clause name="hidden" testItemId="81">
+          <steps>
+            <caseCall testCaseId="cfe0bc71-5691-41cc-a9c8-9d16a0d23c15" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Requirements-SOAPI.testcase" testItemId="110">
+              <arguments>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Requirements">
+                  <value class="variable">
+                    <path element="SourceData_RequirementsAfterPartialReverse"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_RequirementsAfterPartialReverse">
+                  <value class="variable">
+                    <path element="SourceData_RequirementsAfterPartialReverse"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_Requirements_Complete">
+                  <value class="variable">
+                    <path element="SourceData_Requirements_Complete"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" isTitleUpdated="true" name="StepGroup" testItemId="84" title="Verify Sales Order Demand After Reversal">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">Verify Sales Order Demand</value>
+        </argument>
+      </arguments>
+      <parameterValueSources>
+        <parameterValueSource variableName="SourceData_SOORDDMD" variableScope="Test">
+          <cacheToken>C:/Users/Ashok/Provar/WorkspaceMy1/Test_RSTK_1/templates/RSTK8069-Sales Order Fulfillment Complete Reversal.xlsx;1619199897578</cacheToken>
+          <cachedParameters>
+            <apiParam name="Item"/>
+            <apiParam name="ComponentItem"/>
+            <apiParam name="QtyRequired"/>
+            <apiParam name="QtyIssued"/>
+            <apiParam name="QtyRemaining"/>
+          </cachedParameters>
+          <sourceValue class="excelTarget" namesLocation="FirstRowOfRange" whereComparison="EqualTo">
+            <workbookPath class="value" valueClass="string">templates/QARSF/RSTK8068-Sales Order Fulfillment Partial Reversal-AllProductTypes - SOAPI.xlsx</workbookPath>
+            <worksheetName class="value" valueClass="string">SOORDDMDAfterReversal</worksheetName>
+            <valuesRange class="value"/>
+          </sourceValue>
+        </parameterValueSource>
+      </parameterValueSources>
+      <clauses>
+        <clause name="hidden" testItemId="85">
+          <steps>
+            <caseCall testCaseId="223985d6-8aee-42af-b2eb-599259f1a11b" testCasePath="tests/Sales Order/Sales Order - CallableTesting/Sales Order DMD-SOAPI.testcase" testItemId="109">
+              <arguments>
+                <argument id="OrderNumber">
+                  <value class="variable">
+                    <path element="OrderNumber"/>
+                  </value>
+                </argument>
+                <argument id="reuseConnectionName">
+                  <value class="value" valueClass="string">SFConnection</value>
+                </argument>
+                <argument id="SourceData_SOORDDMD">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMDAfterPartialReverse"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOORDDMD_Complete">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMD_Complete"/>
+                  </value>
+                </argument>
+                <argument id="SourceData_SOORDDMDAfterPartialReverse">
+                  <value class="variable">
+                    <path element="SourceData_SOORDDMDAfterPartialReverse"/>
+                  </value>
+                </argument>
+              </arguments>
+            </caseCall>
+          </steps>
+        </clause>
+      </clauses>
+    </apiCall>
+    <apiCall apiId="com.provar.plugins.bundled.apis.control.StepGroup" name="StepGroup" testItemId="360" title="End">
+      <arguments>
+        <argument id="description">
+          <value class="value" valueClass="string">End</value>
+        </argument>
+      </arguments>
+      <clauses>
+        <clause name="hidden" testItemId="361"/>
+      </clauses>
+    </apiCall>
+  </steps>
+  <outputParams>
+    <param name="SourceData_Dimensions" title="SourceData_Dimensions">
+      <summary>The name of the value to be set.  May contain sub-values, e.g. 'Value1.SubValue1'.</summary>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_Dimensions"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_Requirements" title="SourceData_Requirements">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="value" valueClass="string">SourceData_Requirements</sourceValue>
+    </param>
+    <param name="SourceData_SOORDDMD" title="SourceData_SOORDDMD">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_SOORDDMD"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_InventoryQuantity" title="SourceData_InventoryQuantity">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_InventoryQuantity"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_SOHeader" title="SourceData_SOHeader">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_SOHeader"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_SOLine" title="SourceData_SOLine">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_SOLine"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_SOFulfillment" title="SourceData_SOFulfillment">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_SOFulfillment"/>
+      </sourceValue>
+    </param>
+    <param name="SourceData_SOFulfillReverse" title="SourceData_SOFulfillReverse">
+      <summary/>
+      <type>
+        <textType>
+          <constraints>
+            <valueConstraint name="minLength">0</valueConstraint>
+            <valueConstraint name="maxLength">9999</valueConstraint>
+            <valueConstraint name="regex"/>
+          </constraints>
+        </textType>
+      </type>
+      <sourceValue class="variable">
+        <path element="SourceData_SOFulfillReverse"/>
+      </sourceValue>
+    </param>
+  </outputParams>
+  <outputArgs>
+    <outputArgument id="SourceData_Dimensions">
+      <name class="value" valueClass="string">SourceData_Dimensions</name>
+    </outputArgument>
+    <outputArgument id="SourceData_Requirements">
+      <name class="value" valueClass="string">SourceData_Requirements</name>
+    </outputArgument>
+    <outputArgument id="SourceData_SOORDDMD">
+      <name class="value" valueClass="string">SourceData_SOORDDMD</name>
+    </outputArgument>
+    <outputArgument id="SourceData_InventoryQuantity">
+      <name class="value" valueClass="string">SourceData_InventoryQuantity</name>
+    </outputArgument>
+    <outputArgument id="SourceData_SOHeader">
+      <name class="value" valueClass="string">SourceData_SOHeader</name>
+    </outputArgument>
+    <outputArgument id="SourceData_SOLine">
+      <name class="value" valueClass="string">SourceData_SOLine</name>
+    </outputArgument>
+    <outputArgument id="SourceData_SOFulfillment">
+      <name class="value" valueClass="string">SourceData_SOFulfillment</name>
+    </outputArgument>
+    <outputArgument id="SourceData_SOFulfillReverse">
+      <name class="value" valueClass="string">SourceData_SOFulfillReverse</name>
+    </outputArgument>
+  </outputArgs>
+</testCase>

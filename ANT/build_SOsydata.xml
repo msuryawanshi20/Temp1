@@ -1,0 +1,198 @@
+<project default="runtests">
+	<property name="version" value="2.260.16.0"/>
+	<property environment="env"/>
+	<property name="provar.home" value="C:/Program Files/Provar/"/>
+	<property name="testproject.home" value=".."/>
+	<property name="testproject.results1" value="../ANT/Results1"/>
+	<property name="testproject.results2" value="../ANT/Results2"/>
+	<property name="testproject.results3" value="../ANT/Results3"/>
+	<property name="testproject.results4" value="../ANT/Results4"/>
+	<property name="testproject.results5" value="../ANT/Results5"/>
+	<property name="testproject.results6" value="../ANT/Results6"/>
+	<property name="testproject.results7" value="../ANT/Results7"/>
+	<property name="testproject.results8" value="../ANT/Results8"/>
+
+	<taskdef name="Provar-Compile" classname="com.provar.testrunner.ant.CompileTask" classpath="${provar.home}/ant/ant-provar.jar"/>
+	<taskdef name="Run-Test-Case" classname="com.provar.testrunner.ant.RunnerTask" classpath="${provar.home}/ant/ant-provar.jar;${provar.home}/ant/ant-provar-bundled.jar;${provar.home}/ant/ant-provar-sf.jar"/>
+	
+	<target name="runtests">
+	
+		<Provar-Compile provarHome="${provar.home}" projectPath="${testproject.home}"/>
+	
+		<parallel>
+		
+			<Run-Test-Case provarHome="${provar.home}" 
+							projectPath="${testproject.home}" 
+							resultsPath="${testproject.results8}" 
+							resultsPathDisposition="Increment" 
+							testEnvironment="QARSF" 
+							webBrowser="Chrome" 
+							webBrowserConfiguration="Full Screen"
+							webBrowserProviderName="Desktop"
+							webBrowserDeviceName="Full Screen" 
+							salesforceMetadataCache="Reuse" 
+							projectCachePath="../.provarCaches"
+							testOutputlevel="BASIC" 
+							pluginOutputlevel="WARNING"
+							stopTestRunOnError="false"
+					>
+						<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9028 - Firm All Sales Order Lines.testinstance"/></fileset>
+						<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+						<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+						<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+					</Run-Test-Case>
+			<Run-Test-Case provarHome="${provar.home}" 
+										projectPath="${testproject.home}" 
+										resultsPath="${testproject.results1}" 
+										resultsPathDisposition="Increment" 
+										testEnvironment="QARSF" 
+										webBrowser="Chrome" 
+										webBrowserConfiguration="Full Screen"
+										webBrowserProviderName="Desktop"
+										webBrowserDeviceName="Full Screen" 
+										salesforceMetadataCache="Reuse" 
+										projectCachePath="../.provarCaches"
+										testOutputlevel="BASIC" 
+										pluginOutputlevel="WARNING"
+										stopTestRunOnError="false"
+								>
+									<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9029 - Un-Firm All Sales Order Lines.testinstance"/></fileset>
+									<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+									<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+									<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+								</Run-Test-Case>
+			<Run-Test-Case provarHome="${provar.home}" 
+										projectPath="${testproject.home}" 
+										resultsPath="${testproject.results2}" 
+										resultsPathDisposition="Increment" 
+										testEnvironment="QARSF" 
+										webBrowser="Chrome" 
+										webBrowserConfiguration="Full Screen"
+										webBrowserProviderName="Desktop"
+										webBrowserDeviceName="Full Screen" 
+										salesforceMetadataCache="Reuse" 
+										projectCachePath="../.provarCaches"
+										testOutputlevel="BASIC" 
+										pluginOutputlevel="WARNING"
+										stopTestRunOnError="false"
+								>
+									<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9034 - Allocate Sales Order Lines.testinstance"/></fileset>
+									<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+									<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+									<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+								</Run-Test-Case>
+						<Run-Test-Case provarHome="${provar.home}" 
+													projectPath="${testproject.home}" 
+													resultsPath="${testproject.results3}" 
+													resultsPathDisposition="Increment" 
+													testEnvironment="QARSF" 
+													webBrowser="Chrome" 
+													webBrowserConfiguration="Full Screen"
+													webBrowserProviderName="Desktop"
+													webBrowserDeviceName="Full Screen" 
+													salesforceMetadataCache="Reuse" 
+													projectCachePath="../.provarCaches"
+													testOutputlevel="BASIC" 
+													pluginOutputlevel="WARNING"
+													stopTestRunOnError="false"
+											>
+												<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9035 - De-Allocate Sales Order Lines.testinstance"/></fileset>
+												<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+												<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+												<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+											</Run-Test-Case>
+			<Run-Test-Case provarHome="${provar.home}" 
+										projectPath="${testproject.home}" 
+										resultsPath="${testproject.results4}" 
+										resultsPathDisposition="Increment" 
+										testEnvironment="QARSF" 
+										webBrowser="Chrome" 
+										webBrowserConfiguration="Full Screen"
+										webBrowserProviderName="Desktop"
+										webBrowserDeviceName="Full Screen" 
+										salesforceMetadataCache="Reuse" 
+										projectCachePath="../.provarCaches"
+										testOutputlevel="BASIC" 
+										pluginOutputlevel="WARNING"
+										stopTestRunOnError="false"
+								>
+									<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9038 - Pick Sales Order Lines.testinstance"/></fileset>
+									<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+									<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+									<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+								</Run-Test-Case>
+						<Run-Test-Case provarHome="${provar.home}" 
+													projectPath="${testproject.home}" 
+													resultsPath="${testproject.results5}" 
+													resultsPathDisposition="Increment" 
+													testEnvironment="QARSF" 
+													webBrowser="Chrome" 
+													webBrowserConfiguration="Full Screen"
+													webBrowserProviderName="Desktop"
+													webBrowserDeviceName="Full Screen" 
+													salesforceMetadataCache="Reuse" 
+													projectCachePath="../.provarCaches"
+													testOutputlevel="BASIC" 
+													pluginOutputlevel="WARNING"
+													stopTestRunOnError="false"
+											>
+												<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9039 - Reverse Pick Sales Order Lines.testinstance"/></fileset>
+												<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+												<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+												<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+											</Run-Test-Case>
+						<Run-Test-Case provarHome="${provar.home}" 
+													projectPath="${testproject.home}" 
+													resultsPath="${testproject.results6}" 
+													resultsPathDisposition="Increment" 
+													testEnvironment="QARSF" 
+													webBrowser="Chrome" 
+													webBrowserConfiguration="Full Screen"
+													webBrowserProviderName="Desktop"
+													webBrowserDeviceName="Full Screen" 
+													salesforceMetadataCache="Reuse" 
+													projectCachePath="../.provarCaches"
+													testOutputlevel="BASIC" 
+													pluginOutputlevel="WARNING"
+													stopTestRunOnError="false"
+											>
+												<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9040 - Pick-Pack Sales Order Lines.testinstance"/></fileset>
+												<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+												<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+												<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+											</Run-Test-Case>
+									<Run-Test-Case provarHome="${provar.home}" 
+																projectPath="${testproject.home}" 
+																resultsPath="${testproject.results7}" 
+																resultsPathDisposition="Increment" 
+																testEnvironment="QARSF" 
+																webBrowser="Chrome" 
+																webBrowserConfiguration="Full Screen"
+																webBrowserProviderName="Desktop"
+																webBrowserDeviceName="Full Screen" 
+																salesforceMetadataCache="Reuse" 
+																projectCachePath="../.provarCaches"
+																testOutputlevel="BASIC" 
+																pluginOutputlevel="WARNING"
+																stopTestRunOnError="false"
+														>
+															<fileset id="testplan" dir="../plans/SYDATA - Sales Order"><include name="RSTK-9042 - Reverse Pick-Pack Sales Order Lines.testinstance"/></fileset>
+															<planFeature name="PDF" type="OUTPUT" enabled="true"/>
+															<planFeature name="PIECHART" type="OUTPUT" enabled="true"/>
+															<planFeature name="EMAIL" type="NOTIFICATION" enabled="true"/>
+
+														</Run-Test-Case>
+			
+		</parallel>
+		
+
+	</target>
+
+</project>
